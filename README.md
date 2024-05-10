@@ -32,13 +32,19 @@ TODO
 
 Innanzitutto è necessario creare un Python virtual environment ed installare tutte le dipendenze.
 
+##### Creazione e attivazione del virtual environment
+
 Utilizzando la **directory principale** della repository come working directory, eseguire innanzitutto il seguente comando per **creare il virtual environment**:
 
     python -m venv venv
 
+Una volta creato il virtual environment, esso verrà memorizzato nel filesystem, dunque non sarà necessario ricrearlo ogni volta.
+
 A questo punto è possibile **attivarlo** con
 
     venv\Scripts\activate
+
+##### Installazione delle dipendenze
 
 Dopo la **prima attivazione**, è necessario **installare tutte le librerie** utilizzate tramite
 
@@ -52,6 +58,13 @@ Con il virtual environment attivato nella root della repository, per eseguire l'
  2.     python -m luigi --module pipeline FullPipeline --local-scheduler
 
 TODO approfondire (in relazione soprattutto); attualmente non funziona FullPipeline, siccome non viene prodotto nulla, ma si può già "testare" il primo semplice task (vuoto) DataPreprocessing al posto di FullPipeline.
+
+##### Disattivazione del virtual environment
+
+Quando si desidera uscire dal virtual environment, è sufficiente eseguire il comando
+
+    deactivate
+
 
 ### Il Dataset e le Features
 
