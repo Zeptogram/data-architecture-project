@@ -3,6 +3,8 @@ Data Architecture Project for UNIMIB about Machine Learning, Data Quality and Ex
 
 ## Links Utili
 
+- [Relazione](https://docs.google.com/document/d/1IV3Gf9V8NhbtCMpwyom5nab6pTW0wrw2B98vvv_Iris/edit?usp=sharing)
+- [Presentazione](https://unimibit-my.sharepoint.com/personal/e_gargiulo4_campus_unimib_it/_layouts/15/guestaccess.aspx?share=EbSK9e_OlwtKjOP11F5rqQgBEpbfzfVZu8obZHoFk96ZXg&e=91mqyd)
 
 
 ## Autori
