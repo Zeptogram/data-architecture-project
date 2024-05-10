@@ -22,11 +22,36 @@ Data Architecture Project for UNIMIB about Machine Learning, Data Quality and Ex
 
 ## Introduzione al Progetto
 
-In seguito un'introduzione al progetto e al dataset. Si consiglia di consultare la relazione e il progetto in se per approfondimenti e completezza.
+In seguito un'introduzione al progetto e al dataset. Si consiglia di consultare la relazione e il progetto in sé per approfondimenti e completezza.
 
 ### Il Progetto
 
 TODO
+
+#### Istruzioni per l'esecuzione
+
+Innanzitutto è necessario creare un Python virtual environment ed installare tutte le dipendenze.
+
+Utilizzando la **directory principale** della repository come working directory, eseguire innanzitutto il seguente comando per **creare il virtual environment**:
+
+    python -m venv venv
+
+A questo punto è possibile **attivarlo** con
+
+    venv\Scripts\activate
+
+Dopo la **prima attivazione**, è necessario **installare tutte le librerie** utilizzate tramite
+
+    pip install -r requirements.txt
+
+##### Esecuzione della Prima Pipeline
+
+Con il virtual environment attivato nella root della repository, per eseguire l'intera pipeline Luigi che effettua operazioni preliminari sul dataset, la creazione dello spazio della PCA, la creazione di tre modelli con la relativa performance evaluation e il check di alcune dimensioni di qualità, eseguire i seguenti comandi:
+
+ 1.     cd ml_pipeline
+ 2.     python -m luigi --module pipeline FullPipeline --local-scheduler
+
+TODO approfondire (in relazione soprattutto); attualmente non funziona FullPipeline, siccome non viene prodotto nulla, ma si può già "testare" il primo semplice task (vuoto) DataPreprocessing al posto di FullPipeline.
 
 ### Il Dataset e le Features
 
@@ -66,3 +91,4 @@ solfato di potassio per decimetro cubo (g/dm³).
 La qualità di un vino si esprime con un valore di valutazione da 0 a 10 dunque
 potrebbe essere considerata categorica, mentre le altre features, che sono proprietà
 chimiche, sono esprimibili attraverso valori continui.
+
