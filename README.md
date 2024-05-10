@@ -10,7 +10,8 @@ Data Architecture Project for UNIMIB about Machine Learning, Data Quality and Ex
 - Matteo Cavaleri
 - Elio Gargiulo
 - Cristian Piacente
-- 
+
+
 ## Introduzione al Progetto
 
 In seguito un'introduzione al progetto e al dataset. Si consiglia di consultare la relazione e il progetto in se per approfondimenti e completezza.
