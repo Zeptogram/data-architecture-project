@@ -9,6 +9,27 @@ Piacente Cristian - 866020
 import luigi
 import logging
 
+import pandas as pd
+import pandas as pd
+
+from keras.models import Sequential, load_model
+from keras.layers import Dense
+
+import pickle
+
+import joblib
+
+import os
+
+from utils.evaluation import get_global_metrics, get_confidence_intervals
+
+from sklearn import svm
+from sklearn.tree import DecisionTreeClassifier
+
+import tensorflow as tf
+from tensorflow import keras
+
+
 # Set up logger
 logging.basicConfig(filename='luigi.log', level=logging.INFO, 
                     format='%(asctime)s %(levelname)s %(name)s %(message)s')
@@ -26,6 +47,7 @@ default_paths = {
     'train_csv': config.get('SplitDataset', 'train_csv'),
     'test_csv': config.get('SplitDataset', 'test_csv'),
     'nn_model_file': config.get('NNModel', 'nn_model_file'),
+    'nn_history_file': config.get('NNModel', 'nn_history_file'),
     'svm_model_file': config.get('SVMModel', 'svm_model_file'),
     'dtc_model_file': config.get('DTCModel', 'dtc_model_file'),
     'metrics_csv': config.get('PerformanceEval', 'metrics_csv')
@@ -173,23 +195,65 @@ class NNModel(luigi.Task):
 
     input_csv = luigi.Parameter(default=default_paths['input_csv'])
     nn_model_file = luigi.Parameter(default=default_paths['nn_model_file'])
+    nn_history_file = luigi.Parameter(default=default_paths['nn_history_file'])
 
 
     def requires(self):
-        # winetype_pca_train.csv and winetype_pca_test.csv are needed
+        # winetype_pca_train.csv is needed
         return SplitDataset(input_csv=self.input_csv)
     
 
     def run(self):
         logger.info(f'Started task {self.__class__.__name__}')
 
-        # TODO add logic
+        # Read winetype_pca_train.csv
+        train_df = pd.read_csv(self.input()['train_csv'].path)
+        # TODO make sure the column types are loaded correctly (e.g. check that the target is bool)
+        # If it doesn't get loaded correctly, use the parameter dtype={'type': np.bool}
 
+        # Split into X_train and y_train
+        X_train = train_df.drop('type', axis=1)
+        y_train = train_df['type']
+
+        logger.info('Retrieved the training set')
+
+        # Define the neural network
+        nn_model_naive = Sequential()
+
+        # A network with a number of initial neurons that is equal to the number of PCA components (5)
+        nn_model_naive.add(Dense(5, input_shape=(5,), activation='relu'))
+        # An output neuron with a sigmoid activation function (boolean target)
+        nn_model_naive.add(Dense(1, activation='sigmoid'))
+
+        # Compile the model
+        nn_model_naive.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+
+        logger.info('Built the model')
+
+        # Train the model
+        history_naive = nn_model_naive.fit(X_train, y_train, epochs=10, batch_size=32)
+
+        logger.info('Trained the model')
+
+        # Save the entire model to a HDF5 file
+        nn_model_naive.save(self.output()['nn_model_file'].path)
+
+        logger.info('Model saved successfully!')
+
+        # Create the history path directory if it doesn't exist
+        os.makedirs(os.path.dirname(self.output()['nn_history_file'].path), exist_ok=True)
+
+        # Save the training history to a .pkl file
+        with open(self.output()['nn_history_file'].path, 'wb') as f:
+            pickle.dump(history_naive.history, f)
+
+        logger.info('Training history saved successfully!')
         logger.info(f'Finished task {self.__class__.__name__}')
 
 
     def output(self):
-        return luigi.LocalTarget(self.nn_model_file)
+        return {'nn_model_file': luigi.LocalTarget(self.nn_model_file),
+                'nn_history_file': luigi.LocalTarget(self.nn_history_file)}
     
 
 
@@ -203,15 +267,38 @@ class SVMModel(luigi.Task):
 
 
     def requires(self):
-        # winetype_pca_train.csv and winetype_pca_test.csv are needed
+        # winetype_pca_train.csv is needed
         return SplitDataset(input_csv=self.input_csv)
     
 
     def run(self):
         logger.info(f'Started task {self.__class__.__name__}')
 
-        # TODO add logic
+        # Read winetype_pca_train.csv
+        train_df = pd.read_csv(self.input()['train_csv'].path)
+        # TODO make sure the column types are loaded correctly (e.g. check that the target is bool)
+        # If it doesn't get loaded correctly, use the parameter dtype={'type': np.bool}
 
+        # Split into X_train and y_train
+        X_train = train_df.drop('type', axis=1)
+        y_train = train_df['type']
+
+        logger.info('Retrieved the training set')
+
+        # Define the SVM
+        svm_model_naive = svm.SVC(kernel='linear', random_state=42)
+
+        logger.info('Built the model')
+
+        # Train the model
+        svm_model_naive.fit(X_train, y_train)
+
+        logger.info('Trained the model')
+
+        # Save the entire model to a .pkl file
+        joblib.dump(svm_model_naive, self.output().path)
+
+        logger.info('Model saved successfully!')
         logger.info(f'Finished task {self.__class__.__name__}')
 
 
@@ -230,15 +317,38 @@ class DTCModel(luigi.Task):
 
 
     def requires(self):
-        # winetype_pca_train.csv and winetype_pca_test.csv are needed
+        # winetype_pca_train.csv is needed
         return SplitDataset(input_csv=self.input_csv)
     
 
     def run(self):
         logger.info(f'Started task {self.__class__.__name__}')
 
-        # TODO add logic
+        # Read winetype_pca_train.csv
+        train_df = pd.read_csv(self.input()['train_csv'].path)
+        # TODO make sure the column types are loaded correctly (e.g. check that the target is bool)
+        # If it doesn't get loaded correctly, use the parameter dtype={'type': np.bool}
 
+        # Split into X_train and y_train
+        X_train = train_df.drop('type', axis=1)
+        y_train = train_df['type']
+
+        logger.info('Retrieved the training set')
+
+        # Define the Decision Tree
+        dtc_model_naive = DecisionTreeClassifier(random_state=42)
+
+        logger.info('Built the model')
+
+        # Train the model
+        dtc_model_naive.fit(X_train, y_train)
+
+        logger.info('Trained the model')
+
+        # Save the entire model to a .pkl file
+        joblib.dump(dtc_model_naive, self.output().path)
+
+        logger.info('Model saved successfully!')
         logger.info(f'Finished task {self.__class__.__name__}')
 
 
@@ -257,8 +367,9 @@ class PerformanceEval(luigi.Task):
 
 
     def requires(self):
-        # nn_model, svm_model, dtc_model, winetype_pca_train.csv and winetype_pca_test.csv are needed
-        return {'nn_model_file': NNModel(input_csv=self.input_csv),
+        # winetype_pca.csv, nn_model.h5, nn_history.pkl, svm_model.pkl, dtc_model.pkl and winetype_pca_test.csv are needed
+        return {'pca_csv': PCATask(input_csv=self.input_csv),
+                'nn_files': NNModel(input_csv=self.input_csv),
                 'svm_model_file': SVMModel(input_csv=self.input_csv),
                 'dtc_model_file': DTCModel(input_csv=self.input_csv),
                 'splitted_dataset_csv': SplitDataset(input_csv=self.input_csv)}
@@ -267,8 +378,117 @@ class PerformanceEval(luigi.Task):
     def run(self):
         logger.info(f'Started task {self.__class__.__name__}')
 
-        # TODO add logic
+        # Read winetype_pca.csv
+        df = pd.read_csv(self.input()['pca_csv'].path)
+        # TODO make sure the column types are loaded correctly (e.g. check that the target is bool)
+        # If it doesn't get loaded correctly, use the parameter dtype={'type': np.bool}
 
+        # Split into X and y
+        X = df.drop('type', axis=1)
+        y = df['type']
+
+        logger.info('Retrieved the dataset')
+
+        # Read winetype_pca_test.csv
+        test_df = pd.read_csv(self.input()['splitted_dataset_csv']['test_csv'].path)
+        # TODO make sure the column types are loaded correctly (e.g. check that the target is bool)
+        # If it doesn't get loaded correctly, use the parameter dtype={'type': np.bool}
+
+        # Split into X_test and y_test
+        X_test = test_df.drop('type', axis=1)
+        y_test = test_df['type']
+
+        logger.info('Retrieved the test set')
+
+        # Retrieve the Neural Network
+        nn_model_naive = load_model(self.input()['nn_files']['nn_model_file'].path)
+
+        logger.info('Loaded the Neural Network')
+
+        # Retrieve the SVM
+        svm_model_naive = joblib.load(self.input()['svm_model_file'].path)
+
+        logger.info('Loaded the SVM')
+
+        # Retrieve the Decision Tree
+        dtc_model_naive = joblib.load(self.input()['dtc_model_file'].path)
+
+        logger.info('Loaded the Decision Tree')
+
+        # Map the model names to their instances
+        models_dict = {
+            'Neural Network': nn_model_naive,
+            'SVM': svm_model_naive,
+            'Decision Tree': dtc_model_naive
+        }
+
+        # Dictionary structure which will be converted to DataFrame
+        # Keys = column names
+        # Values = column data, one for each row
+        metrics_dict = {
+            'model_name': list(models_dict.keys()),
+
+            'accuracy': [],
+            'accuracy_interval_lower': [],
+            'accuracy_interval_upper': [],
+
+            'precision': [],
+            'precision_interval_lower': [],
+            'precision_interval_upper': [],
+
+            'recall': [],
+            'recall_interval_lower': [],
+            'recall_interval_upper': [],
+
+            'f1_score': [],
+            'f1_score_interval_lower': [],
+            'f1_score_interval_upper': []
+        }
+
+        # For each model fill the structure with the metrics data
+        for model_name in metrics_dict['model_name']:
+
+            # Model instance
+            model = models_dict[model_name]
+
+            # Global metrics
+            global_metrics = get_global_metrics(model, X_test, y_test)
+
+            # Add the global metrics to the structure
+            metrics_dict['accuracy'].append(global_metrics['accuracy'])
+            metrics_dict['precision'].append(global_metrics['precision'])
+            metrics_dict['recall'].append(global_metrics['recall'])
+            metrics_dict['f1_score'].append(global_metrics['f1_score'])
+
+            logger.info(f'Got the global metrics for {model_name}')
+
+            # 95% confidence intervals
+            confidence_intervals = get_confidence_intervals(model, X, y)
+
+            # Add the 95% confidence intervals to the structure
+            metrics_dict['accuracy_interval_lower'].append(confidence_intervals['accuracy_interval'][0])
+            metrics_dict['accuracy_interval_upper'].append(confidence_intervals['accuracy_interval'][1])
+            metrics_dict['precision_interval_lower'].append(confidence_intervals['precision_interval'][0])
+            metrics_dict['precision_interval_upper'].append(confidence_intervals['precision_interval'][1])
+            metrics_dict['recall_interval_lower'].append(confidence_intervals['recall_interval'][0])
+            metrics_dict['recall_interval_upper'].append(confidence_intervals['recall_interval'][1])
+            metrics_dict['f1_score_interval_lower'].append(confidence_intervals['f1_score_interval'][0])
+            metrics_dict['f1_score_interval_upper'].append(confidence_intervals['f1_score_interval'][1])
+            
+            logger.info(f'Got the 95% confidence intervals for {model_name}')
+        
+        # Convert the dictionary structure to DataFrame
+        metrics_df = pd.DataFrame(metrics_dict)
+
+        # Create the metrics csv path directory if it doesn't exist
+        os.makedirs(os.path.dirname(self.output().path), exist_ok=True)
+
+        # Append the data to metrics.csv
+        with open(self.output().path, 'a') as f:
+            # The header gets written only if the csv is empty
+            metrics_df.to_csv(f, mode='a', header=f.tell()==0, index=False, lineterminator='\n')
+
+        logger.info('Appended to csv the performance evaluation for each model')
         logger.info(f'Finished task {self.__class__.__name__}')
 
 
@@ -277,7 +497,7 @@ class PerformanceEval(luigi.Task):
     
 
 
-class Consistency(luigi.Task):
+class Completeness(luigi.Task):
     """
     TODO docstring
     """
@@ -296,7 +516,7 @@ class Consistency(luigi.Task):
 
         # TODO add logic
 
-        # Consistency check passed
+        # Completeness check passed
         self._completion_flag.completed = True
 
         logger.info(f'Finished task {self.__class__.__name__}')
@@ -308,7 +528,37 @@ class Consistency(luigi.Task):
 
 
 
-class Coherence(luigi.Task):
+class Consistency(luigi.Task):
+    """
+    TODO docstring
+    """
+
+    input_csv = luigi.Parameter(default=default_paths['input_csv'])
+    _completion_flag = InMemoryTarget()
+
+
+    def requires(self):
+        # This task depends on the completion of Completeness
+        return Completeness(input_csv=self.input_csv)
+
+
+    def run(self):
+        logger.info(f'Started task {self.__class__.__name__}')
+
+        # TODO add logic
+
+        # Consistency check passed
+        self._completion_flag.completed = True
+
+        logger.info(f'Finished task {self.__class__.__name__}')
+
+
+    def output(self):
+        return self._completion_flag
+    
+
+
+class Uniqueness(luigi.Task):
     """
     TODO docstring
     """
@@ -327,7 +577,7 @@ class Coherence(luigi.Task):
 
         # TODO add logic
 
-        # Coherence check passed
+        # Uniqueness check passed
         self._completion_flag.completed = True
 
         logger.info(f'Finished task {self.__class__.__name__}')
@@ -335,7 +585,7 @@ class Coherence(luigi.Task):
 
     def output(self):
         return self._completion_flag
-    
+
 
 
 class Accuracy(luigi.Task):
@@ -348,8 +598,8 @@ class Accuracy(luigi.Task):
 
 
     def requires(self):
-        # This task depends on the completion of Coherence
-        return Coherence(input_csv=self.input_csv)
+        # This task depends on the completion of Uniqueness
+        return Uniqueness(input_csv=self.input_csv)
 
 
     def run(self):
@@ -368,36 +618,6 @@ class Accuracy(luigi.Task):
 
 
 
-class Integrity(luigi.Task):
-    """
-    TODO docstring
-    """
-
-    input_csv = luigi.Parameter(default=default_paths['input_csv'])
-    _completion_flag = InMemoryTarget()
-
-
-    def requires(self):
-        # This task depends on the completion of Accuracy
-        return Accuracy(input_csv=self.input_csv)
-
-
-    def run(self):
-        logger.info(f'Started task {self.__class__.__name__}')
-
-        # TODO add logic
-
-        # Integrity check passed
-        self._completion_flag.completed = True
-
-        logger.info(f'Finished task {self.__class__.__name__}')
-
-
-    def output(self):
-        return self._completion_flag
-
-
-
 class FullPipeline(luigi.WrapperTask):
     """
     A wrapper task to run the full pipeline with default parameters.
@@ -406,4 +626,4 @@ class FullPipeline(luigi.WrapperTask):
     """
     
     def requires(self):
-        return [Integrity(), PerformanceEval()]
+        return [Accuracy(), PerformanceEval()]

@@ -1,5 +1,4 @@
 keras==3.3.3
-keras-tuner==1.4.7
 luigi==3.5.0
 matplotlib==3.7.1
 notebook==7.1.3
