@@ -19,7 +19,7 @@ from sklearn.tree import DecisionTreeClassifier
 
 import scipy.stats as st
 
-from predictions import get_predictions
+from utils.predictions import get_predictions
 
 
 # Metrics used by each fold during cross validation, needed for the SVM / Decision Tree function

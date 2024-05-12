@@ -2,3 +2,4 @@
 /ml_pipeline/__pycache__
 ml_pipeline/luigi.log
 /venv
+/ml_pipeline/utils/__pycache__

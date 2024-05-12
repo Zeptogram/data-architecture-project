@@ -16,9 +16,9 @@ from keras.models import Sequential
 from sklearn import svm
 from sklearn.tree import DecisionTreeClassifier
 
-from predictions import get_predictions
+from utils.predictions import get_predictions
 
-from cross_validation import get_nn_scores, get_svm_dtc_scores
+from utils.cross_validation import get_nn_scores, get_svm_dtc_scores
 
 
 
@@ -76,4 +76,3 @@ def get_confidence_intervals(model, X, y):
 
     # Return the intervals
     return intervals
-        
