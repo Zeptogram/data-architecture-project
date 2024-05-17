@@ -10,7 +10,6 @@ import luigi
 import logging
 
 import pandas as pd
-import pandas as pd
 
 from keras.models import Sequential, load_model
 from keras.layers import Dense
@@ -23,8 +22,12 @@ import os
 
 from utils.evaluation import get_global_metrics, get_confidence_intervals
 
+from sklearn.model_selection import train_test_split
 from sklearn import svm
 from sklearn.tree import DecisionTreeClassifier
+
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler, LabelEncoder
 
 import tensorflow as tf
 from tensorflow import keras
@@ -95,8 +98,33 @@ class DataPreprocessing(luigi.Task):
     def run(self):
         logger.info(f'Started task {self.__class__.__name__}')
 
-        # TODO add logic
+        # Read winetype.csv
+        df = pd.read_csv(self.input().path)
 
+        logger.info('Retrieved the original dataset')
+
+        logger.info(f'Dataset dimension before preprocessing: {df.shape}')
+
+        logger.info(f'Missing values:\n{df.isnull().sum()}')
+
+        # Drop rows with missing values
+        df.dropna(inplace=True)
+
+        logger.info('Dropped rows with missing values')
+
+        logger.info(f'Duplicated rows: {df.duplicated().sum()}')
+
+        # Drop duplicated rows
+        df.drop_duplicates(subset=None, keep='first', inplace=True, ignore_index=False)
+
+        logger.info('Dropped duplicated rows')
+
+        logger.info(f'Dataset dimension after preprocessing: {df.shape}')
+
+        # Save the preprocessed data to winetype_cleaned.csv
+        df.to_csv(self.output().path, index=False)
+
+        logger.info('Preprocessed data saved successfully!')
         logger.info(f'Finished task {self.__class__.__name__}')
 
 
@@ -122,8 +150,37 @@ class DataTransformation(luigi.Task):
     def run(self):
         logger.info(f'Started task {self.__class__.__name__}')
 
-        # TODO add logic
+        # Read winetype_cleaned.csv
+        df = pd.read_csv(self.input().path)
 
+        logger.info('Retrieved the preprocessed dataset')
+
+        logger.info(f'Data types before encoding and casting:\n{df.dtypes}')
+
+        # Label Encoding (red = False, white = True)
+        df['type'] = LabelEncoder().fit_transform(df['type']) 
+        df['type'] = df['type'].astype(bool) # Cast to bool
+
+        logger.info('Label encoded the target, which is now bool (red = False, white = True)')
+
+        # Cast the feature quality to categorical, since its values can be between 0 and 10
+        df['quality'] = df['quality'].astype('category')
+
+        logger.info('Casted the feature quality to categorical')
+
+        logger.info(f'Data types after encoding and casting:\n{df.dtypes}')
+
+        logger.info(f'Number of features before dropping the feature quality: {df.shape[1] - 1}')
+
+        # Drop the feature quality, please refer to the notebook to find out why
+        df.drop(columns='quality', inplace=True)
+
+        logger.info(f'Number of features after dropping the feature quality: {df.shape[1] - 1}')
+
+        # Save the transformed data to winetype_transformed.csv
+        df.to_csv(self.output().path, index=False)
+
+        logger.info('Transformed data saved successfully!')
         logger.info(f'Finished task {self.__class__.__name__}')
 
 
@@ -149,8 +206,39 @@ class PCATask(luigi.Task):
     def run(self):
         logger.info(f'Started task {self.__class__.__name__}')
 
-        # TODO add logic
+        # Read winetype_transformed.csv
+        df = pd.read_csv(self.input().path)
 
+        logger.info('Retrieved the transformed dataset')
+
+        # Only consider numerical features (exclude the target)
+        indexes = list(range(1, 12))
+        features = [df.columns[i] for i in indexes]
+
+        logger.info(f'Numerical features: {features}')
+
+        # Standardize the features
+        scaler = StandardScaler()
+        scaled_data = scaler.fit_transform(df[features])
+
+        logger.info('Scaled the data')
+
+        # Dimensionality reduction with 5 components
+        pca = PCA(n_components=5).fit(scaled_data)
+        pca_data = pca.transform(scaled_data)
+
+        logger.info('Applied PCA to the data, with n_components = 5')
+
+        # Convert the PCA data to DataFrame
+        pca_df = pd.DataFrame(pca_data, columns=[f'PC{i+1}' for i in range(pca_data.shape[1])])
+
+        # Add the target to the DataFrame
+        pca_df.insert(0, 'type', df['type'])
+
+        # Save the PCA data to winetype_pca.csv
+        pca_df.to_csv(self.output().path, index=False)
+
+        logger.info('PCA data saved successfully!')
         logger.info(f'Finished task {self.__class__.__name__}')
 
 
@@ -177,8 +265,43 @@ class SplitDataset(luigi.Task):
     def run(self):
         logger.info(f'Started task {self.__class__.__name__}')
 
-        # TODO add logic
+        # Read winetype_pca.csv
+        df = pd.read_csv(self.input().path)
 
+        # Split into X and y
+        X = df.drop('type', axis=1)
+        y = df['type']
+
+        logger.info('Retrieved the PCA dataset')
+
+        # 80% training, 20% test
+        train_size = 0.8
+        test_size = 0.2
+
+        # Split into training set and test set
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size, random_state=42)
+
+        logger.info('Split into training set (80%) and test set (20%)')
+
+        logger.info(f'Total dimension: {X.shape}')
+        logger.info(f'Training set dimension: {X_train.shape}')
+        logger.info(f'Test set dimension: {X_test.shape}')
+
+        # Get the whole training set DataFrame
+        train_df = pd.concat([y_train, X_train], axis=1)
+
+        # Get the whole test set DataFrame
+        test_df = pd.concat([y_test, X_test], axis=1)
+
+        # Save the training set to winetype_pca_train.csv
+        train_df.to_csv(self.output()['train_csv'].path, index=False)
+
+        logger.info('Training set saved successfully!')
+
+        # Save the test set to winetype_pca_test.csv
+        test_df.to_csv(self.output()['test_csv'].path, index=False)
+        
+        logger.info('Test set saved successfully!')
         logger.info(f'Finished task {self.__class__.__name__}')
         
 
@@ -208,8 +331,6 @@ class NNModel(luigi.Task):
 
         # Read winetype_pca_train.csv
         train_df = pd.read_csv(self.input()['train_csv'].path)
-        # TODO make sure the column types are loaded correctly (e.g. check that the target is bool)
-        # If it doesn't get loaded correctly, use the parameter dtype={'type': np.bool}
 
         # Split into X_train and y_train
         X_train = train_df.drop('type', axis=1)
@@ -276,8 +397,6 @@ class SVMModel(luigi.Task):
 
         # Read winetype_pca_train.csv
         train_df = pd.read_csv(self.input()['train_csv'].path)
-        # TODO make sure the column types are loaded correctly (e.g. check that the target is bool)
-        # If it doesn't get loaded correctly, use the parameter dtype={'type': np.bool}
 
         # Split into X_train and y_train
         X_train = train_df.drop('type', axis=1)
@@ -326,8 +445,6 @@ class DTCModel(luigi.Task):
 
         # Read winetype_pca_train.csv
         train_df = pd.read_csv(self.input()['train_csv'].path)
-        # TODO make sure the column types are loaded correctly (e.g. check that the target is bool)
-        # If it doesn't get loaded correctly, use the parameter dtype={'type': np.bool}
 
         # Split into X_train and y_train
         X_train = train_df.drop('type', axis=1)
@@ -380,19 +497,15 @@ class PerformanceEval(luigi.Task):
 
         # Read winetype_pca.csv
         df = pd.read_csv(self.input()['pca_csv'].path)
-        # TODO make sure the column types are loaded correctly (e.g. check that the target is bool)
-        # If it doesn't get loaded correctly, use the parameter dtype={'type': np.bool}
 
         # Split into X and y
-        X = df.drop('type', axis=1)
+        X = df.drop('type', axis=1).to_numpy()
         y = df['type']
 
         logger.info('Retrieved the dataset')
 
         # Read winetype_pca_test.csv
         test_df = pd.read_csv(self.input()['splitted_dataset_csv']['test_csv'].path)
-        # TODO make sure the column types are loaded correctly (e.g. check that the target is bool)
-        # If it doesn't get loaded correctly, use the parameter dtype={'type': np.bool}
 
         # Split into X_test and y_test
         X_test = test_df.drop('type', axis=1)

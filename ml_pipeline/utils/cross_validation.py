@@ -56,9 +56,12 @@ def get_nn_scores(model, X, y):
         X_train_fold, X_test_fold = X[train_index], X[test_index]
         y_train_fold, y_test_fold = np.array(y)[train_index], np.array(y)[test_index]
 
+        # Re-compile the model
+        model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+
         # Training for each fold
         model.fit(X_train_fold, y_train_fold, epochs=10, batch_size=32, verbose=0)
-
+        
         # Get the predictions on test set of the current fold
         y_pred = get_predictions(model, X_test_fold)
 
