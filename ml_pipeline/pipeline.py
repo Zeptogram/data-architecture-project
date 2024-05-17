@@ -22,6 +22,8 @@ import os
 
 from utils.evaluation import get_global_metrics, get_confidence_intervals
 
+import utils.data_quality as dq
+
 from sklearn.model_selection import train_test_split
 from sklearn import svm
 from sklearn.tree import DecisionTreeClassifier
@@ -56,6 +58,9 @@ default_paths = {
     'metrics_csv': config.get('PerformanceEval', 'metrics_csv')
 }
 
+# Threshold for data quality measures
+dq_threshold = 3 # 3%
+dq_count_threshold = int(5295 / 100 * dq_threshold) # 158
 
 
 class InMemoryTarget(luigi.Target):
@@ -627,10 +632,35 @@ class Completeness(luigi.Task):
     def run(self):
         logger.info(f'Started task {self.__class__.__name__}')
 
-        # TODO add logic
+        # Read winetype_transformed.csv
+        df = pd.read_csv(self.input().path)
 
-        # Completeness check passed
-        self._completion_flag.completed = True
+        logger.info('Retrieved the transformed dataset')
+
+        # Test the data quality completeness measure on the set
+        missing_values, completeness_ratio = dq.completeness_test(df)
+
+        logger.info('============================================================')
+        logger.info('COMPLETENESS - MISSING VALUES DISTRIBUTION RESULTS:')
+        logger.info('============================================================')
+        logger.info(f'\n{missing_values}\n')
+        # Info about the ratio of missing values for each feature in the dataset in %
+        logger.info('============================================================')
+        logger.info('COMPLETENESS - MISSING VALUES RATIO:')
+        logger.info('============================================================')
+        logger.info(f'\n{completeness_ratio}\n\n')
+        
+        # Missing values sum
+        missing_values_sum = missing_values.sum()
+
+        logger.info(f'Missing values sum: {missing_values_sum}')
+
+        # Completeness check
+        if missing_values_sum < dq_count_threshold:
+            self._completion_flag.completed = True # The task is now completed
+            logger.info('Completeness check passed')
+        else:
+            logger.error('Completeness check failed')
 
         logger.info(f'Finished task {self.__class__.__name__}')
 
@@ -651,17 +681,106 @@ class Consistency(luigi.Task):
 
 
     def requires(self):
-        # This task depends on the completion of Completeness
-        return Completeness(input_csv=self.input_csv)
+        # This task depends on winetype_transformed.csv and the completion of Completeness
+        return {'transformed_csv': DataTransformation(input_csv=self.input_csv),
+                'completeness_check': Completeness(input_csv=self.input_csv)}
 
 
     def run(self):
         logger.info(f'Started task {self.__class__.__name__}')
 
-        # TODO add logic
+        # Read winetype_transformed.csv
+        df = pd.read_csv(self.input()['transformed_csv'].path)
 
-        # Consistency check passed
-        self._completion_flag.completed = True
+        logger.info('Retrieved the transformed dataset')
+
+        # Test the data quality consistency measure on the set
+        inconsistent_values_default, inconsistent_values_bounded_std, inconsistent_values_bounded_iqr, outliers_std, outliers_iqr, std_bounds, iqr_bounds = dq.consistency_test(df)
+
+        # Counter for outliers w.r.t the domain (default ranges)
+        default_counter = 0
+        
+        # Counter for outliers w.r.t the mean and std method
+        std_counter = 0
+        
+        # Counter for outliers w.r.t the IQR method
+        iqr_counter = 0
+
+        logger.info('============================================================')
+        logger.info('CONSISTENCY - INCONSISTENT VALUES DEFAULT RESULTS:')
+        logger.info('============================================================')
+        # For each feature it has to be 0 (PASSED)
+        for feature, count in inconsistent_values_default.items():
+            logger.info(f'{feature}: {'PASSED' if count == 0 else count}')
+            default_counter += count
+        logger.info('')
+        logger.info('============================================================')
+        logger.info('CONSISTENCY - STD BOUNDS RESULTS:')
+        logger.info('============================================================')
+        for feature, (lower_bound, upper_bound) in std_bounds.items():
+            logger.info(f"{feature}: ({lower_bound}, {upper_bound})")
+        logger.info('')
+        logger.info('============================================================')
+        logger.info('CONSISTENCY - IQR BOUNDS RESULTS:')
+        logger.info('============================================================')
+        for feature, (lower_bound, upper_bound) in iqr_bounds.items():
+            logger.info(f"{feature}: ({lower_bound}, {upper_bound})")
+        logger.info('')
+        logger.info('============================================================')
+        logger.info('CONSISTENCY - INCONSISTENT VALUES STD BOUNDS RESULTS:')
+        logger.info('============================================================')
+        # For each feature it has to be 0 (PASSED)
+        for feature, count in inconsistent_values_bounded_std.items():
+            logger.info(f'{feature}: {'PASSED' if count == 0 else count}')
+            std_counter += count
+        logger.info('')
+        logger.info('============================================================')
+        logger.info('CONSISTENCY - INCONSISTENT VALUES IQR BOUNDS RESULTS:')
+        logger.info('============================================================')
+        # For each feature it has to be 0 (PASSED)
+        for feature, count in inconsistent_values_bounded_iqr.items():
+            logger.info(f'{feature}: {'PASSED' if count == 0 else count}')
+            iqr_counter += count
+        logger.info('')
+        # Info about the outliers found using range calculation with mean and std and bound check
+        logger.info('============================================================')
+        logger.info('CONSISTENCY - OUTLIERS STD INFO RESULTS:')
+        logger.info('============================================================')
+        for feature, info in outliers_std.items():
+            logger.info(f'Feature: {feature}')
+            logger.info(f'Count of outliers: {info['count']}')
+            logger.info(f'Rows with outliers: {info['rows']}\n') # Add +2
+        logger.info('')
+        # Info about the outliers found using interquartile range
+        logger.info('============================================================')
+        logger.info('CONSISTENCY - OUTLIERS IQR INFO RESULTS:')
+        logger.info('============================================================')
+        for feature, info in outliers_iqr.items():
+            logger.info(f'Feature: {feature}')
+            logger.info(f'Count of outliers: {info['count']}')
+            logger.info(f'Rows with outliers: {info['rows']}\n') # Add +2
+        logger.info('\n')
+
+        logger.info(f'Count of outliers w.r.t the domain: {default_counter}')
+
+        logger.info(f'Count of outliers w.r.t the mean and std method: {std_counter}')
+
+        logger.info(f'Count of outliers w.r.t the IQR method: {iqr_counter}')
+
+        # Domain consistency check
+        if default_counter < dq_count_threshold:
+            # Mean and std consistency check
+            if std_counter < dq_count_threshold:
+                # IQR consistency check
+                if iqr_counter < dq_count_threshold:
+                    logger.info('All consistency checks passed')
+                    self._completion_flag.completed = True # The task is now completed
+                else:
+                    logger.error('Consistency IQR check failed')
+            else:
+                logger.error('Consistency mean and std check failed')
+        else:
+            logger.error('Consistency domain check failed')
 
         logger.info(f'Finished task {self.__class__.__name__}')
 
@@ -681,17 +800,62 @@ class Uniqueness(luigi.Task):
 
 
     def requires(self):
-        # This task depends on the completion of Consistency
-        return Consistency(input_csv=self.input_csv)
+        # This task depends on winetype_transformed.csv and the completion of Consistency
+        return {'transformed_csv': DataTransformation(input_csv=self.input_csv),
+                'consistency_check': Consistency(input_csv=self.input_csv)}
 
 
     def run(self):
         logger.info(f'Started task {self.__class__.__name__}')
 
-        # TODO add logic
+        # Read winetype_transformed.csv
+        df = pd.read_csv(self.input()['transformed_csv'].path)
 
-        # Uniqueness check passed
-        self._completion_flag.completed = True
+        logger.info('Retrieved the transformed dataset')
+
+        # Test the data quality uniqueness measure on the set
+        unique_values, duplicate_values, duplicate_sum, unique_ratio = dq.uniqueness_test(df)
+
+        # Check that every column has at least 2 values
+        only_useful_columns = True
+
+        logger.info('============================================================')
+        logger.info('UNIQUENESS - UNIQUE VALUES DISTRIBUTION RESULTS:')
+        logger.info('============================================================')
+        # Gives info about how different the data is in the set, while also
+        # verifying if it's meaningful (EX. type has to be 2 since its a boolean)
+        logger.info(f'\n{unique_values}\n')
+        for _, count in unique_values.items():
+            if count == 1:
+                # A useless column (no additional information) is in the dataset, since it only has 1 value
+                only_useful_columns = False
+                break
+        # Info about the ratio for each feature of their uniqueness in %
+        logger.info('============================================================')
+        logger.info('UNIQUENESS - UNIQUE VALUES RATIO RESULTS:')
+        logger.info('============================================================')
+        logger.info(f'\n{unique_ratio}\n')
+        # Info about the distribution of duplicated values
+        logger.info('============================================================')
+        logger.info('UNIQUENESS - DUPLICATED VALUES DISTRIBUTION RESULTS:')
+        logger.info('============================================================')
+        logger.info(f'{duplicate_values}\n')
+        # Info about the sum (total number) of duplicated values
+        logger.info('============================================================')
+        logger.info('UNIQUENESS - DUPLICATED VALUES SUM RESULTS:')
+        logger.info('============================================================')
+        logger.info(f'Duplicated Records: {duplicate_sum}\n\n')
+
+        # Check that every column is useful (at least 2 values)
+        if only_useful_columns:
+            # Duplicated records check
+            if duplicate_sum < dq_count_threshold:
+                logger.info('All uniqueness checks passed')
+                self._completion_flag.completed = True # The task is now completed
+            else:
+                logger.error('Uniqueness duplicated records check failed')
+        else:
+            logger.error('A uniqueness check failed: not every column has at least 2 values')
 
         logger.info(f'Finished task {self.__class__.__name__}')
 
@@ -711,17 +875,41 @@ class Accuracy(luigi.Task):
 
 
     def requires(self):
-        # This task depends on the completion of Uniqueness
-        return Uniqueness(input_csv=self.input_csv)
+        # This task depends on winetype_transformed.csv and the completion of Uniqueness
+        return {'transformed_csv': DataTransformation(input_csv=self.input_csv),
+                'uniqueness_check': Uniqueness(input_csv=self.input_csv)}
 
 
     def run(self):
         logger.info(f'Started task {self.__class__.__name__}')
 
-        # TODO add logic
+        # Read winetype_transformed.csv
+        df = pd.read_csv(self.input()['transformed_csv'].path)
 
-        # Accuracy check passed
-        self._completion_flag.completed = True
+        logger.info('Retrieved the transformed dataset')
+
+        # Test the data quality accuracy measure on the set
+        accuracy_results = dq.accuracy_test(df)
+
+        # Check that every column has the correct type
+        correct_types = True
+
+        logger.info('============================================================')
+        logger.info('ACCURACY - CORRECT TYPE RESULTS:')
+        logger.info('============================================================')
+        # For each feature it has to be PASSED
+        for feature, is_correct in accuracy_results.items():
+            logger.info(f'{feature}: {'PASSED' if is_correct else 'FAILED'}')
+            if not is_correct:
+                correct_types = False
+        logger.info('')
+
+        # Accuracy check
+        if correct_types:
+            logger.info('Accuracy check passed')
+            self._completion_flag.completed = True # The task is now completed
+        else:
+            logger.error('Accuracy check failed')
 
         logger.info(f'Finished task {self.__class__.__name__}')
 

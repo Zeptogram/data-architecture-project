@@ -9,3 +9,4 @@ ml_pipeline/datasets/winetype_pca_train.csv
 ml_pipeline/datasets/winetype_transformed.csv
 /ml_pipeline/models
 /ml_pipeline/performance
+/__pycache__
