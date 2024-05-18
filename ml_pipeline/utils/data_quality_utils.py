@@ -1,27 +1,39 @@
-'''
-    DATA_QUALITY_UTILS.PY
+"""
+Module for supporting data quality checks on the wine dataset.
 
-    Python file that helps the main file (data_quality.py) with the implementation
-    of data quality checks, containing useful functions and separation of concerns.
+This utility module provides functions to perform four data quality checks:
+completeness, consistency, uniqueness, and accuracy of the data. 
 
-    REMINDER FOR ROWS: When searching in the dataset, refer to the number + 2
+These functions help in identifying missing values, out-of-range values, outliers, duplicate entries, 
+and mismatches in expected data types.
+
+Python file that helps the main file (data_quality.py) with the implementation of data quality checks, 
+containing useful functions and separation of concerns.
+
+REMINDER FOR ROWS: When searching in the dataset, refer to the number + 2
 
 Cavaleri Matteo - 875050
 Gargiulo Elio - 869184
 Piacente Cristian - 866020
-'''
+"""
 
 import numpy as np
+
+
 
 # Sums missing values for each feature
 def completeness_verify(df):
     missing_values = df.isnull().sum()
     return missing_values
 
+
+
 # Calculates the ratio % of missing values for each feature
 def completeness_ratio(df):
     missing_values = df.isnull().mean() * 100
     return missing_values
+
+
 
 # Checks, with given ranges, if the features are within those ranges. If not, count the inconsistent values.
 def consistency_verify(df, ranges):
@@ -37,6 +49,8 @@ def consistency_verify(df, ranges):
             out_of_range[feature] = 0
     return out_of_range
 
+
+
 # Calculates the outliers looking at the data out of bounds (STD or IQR)
 def consistency_outliers(df, ranges):
     outliers = {}
@@ -50,6 +64,8 @@ def consistency_outliers(df, ranges):
                     'rows': feature_outliers.index.tolist()  # Always +2 when looking in the file
                 }
     return outliers
+
+
 
 # Calculates the bounds for each feature, to have a more accurate, yet not perfect idea 
 # of our data consistency. Mean and Threshold * Standard deviation has been used. 
@@ -67,6 +83,8 @@ def consistency_calculate_bounds_std(data, feature_ranges, threshold = 5):
         updated_feature_ranges[feature] = (lower_bound_new, upper_bound_new)
     return updated_feature_ranges
 
+
+
 # Calculates the bounds using Interquartile Range (IQR)
 def consistency_calculate_bounds_iqr(data, feature_ranges, threshold = 4):
     updated_feature_ranges = {}
@@ -81,10 +99,14 @@ def consistency_calculate_bounds_iqr(data, feature_ranges, threshold = 4):
         updated_feature_ranges[feature] = (lower_bound_new, upper_bound_new)
     return updated_feature_ranges
 
+
+
 # Verifies how unique each feature is
 def uniqueness_verify_unique(df):
     unique_counts = df.nunique()
     return unique_counts
+
+
 
 # Verifies if there are any duplicates, if so counts the duplicated data + sum
 def uniqueness_verify_duplicates(df):
@@ -92,10 +114,14 @@ def uniqueness_verify_duplicates(df):
     duplicate_sum = df.duplicated().sum()
     return duplicate_indexes, duplicate_sum
 
+
+
 # Calculates the ratio % of unique values for each feature
 def uniqueness_ratio(df):
     unique_values = df.nunique() / len(df) * 100
     return unique_values
+
+
 
 # Verifies, given the expected types, that each feature is considered as the expected type.
 def accuracy_verify(df, expected_types):
@@ -104,9 +130,3 @@ def accuracy_verify(df, expected_types):
         actual_type = df[feature].dtype
         accuracy_results[feature] = actual_type == expected_type
     return accuracy_results
-
-
-'''
-    END OF FILE
-
-'''

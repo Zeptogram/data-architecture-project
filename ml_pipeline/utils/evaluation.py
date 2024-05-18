@@ -1,5 +1,8 @@
 """
-TODO docstring
+Module for evaluating model performance on the wine dataset.
+
+This module contains functions to calculate global performance metrics and confidence intervals for different 
+machine learning models (Neural Networks, Support Vector Machines, and Decision Trees). 
 
 Cavaleri Matteo - 875050
 Gargiulo Elio - 869184
@@ -24,7 +27,18 @@ from utils.cross_validation import get_nn_scores, get_svm_dtc_scores
 
 def get_global_metrics(model, X_test, y_test):
     """
-    TODO docstring
+    Compute basic performance metrics for a model based on the test dataset.
+
+    This function evaluates a model's performance by predicting the test dataset and then calculating 
+    accuracy, precision, recall, and F1-score. 
+
+    Parameters:
+    - model (Model): The trained model to evaluate, which must implement a predict method.
+    - X_test (array-like): The feature set of the test data.
+    - y_test (array-like): The actual labels for the test data.
+
+    Returns:
+    - dict: A dictionary containing the calculated metrics ('accuracy', 'precision', 'recall', 'f1_score').
     """
 
     # Retrieve the predictions
@@ -45,7 +59,19 @@ def get_global_metrics(model, X_test, y_test):
 
 def get_confidence_intervals(model, X, y):
     """
-    TODO docstring
+    Calculate 95% confidence intervals for the model's performance metrics using Cross Validation.
+
+    It supports Neural Networks, SVMs, and Decision Trees, thanks to specific utility functions designed for these models. 
+
+    Parameters:
+    - model (Model): The model to evaluate. Must be either a Neural Network, SVM, or Decision Tree.
+    - X (array-like): The full feature dataset used for Cross Validation.
+    - y (array-like): The corresponding labels for the dataset.
+
+    Returns:
+    - dict: A dictionary with confidence intervals for each metric 
+    ('accuracy_interval', 'precision_interval', 'recall_interval', 'f1_score_interval') if the model is supported. 
+    Returns None if the model is unsupported.
     """
 
     # Neural Network

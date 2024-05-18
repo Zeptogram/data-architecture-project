@@ -1,5 +1,9 @@
 """
-TODO docstring
+Module for performing cross-validation on three machine learning models.
+
+This module includes functions to perform detailed cross-validation for three types of models: 
+Neural Networks, Support Vector Machines (SVM), and Decision Trees. 
+Each function exploits Stratified 10-Fold Cross Validation.
 
 Cavaleri Matteo - 875050
 Gargiulo Elio - 869184
@@ -9,15 +13,13 @@ Piacente Cristian - 866020
 import numpy as np
 import sklearn as sn
 
-from sklearn.model_selection import KFold, StratifiedKFold, GridSearchCV, ShuffleSplit
+from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, make_scorer
 
 from keras.models import Sequential
 
 from sklearn import svm
 from sklearn.tree import DecisionTreeClassifier
-
-import scipy.stats as st
 
 from utils.predictions import get_predictions
 
@@ -34,9 +36,21 @@ scoring = {
 
 def get_nn_scores(model, X, y):
     """
-    TODO docstring
+    Perform cross-validation on a neural network model using Stratified K-Fold with 10 splits.
+
+    This function evaluates a neural network model by training and testing it on different folds of the data,
+    and then returns lists of performance metrics (accuracy, precision, recall, and F1-score) for each fold.
 
     Please note that this function fits the model on different data.
+    
+    Parameters:
+    - model (Sequential): The neural network model to evaluate. Must be an instance of keras.models.Sequential.
+    - X (array-like): Feature dataset to be used for training and testing the model.
+    - y (array-like): Target dataset corresponding to the features.
+    
+    Returns:
+    - tuple of lists: Returns four lists containing the scores for accuracy, precision, recall, and F1-score 
+    for each fold of the cross-validation process.
     """
 
     # This function only supports Neural Network
@@ -84,7 +98,20 @@ def get_nn_scores(model, X, y):
 
 def get_svm_dtc_scores(model, X, y):
     """
-    TODO docstring
+    Perform cross-validation on a model (either SVM or Decision Tree) using Stratified K-Fold with 10 splits.
+
+    This function evaluates the specified model by using cross-validation to generate scores for accuracy, 
+    precision, recall, and F1-score, which are then returned as separate lists for each metric.
+    
+    Parameters:
+    - model (SVC or DecisionTreeClassifier): The model to be evaluated. Must be an instance of either 
+    sklearn.svm.SVC or sklearn.tree.DecisionTreeClassifier.
+    - X (array-like): Feature dataset for training and testing the model.
+    - y (array-like): Target dataset corresponding to the features.
+    
+    Returns:
+    - tuple of lists: Returns four lists containing the scores for accuracy, precision, recall, and F1-score 
+    for each fold of the cross-validation process.
     """
 
     # This function only supports SVM and Decision Tree

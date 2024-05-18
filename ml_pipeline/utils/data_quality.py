@@ -1,24 +1,22 @@
-'''
-    DATA_QUALITY.PY
+"""
+Module for implementing data quality checks on the wine dataset.
 
-    Python file that implements some data quality checks
-    on a dataset, used for machine learning purposes.
+This module leverages utility functions from utils.data_quality_utils 
+to perform data quality assessments across four dimensions: 
+completeness, consistency, uniqueness, and accuracy.
 
 Cavaleri Matteo - 875050
 Gargiulo Elio - 869184
 Piacente Cristian - 866020
-'''
+"""
 
 import utils.data_quality_utils as utils
 
-'''
-    DEFAULT VALUES
 
-    Ranges, Types and Thresholds that will be used in the following functions if
-    not specified by the caller or edited here
+#    DEFAULT VALUES
 
-
-'''
+#    Ranges, Types and Thresholds that will be used in the following functions if
+#    not specified by the caller or edited here
 
 # Feature Ranges of the expected values. Any value that it outside the expected range is considered inconsistent
 feature_ranges = {
@@ -34,6 +32,7 @@ feature_ranges = {
     'sulphates': (0, None),  # Check for non-negative values
     'alcohol': (0, 100),  # % Alcohol goes necessarely from 0 to 100%
 }
+
 
 
 # Feature: type that has to be respected
@@ -56,13 +55,12 @@ expected_types = {
 threshold_std = 5
 threshold_iqr = 4
 
-'''
-    COMPLETENESS
 
-    Quality Measure that ensures that the dataset that will be used does not contain 
-    any missing values for every feature recorded in the set.
 
-'''
+#    COMPLETENESS
+
+#    Quality Measure that ensures that the dataset that will be used does not contain 
+#    any missing values for every feature recorded in the set.
 
 def completeness_test(dataset):
     # Checks if there are any missing values
@@ -72,14 +70,13 @@ def completeness_test(dataset):
     # Return the missing_values and ratio
     return missing_values, completeness_ratio
     
-'''
-    CONSISTENCY
 
-    Quality measure that ensures that the dataset used maintains internal coherence 
-    and adheres to predefined rules or constraints. This involves checking for any 
-    inconsistencies or contradictions within the dataset itself.
 
-'''
+#    CONSISTENCY
+
+#    Quality measure that ensures that the dataset used maintains internal coherence 
+#    and adheres to predefined rules or constraints. This involves checking for any 
+#    inconsistencies or contradictions within the dataset itself.
 
 def consistency_test(dataset, ranges = feature_ranges):
     # Implement consistency checks based on domain knowledge or specific rules
@@ -97,15 +94,13 @@ def consistency_test(dataset, ranges = feature_ranges):
     return inconsistent_values_default, inconsistent_values_bounded_std, inconsistent_values_bounded_iqr, outliers_std, outliers_iqr, std_bounds, iqr_bounds
 
 
-'''
-    UNIQUENESS
 
-    Quality measure that guarantees the dataset's elements are distinct and singular, 
-    devoid of any redundant or repeated entries. It involves confirming that each 
-    data point within the dataset stands out on its own, contributing uniquely to 
-    the dataset's richness and integrity.
+#    UNIQUENESS
 
-'''
+#    Quality measure that guarantees the dataset's elements are distinct and singular, 
+#    devoid of any redundant or repeated entries. It involves confirming that each 
+#    data point within the dataset stands out on its own, contributing uniquely to 
+#    the dataset's richness and integrity.
 
 def uniqueness_test(dataset):
     # Counts unique values for each feature
@@ -117,23 +112,14 @@ def uniqueness_test(dataset):
     return unique_counts, duplicate_counts, duplicate_sum, unique_ratio
 
 
-'''
-    ACCURACY
 
-    Quality measure that verifies if the data is actually correctly
-    used and considered. In this case, it's important that the types
-    assigned to each feature reflects its meaning in the real world
+#    ACCURACY
 
-
-'''
+#    Quality measure that verifies if the data is actually correctly
+#    used and considered. In this case, it's important that the types
+#    assigned to each feature reflects its meaning in the real world
 
 def accuracy_test(dataset, types = expected_types):
     # Verifies the correct type for each feature
     accuracy_results = utils.accuracy_verify(dataset, types)
     return accuracy_results
-    
-
-'''
-    END OF FILE
-    
-'''

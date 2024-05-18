@@ -57,7 +57,7 @@ Con il virtual environment attivato nella root della repository, per eseguire l'
  1.     cd ml_pipeline
  2.     python -m luigi --module pipeline FullPipeline --local-scheduler
 
-TODO approfondire (in relazione soprattutto); attualmente non funziona FullPipeline, siccome non viene prodotto nulla, ma si può già "testare" il primo semplice task (vuoto) DataPreprocessing al posto di FullPipeline.
+TODO approfondire (in relazione soprattutto).
 
 ##### Disattivazione del virtual environment
 

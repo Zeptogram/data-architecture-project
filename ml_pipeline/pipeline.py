@@ -1,5 +1,7 @@
 """
-TODO docstring
+Pipeline for data preprocessing, transforming, modeling, and evaluating three wine dataset models.
+It also checks four data quality measures, w.r.t a threshold.
+This script uses the Luigi library to manage tasks in a sequential and dependent way.
 
 Cavaleri Matteo - 875050
 Gargiulo Elio - 869184
@@ -84,7 +86,11 @@ class InMemoryTarget(luigi.Target):
 
 class DataPreprocessing(luigi.Task):
     """
-    TODO docstring
+    Task to preprocess the data by removing missing values and duplicates.
+    
+    Parameters:
+    - input-csv: Path to the input csv file containing raw wine data. Default: 'datasets/winetype.csv'
+    - cleaned-csv: Path to the output csv file for preprocessed data. Default: 'datasets/winetype_cleaned.csv'
     """
 
     input_csv = luigi.Parameter(default=default_paths['input_csv'])
@@ -140,7 +146,11 @@ class DataPreprocessing(luigi.Task):
 
 class DataTransformation(luigi.Task):
     """
-    TODO docstring
+    Task to transform the data by encoding categorical variables and dropping unnecessary columns.
+    
+    Parameters:
+    - input-csv: Path to the input csv file containing raw wine data. Default: 'datasets/winetype.csv'
+    - transformed-csv: Path for the output dataset with transformed features. Default: 'datasets/winetype_transformed.csv'
     """
 
     input_csv = luigi.Parameter(default=default_paths['input_csv'])
@@ -196,7 +206,11 @@ class DataTransformation(luigi.Task):
 
 class PCATask(luigi.Task):
     """
-    TODO docstring
+    Task to perform Principal Component Analysis (PCA) for dimensionality reduction.
+    
+    Parameters:
+    - input-csv: Path to the input csv file containing raw wine data. Default: 'datasets/winetype.csv'
+    - pca-csv: Path to the output csv file for the PCA-transformed data. Default: 'datasets/winetype_pca.csv'
     """
 
     input_csv = luigi.Parameter(default=default_paths['input_csv'])
@@ -254,7 +268,13 @@ class PCATask(luigi.Task):
 
 class SplitDataset(luigi.Task):
     """
-    TODO docstring
+    Splits the PCA dataset into training and testing sets.
+    Outputs two files, one for training and one for testing.
+    
+    Parameters:
+    - input-csv: Path to the input csv file containing raw wine data. Default: 'datasets/winetype.csv'
+    - train-csv: Path for the output training set (after PCA). Default: 'datasets/winetype_pca_train.csv'
+    - test-csv: Path for the output testing set (after PCA). Default: 'datasets/winetype_pca_test.csv'
     """
 
     input_csv = luigi.Parameter(default=default_paths['input_csv'])
@@ -318,7 +338,12 @@ class SplitDataset(luigi.Task):
 
 class NNModel(luigi.Task):
     """
-    TODO docstring
+    Task to train and save a Neural Network model.
+    
+    Parameters:
+    - input-csv: Path to the input csv file containing raw wine data. Default: 'datasets/winetype.csv'
+    - nn-model-file: Path to save the trained Neural Network model. Default: 'models/nn_model.h5'
+    - nn-history-file: Path to save the training history. Default: 'models/nn_history.pkl'
     """
 
     input_csv = luigi.Parameter(default=default_paths['input_csv'])
@@ -385,7 +410,11 @@ class NNModel(luigi.Task):
 
 class SVMModel(luigi.Task):
     """
-    TODO docstring
+    Task to train and save a Support Vector Machine (SVM) model.
+    
+    Parameters:
+    - input-csv: Path to the input csv file containing raw wine data. Default: 'datasets/winetype.csv'
+    - svm-model-file: Path to save the trained SVM model. Default: 'models/svm_model.pkl'
     """
 
     input_csv = luigi.Parameter(default=default_paths['input_csv'])
@@ -433,7 +462,11 @@ class SVMModel(luigi.Task):
 
 class DTCModel(luigi.Task):
     """
-    TODO docstring
+    Task to train and save a Decision Tree Classifier model.
+    
+    Parameters:
+    - input-csv: Path to the input csv file containing raw wine data. Default: 'datasets/winetype.csv'
+    - dtc-model-file: Path to save the trained Decision Tree model. Default: 'models/dtc_model.pkl'
     """
 
     input_csv = luigi.Parameter(default=default_paths['input_csv'])
@@ -481,7 +514,14 @@ class DTCModel(luigi.Task):
 
 class PerformanceEval(luigi.Task):
     """
-    TODO docstring
+    Evaluates the trained models' performance.
+    
+    Outputs a csv file with performance metrics calculated both on the test set (global metrics)
+    and using Stratified 10-fold Cross Validation (95% confidence intervals).
+    
+    Parameters:
+    - input-csv: Path to the input csv file containing raw wine data. Default: 'datasets/winetype.csv'
+    - metrics-csv: Path to save the performance metrics csv file. Default: 'performance/metrics.csv'
     """
 
     input_csv = luigi.Parameter(default=default_paths['input_csv'])
@@ -617,7 +657,10 @@ class PerformanceEval(luigi.Task):
 
 class Completeness(luigi.Task):
     """
-    TODO docstring
+    Task to check data completeness by verifying the presence of missing values on the transformed dataset.
+    
+    Parameters:
+    - input-csv: Path to the input csv file containing raw wine data. Default: 'datasets/winetype.csv'
     """
 
     input_csv = luigi.Parameter(default=default_paths['input_csv'])
@@ -673,7 +716,10 @@ class Completeness(luigi.Task):
 
 class Consistency(luigi.Task):
     """
-    TODO docstring
+    Task to check data consistency by verifying the presence of outliers and inconsistent values on the transformed dataset.
+    
+    Parameters:
+    - input-csv: Path to the input csv file containing raw wine data. Default: 'datasets/winetype.csv'
     """
 
     input_csv = luigi.Parameter(default=default_paths['input_csv'])
@@ -792,7 +838,10 @@ class Consistency(luigi.Task):
 
 class Uniqueness(luigi.Task):
     """
-    TODO docstring
+    Task to check data uniqueness by verifying the presence of duplicate values on the transformed dataset.
+    
+    Parameters:
+    - input-csv: Path to the input csv file containing raw wine data. Default: 'datasets/winetype.csv'
     """
 
     input_csv = luigi.Parameter(default=default_paths['input_csv'])
@@ -867,7 +916,10 @@ class Uniqueness(luigi.Task):
 
 class Accuracy(luigi.Task):
     """
-    TODO docstring
+    Task to check data accuracy by verifying the correctness of data types on the transformed dataset.
+    
+    Parameters:
+    - input-csv: Path to the input csv file containing raw wine data. Default: 'datasets/winetype.csv'
     """
 
     input_csv = luigi.Parameter(default=default_paths['input_csv'])
