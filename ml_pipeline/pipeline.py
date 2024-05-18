@@ -382,7 +382,7 @@ class NNModel(luigi.Task):
         logger.info('Built the model')
 
         # Train the model
-        history_naive = nn_model_naive.fit(X_train, y_train, epochs=10, batch_size=32)
+        history_naive = nn_model_naive.fit(X_train, y_train, epochs=10, batch_size=32, validation_split=0.2)
 
         logger.info('Trained the model')
 
