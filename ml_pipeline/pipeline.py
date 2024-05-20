@@ -757,7 +757,7 @@ class Consistency(luigi.Task):
         logger.info('============================================================')
         # For each feature it has to be 0 (PASSED)
         for feature, count in inconsistent_values_default.items():
-            logger.info(f'{feature}: {'PASSED' if count == 0 else count}')
+            logger.info(f'{feature}: {"PASSED" if count == 0 else count}')
             default_counter += count
         logger.info('')
         logger.info('============================================================')
@@ -777,7 +777,7 @@ class Consistency(luigi.Task):
         logger.info('============================================================')
         # For each feature it has to be 0 (PASSED)
         for feature, count in inconsistent_values_bounded_std.items():
-            logger.info(f'{feature}: {'PASSED' if count == 0 else count}')
+            logger.info(f'{feature}: {"PASSED" if count == 0 else count}')
             std_counter += count
         logger.info('')
         logger.info('============================================================')
@@ -785,7 +785,7 @@ class Consistency(luigi.Task):
         logger.info('============================================================')
         # For each feature it has to be 0 (PASSED)
         for feature, count in inconsistent_values_bounded_iqr.items():
-            logger.info(f'{feature}: {'PASSED' if count == 0 else count}')
+            logger.info(f'{feature}: {"PASSED" if count == 0 else count}')
             iqr_counter += count
         logger.info('')
         # Info about the outliers found using range calculation with mean and std and bound check
@@ -794,8 +794,8 @@ class Consistency(luigi.Task):
         logger.info('============================================================')
         for feature, info in outliers_std.items():
             logger.info(f'Feature: {feature}')
-            logger.info(f'Count of outliers: {info['count']}')
-            logger.info(f'Rows with outliers: {info['rows']}\n') # Add +2
+            logger.info(f"Count of outliers: {info['count']}")
+            logger.info(f"Rows with outliers: {info['rows']}\n") # Add +2
         logger.info('')
         # Info about the outliers found using interquartile range
         logger.info('============================================================')
@@ -803,8 +803,8 @@ class Consistency(luigi.Task):
         logger.info('============================================================')
         for feature, info in outliers_iqr.items():
             logger.info(f'Feature: {feature}')
-            logger.info(f'Count of outliers: {info['count']}')
-            logger.info(f'Rows with outliers: {info['rows']}\n') # Add +2
+            logger.info(f"Count of outliers: {info['count']}")
+            logger.info(f"Rows with outliers: {info['rows']}\n") # Add +2
         logger.info('\n')
 
         logger.info(f'Count of outliers w.r.t the domain: {default_counter}')
@@ -951,7 +951,7 @@ class Accuracy(luigi.Task):
         logger.info('============================================================')
         # For each feature it has to be PASSED
         for feature, is_correct in accuracy_results.items():
-            logger.info(f'{feature}: {'PASSED' if is_correct else 'FAILED'}')
+            logger.info(f'{feature}: {"PASSED" if is_correct else "FAILED"}')
             if not is_correct:
                 correct_types = False
         logger.info('')
