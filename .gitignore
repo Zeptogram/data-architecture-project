@@ -1,12 +1,5 @@
-/ml_pipeline/__pycache__
 ml_pipeline/luigi.log
 /venv
-/ml_pipeline/utils/__pycache__
-ml_pipeline/datasets/winetype_cleaned.csv
-ml_pipeline/datasets/winetype_pca.csv
-ml_pipeline/datasets/winetype_pca_test.csv
-ml_pipeline/datasets/winetype_pca_train.csv
-ml_pipeline/datasets/winetype_transformed.csv
-/ml_pipeline/models
-/ml_pipeline/performance
-/__pycache__
+
+# Ignore all __pycache__ directories
+**/__pycache__
