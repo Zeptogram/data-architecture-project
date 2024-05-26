@@ -122,7 +122,7 @@ class DropFeatures(luigi.Task):
     """
 
     experiment_name = luigi.Parameter() # Mandatory
-    features = luigi.ListParameter() # Mandatory
+    features_to_drop = luigi.ListParameter() # Mandatory
     train_csv = luigi.Parameter(default=default_paths['train_csv'])
     drop_features_csv_name = luigi.Parameter(default=default_paths['drop_features_csv_name'])
 
@@ -136,9 +136,9 @@ class DropFeatures(luigi.Task):
         logger.info(f'Started task {self.__class__.__name__}')
 
         # Retrieve the new DataFrame, without the given features
-        df = drop_features(self.train_csv, self.features)
+        df = drop_features(self.train_csv, self.features_to_drop)
 
-        logger.info(f'Dropped the features {self.features}')
+        logger.info(f'Dropped the features {self.features_to_drop}')
 
         # Save the new data in the experiment folder
         df.to_csv(self.output().path, index=False)
