@@ -1,5 +1,7 @@
-ml_pipeline/luigi.log
 /venv
 
 # Ignore all __pycache__ directories
 **/__pycache__
+
+# Ignore all Luigi logs
+**/luigi.log
