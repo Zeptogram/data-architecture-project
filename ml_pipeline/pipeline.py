@@ -33,9 +33,6 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 
-import tensorflow as tf
-from tensorflow import keras
-
 
 # Set up logger
 logging.basicConfig(filename='luigi.log', level=logging.INFO, 
