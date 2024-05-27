@@ -180,7 +180,7 @@ class MissingValues(luigi.Task):
     def run(self):
         logger.info(f'Started task {self.__class__.__name__}')
 
-        # Retrieve the new DataFrame, wwith missing values, given features
+        # Retrieve the new DataFrame, with missing values, given features
         df = introduce_missing_values(self.input().path, self.features_to_dirty_mv, self.missing_values_percentage)
 
         logger.info(f'Added {self.missing_values_percentage * 100}% missing values to the DataFrame, specifically on {self.features_to_dirty_mv} columns')
