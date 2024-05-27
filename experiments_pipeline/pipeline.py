@@ -24,6 +24,7 @@ from sklearn import svm
 from sklearn.tree import DecisionTreeClassifier
 
 from utils.features_utils import drop_features
+from utils.more_rows_utils import add_rows
 
 
 # Set up logger
@@ -41,6 +42,7 @@ default_paths = {
     'svm_model_file': config.get('ExperimentFolder', 'svm_model_file'),
     'dtc_model_file': config.get('ExperimentFolder', 'dtc_model_file'),
     'drop_features_csv_name': config.get('DropFeatures', 'drop_features_csv_name'),
+    'add_rows_random_csv_name': config.get('AddRowsRandom', 'add_rows_random_csv_name'),
 }
 
 # Experiment folder
@@ -122,7 +124,7 @@ class DropFeatures(luigi.Task):
     """
 
     experiment_name = luigi.Parameter() # Mandatory
-    features_to_drop = luigi.ListParameter() # Mandatory
+    features_to_drop = luigi.ListParameter(default=()) # using an empty tuple by default since Luigi creates a tuple instead of a list, by default do nothing
     train_csv = luigi.Parameter(default=default_paths['train_csv'])
     drop_features_csv_name = luigi.Parameter(default=default_paths['drop_features_csv_name'])
 
@@ -149,3 +151,41 @@ class DropFeatures(luigi.Task):
 
     def output(self):
         return luigi.LocalTarget(get_full_rel_path(self.experiment_name, self.drop_features_csv_name))
+    
+
+
+class AddRowsRandom(luigi.Task):
+    """
+    TODO docstring
+    """
+
+    experiment_name = luigi.Parameter() # Mandatory
+    features_to_drop = luigi.ListParameter(default=()) # remember to get the previous parameters
+    add_rows_random_percentage = luigi.FloatParameter(default=0.0) # by default do nothing
+    train_csv = luigi.Parameter(default=default_paths['train_csv'])
+    add_rows_random_csv_name = luigi.Parameter(default=default_paths['add_rows_random_csv_name'])
+
+
+    def requires(self):
+        # TODO use Matteo's task (duplicate rows with opposite label) as the dependency.
+        # Since I don't have it now, I'll use DropFeatures instead.
+        return DropFeatures(experiment_name=self.experiment_name, features_to_drop=self.features_to_drop, train_csv=self.train_csv)
+    
+
+    def run(self):
+        logger.info(f'Started task {self.__class__.__name__}')
+
+        # Retrieve the new DataFrame, with the added rows
+        df = add_rows(self.input().path, self.add_rows_random_percentage) # no min-max is passed, so the generation will be unrestricted (likely very high values)
+
+        logger.info(f'Added {self.add_rows_random_percentage * 100}% of rows to the DataFrame, with completely random features and random target')
+
+        # Save the new data in the experiment folder
+        df.to_csv(self.output().path, index=False)
+
+        logger.info('New DataFrame, with the added rows, saved successfully!')
+        logger.info(f'Finished task {self.__class__.__name__}')
+
+
+    def output(self):
+        return luigi.LocalTarget(get_full_rel_path(self.experiment_name, self.add_rows_random_csv_name))
