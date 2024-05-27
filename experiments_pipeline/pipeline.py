@@ -23,7 +23,7 @@ import os
 from sklearn import svm
 from sklearn.tree import DecisionTreeClassifier
 
-from utils.features_utils import drop_features
+from utils.features_utils import drop_features, introduce_missing_values
 from utils.more_rows_utils import add_rows
 
 
@@ -42,6 +42,7 @@ default_paths = {
     'svm_model_file': config.get('ExperimentFolder', 'svm_model_file'),
     'dtc_model_file': config.get('ExperimentFolder', 'dtc_model_file'),
     'drop_features_csv_name': config.get('DropFeatures', 'drop_features_csv_name'),
+    'missing_values_csv_name': config.get('MissingValues', 'missing_values_csv_name'),
     'add_rows_random_csv_name': config.get('AddRowsRandom', 'add_rows_random_csv_name'),
 }
 
@@ -151,6 +152,43 @@ class DropFeatures(luigi.Task):
 
     def output(self):
         return luigi.LocalTarget(get_full_rel_path(self.experiment_name, self.drop_features_csv_name))
+
+
+class MissingValues(luigi.Task):
+    """
+    TODO docstring
+    """
+
+    experiment_name = luigi.Parameter() # Mandatory
+    features_to_drop = luigi.ListParameter(default=()) # remember to get the previous parameters
+    features_to_dirty = luigi.ListParameter(default=()) # using an empty tuple by default since Luigi creates a tuple instead of a list, by default do nothing
+    missing_values_percentage = luigi.FloatParameter(default=0.0) # Percentage for the dirtyness
+    train_csv = luigi.Parameter(default=default_paths['train_csv'])
+    missing_values_csv_name = luigi.Parameter(default=default_paths['missing_values_csv_name'])
+
+
+    def requires(self):
+        # Dependency from drop features
+        return DropFeatures(experiment_name=self.experiment_name, features_to_drop=self.features_to_drop, train_csv=self.train_csv)
+
+    
+    def run(self):
+        logger.info(f'Started task {self.__class__.__name__}')
+
+        # Retrieve the new DataFrame, without the given features
+        df = introduce_missing_values(self.input().path, self.features_to_dirty, self.missing_values_percentage)
+
+        logger.info(f'Added {self.missing_values_percentage * 100}% missing values to the DataFrame, specifically on {self.features_to_dirty} columns')
+
+        # Save the new data in the experiment folder
+        df.to_csv(self.output().path, index=False)
+
+        logger.info('New DataFrame, with missing values added, saved successfully!')
+        logger.info(f'Finished task {self.__class__.__name__}')
+
+
+    def output(self):
+        return luigi.LocalTarget(get_full_rel_path(self.experiment_name, self.missing_values_csv_name))
     
 
 
