@@ -10,8 +10,8 @@ import pandas as pd
 import numpy as np
 
 # Thresholds
-threshold_std = 5
-threshold_iqr = 4
+threshold_std = 3
+threshold_iqr = 2
 dirty_level = 10 # For OOD, it's the constant that multiplies std
 
 # Drop the features from the training set and return the new set
@@ -75,15 +75,14 @@ def introduce_outliers(input_csv, features_to_dirty, percentage, range_type="std
             lower_bound, upper_bound = ranges[feature]
             # Get min and max value
             min_value, max_value = df[feature].min(), df[feature].max()
-            # Assign outliers randomly as either high or low with a small random variation
+            # Assign outliers randomly as either high or low
             for idx in indices:
-                random_variation = np.random.uniform(-0.01, 0.01)
                 if np.random.rand() > 0.5:
                     # Generate high outlier
-                    outlier_value = np.random.uniform(upper_bound, max_value) + random_variation
+                    outlier_value = np.random.uniform(upper_bound, max_value)
                 else:
                     # Generate low outlier
-                    outlier_value = np.random.uniform(min_value, lower_bound) + random_variation
+                    outlier_value = np.random.uniform(min_value, lower_bound)
                 
                 # Ensure the outlier is within min and max limits of the feature
                 outlier_value = max(min(outlier_value, max_value), min_value)
