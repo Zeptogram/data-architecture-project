@@ -9,10 +9,10 @@ Piacente Cristian - 866020
 import pandas as pd
 import numpy as np
 
-# Thresholds
-threshold_std = 5
-threshold_iqr = 4
+
 dirty_level = 10 # For OOD, it's the constant that multiplies std
+
+
 
 # Drop the features from the training set and return the new set
 def drop_features(input_csv, features_to_drop):
@@ -21,10 +21,18 @@ def drop_features(input_csv, features_to_drop):
         features_to_drop = list(features_to_drop)
     # Load the DataFrame
     df = pd.read_csv(input_csv)
+    # Make sure only valid features are passed (and not the target, which can't be dropped)
+    for feature in features_to_drop:
+        if feature == 'type':
+            raise ValueError("[ERROR] Target can't be dropped")
+        if not (feature in df.columns):
+            raise ValueError(f"[ERROR] Feature '{feature}' not found in the DataFrame")  
     # Drop the features
     df.drop(columns=features_to_drop, inplace=True)
     # Return the new training set
     return df
+
+
 
 # Introduces missing values in the given set
 def introduce_missing_values(input_csv, features_to_dirty, percentage):
@@ -48,6 +56,8 @@ def introduce_missing_values(input_csv, features_to_dirty, percentage):
             raise ValueError(f"[ERROR] Feature '{feature}' not found in the DataFrame")  
     # Return the new training set
     return df
+
+
 
 # Introduces outliers in the given set, using std + mean or IQR
 def introduce_outliers(input_csv, features_to_dirty, percentage, range_type="std"):
@@ -93,6 +103,8 @@ def introduce_outliers(input_csv, features_to_dirty, percentage, range_type="std
     # Return the new training set
     return df
 
+
+
 # Introduces out of domain values
 def introduce_oodv(input_csv, features_to_dirty, percentage):
     # Convert tuple to list if necessary
@@ -124,8 +136,10 @@ def introduce_oodv(input_csv, features_to_dirty, percentage):
     # Return the new training set
     return df
 
+
+
 # Using std mean or iqr, get the ranges
-def get_ranges(df, features, range_type="std"):
+def get_ranges(df, features, threshold_std = 5, threshold_iqr = 4, range_type = "std"):
     ranges = {}
     for feature in features:
         if range_type == "iqr":
