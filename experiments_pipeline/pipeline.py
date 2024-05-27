@@ -23,7 +23,7 @@ import os
 from sklearn import svm
 from sklearn.tree import DecisionTreeClassifier
 
-from utils.features_utils import drop_features
+from utils.features_utils import drop_features, introduce_missing_values, introduce_outliers, introduce_oodv
 from utils.more_rows_utils import add_rows
 
 
@@ -42,6 +42,9 @@ default_paths = {
     'svm_model_file': config.get('ExperimentFolder', 'svm_model_file'),
     'dtc_model_file': config.get('ExperimentFolder', 'dtc_model_file'),
     'drop_features_csv_name': config.get('DropFeatures', 'drop_features_csv_name'),
+    'missing_values_csv_name': config.get('MissingValues', 'missing_values_csv_name'),
+    'outliers_csv_name': config.get('AddOutliers', 'outliers_csv_name'),
+    'oodv_csv_name': config.get('AddOODValues', 'oodv_csv_name'),
     'add_rows_random_csv_name': config.get('AddRowsRandom', 'add_rows_random_csv_name'),
 }
 
@@ -151,6 +154,153 @@ class DropFeatures(luigi.Task):
 
     def output(self):
         return luigi.LocalTarget(get_full_rel_path(self.experiment_name, self.drop_features_csv_name))
+
+
+class MissingValues(luigi.Task):
+    """
+    TODO docstring
+    """
+
+    experiment_name = luigi.Parameter() # Mandatory
+    # Param for Dependency
+    features_to_drop = luigi.ListParameter(default=())
+    # For the current task
+    features_to_dirty_mv = luigi.ListParameter(default=()) 
+    missing_values_percentage = luigi.FloatParameter(default=0.0)
+    # CSV
+    train_csv = luigi.Parameter(default=default_paths['train_csv'])
+    missing_values_csv_name = luigi.Parameter(default=default_paths['missing_values_csv_name'])
+
+
+    def requires(self):
+        # Dependency from drop features
+        return DropFeatures(experiment_name=self.experiment_name, features_to_drop=self.features_to_drop, train_csv=self.train_csv)
+
+    
+    def run(self):
+        logger.info(f'Started task {self.__class__.__name__}')
+
+        # Retrieve the new DataFrame, with missing values, given features
+        df = introduce_missing_values(self.input().path, self.features_to_dirty_mv, self.missing_values_percentage)
+
+        logger.info(f'Added {self.missing_values_percentage * 100}% missing values to the DataFrame, specifically on {self.features_to_dirty_mv} columns')
+
+        # Save the new data in the experiment folder
+        df.to_csv(self.output().path, index=False)
+
+        logger.info('New DataFrame, with missing values added, saved successfully!')
+        logger.info(f'Finished task {self.__class__.__name__}')
+
+
+    def output(self):
+        return luigi.LocalTarget(get_full_rel_path(self.experiment_name, self.missing_values_csv_name))
+
+    
+class AddOutliers(luigi.Task):
+    """
+    TODO docstring
+    """
+
+    experiment_name = luigi.Parameter() # Mandatory
+    # Param for Dependency
+    features_to_drop = luigi.ListParameter(default=()) 
+    features_to_dirty_mv = luigi.ListParameter(default=())
+    missing_values_percentage = luigi.FloatParameter(default=0.0) 
+    # For the current task
+    features_to_dirty_outliers = luigi.ListParameter(default=()) 
+    outliers_percentage = luigi.FloatParameter(default=0.0) 
+    range_type = luigi.Parameter(default="std")
+    # CSV
+    train_csv = luigi.Parameter(default=default_paths['train_csv'])
+    missing_values_csv_name = luigi.Parameter(default=default_paths['missing_values_csv_name'])
+    outliers_csv_name = luigi.Parameter(default=default_paths['outliers_csv_name'])
+
+
+    def requires(self):
+        # Dependency from missing values
+        return MissingValues(experiment_name=self.experiment_name, 
+                            features_to_dirty_mv=self.features_to_dirty_mv,
+                            missing_values_percentage=self.missing_values_percentage,
+                            missing_values_csv_name=self.missing_values_csv_name, 
+                            train_csv=self.train_csv, 
+                            features_to_drop=self.features_to_drop)
+
+    
+    def run(self):
+        logger.info(f'Started task {self.__class__.__name__}')
+
+        # Retrieve the new DataFrame, with outliers, given the features
+        df = introduce_outliers(self.input().path, self.features_to_dirty_outliers, self.outliers_percentage, self.range_type)
+
+        logger.info(f'Added {self.outliers_percentage * 100}% outliers to the DataFrame, specifically on {self.features_to_dirty_outliers} columns')
+
+        # Save the new data in the experiment folder
+        df.to_csv(self.output().path, index=False)
+
+        logger.info('New DataFrame, with outliers added, saved successfully!')
+        logger.info(f'Finished task {self.__class__.__name__}')
+
+
+    def output(self):
+        return luigi.LocalTarget(get_full_rel_path(self.experiment_name, self.outliers_csv_name))
+
+class AddOODValues(luigi.Task):
+    """
+    TODO docstring
+    """
+
+    experiment_name = luigi.Parameter() # Mandatory
+    # Param for Dependency
+    features_to_drop = luigi.ListParameter(default=()) 
+    features_to_dirty_mv = luigi.ListParameter(default=()) 
+    features_to_dirty_outliers = luigi.ListParameter(default=()) 
+    missing_values_percentage = luigi.FloatParameter(default=0.0) 
+    outliers_percentage = luigi.FloatParameter(default=0.0)
+    range_type = luigi.Parameter(default="std")
+    # For the current task
+    features_to_dirty_oodv = luigi.ListParameter(default=()) 
+    oodv_percentage = luigi.FloatParameter(default=0.0)
+    # CSV
+    train_csv = luigi.Parameter(default=default_paths['train_csv'])
+    missing_values_csv_name = luigi.Parameter(default=default_paths['missing_values_csv_name'])
+    outliers_csv_name = luigi.Parameter(default=default_paths['outliers_csv_name'])
+    oodv_csv_name = luigi.Parameter(default=default_paths['oodv_csv_name'])
+
+
+
+
+    def requires(self):
+        # Dependency from missing values
+        return AddOutliers(experiment_name=self.experiment_name, 
+                            features_to_drop=self.features_to_drop,
+                            features_to_dirty_mv=self.features_to_dirty_mv,
+                            features_to_dirty_outliers=self.features_to_dirty_outliers,
+                            missing_values_percentage=self.missing_values_percentage,
+                            outliers_percentage=self.outliers_percentage,
+                            range_type=self.range_type,
+                            outliers_csv_name=self.outliers_csv_name,
+                            missing_values_csv_name=self.missing_values_csv_name, 
+                            train_csv=self.train_csv
+                            )
+
+    
+    def run(self):
+        logger.info(f'Started task {self.__class__.__name__}')
+
+        # Retrieve the new DataFrame, with out of domain values, given the features
+        df = introduce_oodv(self.input().path, self.features_to_dirty_oodv, self.oodv_percentage)
+
+        logger.info(f'Added {self.oodv_percentage * 100}% out of domain values to the DataFrame, specifically on {self.features_to_dirty_oodv} columns')
+
+        # Save the new data in the experiment folder
+        df.to_csv(self.output().path, index=False)
+
+        logger.info('New DataFrame, with out of domain values added, saved successfully!')
+        logger.info(f'Finished task {self.__class__.__name__}')
+
+
+    def output(self):
+        return luigi.LocalTarget(get_full_rel_path(self.experiment_name, self.oodv_csv_name))
     
 
 
