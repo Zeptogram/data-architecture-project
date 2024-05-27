@@ -11,13 +11,13 @@ import pandas as pd
 
 
 # Drop the features from the training set and return the new set
-def drop_features(train_csv, features_to_drop):
+def drop_features(input_csv, features_to_drop):
     # ListParameter creates a tuple instead of a list, convert it before using
     if isinstance(features_to_drop, tuple):
         features_to_drop = list(features_to_drop)
     
     # Load the DataFrame
-    df = pd.read_csv(train_csv)
+    df = pd.read_csv(input_csv)
 
     # Drop the features
     df.drop(columns=features_to_drop, inplace=True)
