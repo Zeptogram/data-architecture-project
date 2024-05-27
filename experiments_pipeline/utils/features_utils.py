@@ -139,7 +139,7 @@ def introduce_oodv(input_csv, features_to_dirty, percentage):
 
 
 # Using std mean or iqr, get the ranges
-def get_ranges(df, features, threshold_std = 5, threshold_iqr = 4, range_type = "std"):
+def get_ranges(df, features, range_type = "std", threshold_std = 5, threshold_iqr = 4):
     ranges = {}
     for feature in features:
         if range_type == "iqr":
