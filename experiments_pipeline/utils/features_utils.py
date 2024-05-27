@@ -60,7 +60,7 @@ def introduce_missing_values(input_csv, features_to_dirty, percentage):
 
 
 # Introduces outliers in the given set, using std + mean or IQR
-def introduce_outliers(input_csv, features_to_dirty, percentage, range_type="std"):
+def introduce_outliers(input_csv, df_ranges, features_to_dirty, percentage, range_type="std"):
     # Convert tuple to list if necessary
     if isinstance(features_to_dirty, tuple):
         features_to_dirty = list(features_to_dirty)
@@ -70,7 +70,7 @@ def introduce_outliers(input_csv, features_to_dirty, percentage, range_type="std
     if not (0 <= percentage <= 1):
         raise ValueError("[ERROR] Percentage must be between 0 and 1")
     # Get the ranges for the features
-    ranges = get_ranges(df, features_to_dirty, range_type)
+    ranges = get_ranges(df_ranges, features_to_dirty, range_type)
     
     # Introduce outliers
     for feature in features_to_dirty:
@@ -85,16 +85,14 @@ def introduce_outliers(input_csv, features_to_dirty, percentage, range_type="std
             lower_bound, upper_bound = ranges[feature]
             # Get min and max value
             min_value, max_value = df[feature].min(), df[feature].max()
-            # Assign outliers randomly as either high or low with a small random variation
+            # Assign outliers randomly as either high or low
             for idx in indices:
-                random_variation = np.random.uniform(-0.01, 0.01)
                 if np.random.rand() > 0.5:
                     # Generate high outlier
-                    outlier_value = np.random.uniform(upper_bound, max_value) + random_variation
+                    outlier_value = np.random.uniform(upper_bound, max_value)
                 else:
                     # Generate low outlier
-                    outlier_value = np.random.uniform(min_value, lower_bound) + random_variation
-                
+                    outlier_value = np.random.uniform(min_value, lower_bound)
                 # Ensure the outlier is within min and max limits of the feature
                 outlier_value = max(min(outlier_value, max_value), min_value)
                 df.at[idx, feature] = outlier_value
@@ -139,7 +137,7 @@ def introduce_oodv(input_csv, features_to_dirty, percentage):
 
 
 # Using std mean or iqr, get the ranges
-def get_ranges(df, features, range_type = "std", threshold_std = 5, threshold_iqr = 4):
+def get_ranges(df, features, range_type = "std", threshold_std = 3, threshold_iqr = 2):
     ranges = {}
     for feature in features:
         if range_type == "iqr":

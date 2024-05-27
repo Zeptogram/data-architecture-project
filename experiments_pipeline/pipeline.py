@@ -230,8 +230,11 @@ class AddOutliers(luigi.Task):
     def run(self):
         logger.info(f'Started task {self.__class__.__name__}')
 
+        # Original training set DataFrame, needed for outliers
+        original_train_df = pd.read_csv(self.train_csv)
+
         # Retrieve the new DataFrame, with outliers, given the features
-        df = introduce_outliers(self.input().path, self.features_to_dirty_outliers, self.outliers_percentage, self.range_type)
+        df = introduce_outliers(self.input().path, original_train_df, self.features_to_dirty_outliers, self.outliers_percentage, self.range_type)
 
         logger.info(f'Added {self.outliers_percentage * 100}% outliers to the DataFrame, specifically on {self.features_to_dirty_outliers} columns')
 
