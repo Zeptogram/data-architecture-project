@@ -23,7 +23,7 @@ import os
 from sklearn import svm
 from sklearn.tree import DecisionTreeClassifier
 
-from utils.features_utils import drop_features, introduce_missing_values, introduce_outliers, introduce_oodv
+from utils.features_utils import drop_features, introduce_missing_values, introduce_outliers, introduce_oodv, get_ranges
 from utils.more_rows_utils import add_rows
 
 
@@ -35,7 +35,7 @@ logger = logging.getLogger('experiments-pipeline')
 # Get configuration file
 config = luigi.configuration.get_config()
 
-# Dict that contains the default paths configurated in luigi.cfg
+# Dict that contains the default parameters configurated in luigi.cfg
 default_paths = {
     'train_csv': config.get('ExperimentFolder', 'train_csv'),
     'nn_model_file': config.get('ExperimentFolder', 'nn_model_file'),
@@ -46,6 +46,7 @@ default_paths = {
     'outliers_csv_name': config.get('AddOutliers', 'outliers_csv_name'),
     'oodv_csv_name': config.get('AddOODValues', 'oodv_csv_name'),
     'add_rows_random_csv_name': config.get('AddRowsRandom', 'add_rows_random_csv_name'),
+    'add_rows_domain_csv_name': config.get('AddRowsDomain', 'add_rows_domain_csv_name'),
 }
 
 # Experiment folder
@@ -156,6 +157,7 @@ class DropFeatures(luigi.Task):
         return luigi.LocalTarget(get_full_rel_path(self.experiment_name, self.drop_features_csv_name))
 
 
+
 class MissingValues(luigi.Task):
     """
     TODO docstring
@@ -196,6 +198,7 @@ class MissingValues(luigi.Task):
         return luigi.LocalTarget(get_full_rel_path(self.experiment_name, self.missing_values_csv_name))
 
     
+
 class AddOutliers(luigi.Task):
     """
     TODO docstring
@@ -212,7 +215,6 @@ class AddOutliers(luigi.Task):
     range_type = luigi.Parameter(default="std")
     # CSV
     train_csv = luigi.Parameter(default=default_paths['train_csv'])
-    missing_values_csv_name = luigi.Parameter(default=default_paths['missing_values_csv_name'])
     outliers_csv_name = luigi.Parameter(default=default_paths['outliers_csv_name'])
 
 
@@ -221,7 +223,6 @@ class AddOutliers(luigi.Task):
         return MissingValues(experiment_name=self.experiment_name, 
                             features_to_dirty_mv=self.features_to_dirty_mv,
                             missing_values_percentage=self.missing_values_percentage,
-                            missing_values_csv_name=self.missing_values_csv_name, 
                             train_csv=self.train_csv, 
                             features_to_drop=self.features_to_drop)
 
@@ -244,6 +245,8 @@ class AddOutliers(luigi.Task):
     def output(self):
         return luigi.LocalTarget(get_full_rel_path(self.experiment_name, self.outliers_csv_name))
 
+
+
 class AddOODValues(luigi.Task):
     """
     TODO docstring
@@ -262,15 +265,11 @@ class AddOODValues(luigi.Task):
     oodv_percentage = luigi.FloatParameter(default=0.0)
     # CSV
     train_csv = luigi.Parameter(default=default_paths['train_csv'])
-    missing_values_csv_name = luigi.Parameter(default=default_paths['missing_values_csv_name'])
-    outliers_csv_name = luigi.Parameter(default=default_paths['outliers_csv_name'])
     oodv_csv_name = luigi.Parameter(default=default_paths['oodv_csv_name'])
 
 
-
-
     def requires(self):
-        # Dependency from missing values
+        # Dependency from add outliers
         return AddOutliers(experiment_name=self.experiment_name, 
                             features_to_drop=self.features_to_drop,
                             features_to_dirty_mv=self.features_to_dirty_mv,
@@ -278,10 +277,7 @@ class AddOODValues(luigi.Task):
                             missing_values_percentage=self.missing_values_percentage,
                             outliers_percentage=self.outliers_percentage,
                             range_type=self.range_type,
-                            outliers_csv_name=self.outliers_csv_name,
-                            missing_values_csv_name=self.missing_values_csv_name, 
-                            train_csv=self.train_csv
-                            )
+                            train_csv=self.train_csv)
 
     
     def run(self):
@@ -318,7 +314,7 @@ class AddRowsRandom(luigi.Task):
 
     def requires(self):
         # TODO use Matteo's task (duplicate rows with opposite label) as the dependency.
-        # Since I don't have it now, I'll use DropFeatures instead.
+        # Since I don't have it now, I'll use DropFeatures instead. I'll take care of the dependencies (with all the parameters etc.) when we merge everything.
         return DropFeatures(experiment_name=self.experiment_name, features_to_drop=self.features_to_drop, train_csv=self.train_csv)
     
 
@@ -326,7 +322,7 @@ class AddRowsRandom(luigi.Task):
         logger.info(f'Started task {self.__class__.__name__}')
 
         # Retrieve the new DataFrame, with the added rows
-        df = add_rows(self.input().path, self.add_rows_random_percentage) # no min-max is passed, so the generation will be unrestricted (likely very high values)
+        df = add_rows(self.input().path, self.add_rows_random_percentage) # no ranges are passed, so the generation will be unrestricted (probably very high values)
 
         logger.info(f'Added {self.add_rows_random_percentage * 100}% of rows to the DataFrame, with completely random features and random target')
 
@@ -339,3 +335,48 @@ class AddRowsRandom(luigi.Task):
 
     def output(self):
         return luigi.LocalTarget(get_full_rel_path(self.experiment_name, self.add_rows_random_csv_name))
+    
+
+
+class AddRowsDomain(luigi.Task):
+    """
+    TODO docstring
+    """
+
+    experiment_name = luigi.Parameter() # Mandatory
+    features_to_drop = luigi.ListParameter(default=())
+    add_rows_random_percentage = luigi.FloatParameter(default=0.0)
+    add_rows_domain_percentage = luigi.FloatParameter(default=0.0)
+    train_csv = luigi.Parameter(default=default_paths['train_csv'])
+    add_rows_domain_csv_name = luigi.Parameter(default=default_paths['add_rows_domain_csv_name'])
+
+
+    def requires(self):
+        # Dependency from add rows random
+        return AddRowsRandom(experiment_name=self.experiment_name, features_to_drop=self.features_to_drop, 
+                             add_rows_random_percentage=self.add_rows_random_percentage, train_csv=self.train_csv)
+    
+
+    def run(self):
+        logger.info(f'Started task {self.__class__.__name__}')
+
+        # Original training set DataFrame, needed for get_ranges
+        original_train_df = pd.read_csv(self.train_csv)
+
+        # Get the domain ranges using Mean +- 10 * Std
+        ranges_std = get_ranges(original_train_df, original_train_df.columns[1:], threshold_std = 10)
+
+        # Retrieve the new DataFrame, with the added rows
+        df = add_rows(self.input().path, self.add_rows_domain_percentage, ranges = ranges_std)
+
+        logger.info(f'Added {self.add_rows_random_percentage * 100}% of rows to the DataFrame, with features in the domain ranges and random target')
+
+        # Save the new data in the experiment folder
+        df.to_csv(self.output().path, index=False)
+
+        logger.info('New DataFrame, with the added rows, saved successfully!')
+        logger.info(f'Finished task {self.__class__.__name__}')
+
+
+    def output(self):
+        return luigi.LocalTarget(get_full_rel_path(self.experiment_name, self.add_rows_domain_csv_name))
