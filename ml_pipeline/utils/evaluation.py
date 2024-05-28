@@ -19,9 +19,11 @@ from keras.models import Sequential
 from sklearn import svm
 from sklearn.tree import DecisionTreeClassifier
 
-from utils.predictions import get_predictions
+import os, ultraimport
 
-from utils.cross_validation import get_nn_scores, get_svm_dtc_scores
+get_predictions = ultraimport(f"{os.getcwd()}/../ml_pipeline/utils/predictions.py", "get_predictions")
+get_nn_scores = ultraimport(f"{os.getcwd()}/../ml_pipeline/utils/cross_validation.py", "get_nn_scores")
+get_svm_dtc_scores = ultraimport(f"{os.getcwd()}/../ml_pipeline/utils/cross_validation.py", "get_svm_dtc_scores")
 
 
 

@@ -21,7 +21,9 @@ from keras.models import Sequential
 from sklearn import svm
 from sklearn.tree import DecisionTreeClassifier
 
-from utils.predictions import get_predictions
+import os, ultraimport
+
+get_predictions = ultraimport(f"{os.getcwd()}/../ml_pipeline/utils/predictions.py", "get_predictions")
 
 
 # Metrics used by each fold during cross validation, needed for the SVM / Decision Tree function

@@ -16,7 +16,7 @@ import random
 
 # Add rows with generated features (and random label) to the training set and return the new set
 # The percentage is a floating point number between 0.0 and 1.0
-# The generation can be between a defined range (see the AddRowsDomain task in the pipeline) for each feature, by default it's "unrestricted" (in [-1e10, 1e10])
+# The generation can be between a defined range (see the AddRowsDomain task in the pipeline) for each feature, by default it's "unrestricted" (in [-100, 100])
 def add_rows(input_csv, percentage, ranges={}):
     # Load the DataFrame
     df = pd.read_csv(input_csv)
@@ -27,9 +27,9 @@ def add_rows(input_csv, percentage, ranges={}):
     for column in df.columns:
         # Dynamically set the columns to support dropping features
         rows_to_add_dict[column] = [] 
-        # If the range of a feature is not set, use [-1e10, 1e10]
+        # If the range of a feature is not set, use [-100, 100]
         if column != 'type' and not (column in ranges):
-            ranges[column] = (-1e10, 1e10)
+            ranges[column] = (-100, 100)
 
     # Calculate how many rows to add
     n_rows_to_add = int(len(df) * percentage)
