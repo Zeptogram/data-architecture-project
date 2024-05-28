@@ -35,32 +35,54 @@ def drop_features(input_csv, features_to_drop):
 
 
 # Introduces missing values in the given set
-def introduce_missing_values(input_csv, features_to_dirty, percentage):
+def introduce_missing_values(input_csv, wine_types_to_consider, features_to_dirty, percentage):
     # Convert tuple to list if necessary
     if isinstance(features_to_dirty, tuple):
         features_to_dirty = list(features_to_dirty)
+    # Convert tuple to list if necessary
+    if isinstance(wine_types_to_consider, tuple):
+        wine_types_to_consider = list(wine_types_to_consider)
     # Load the DataFrame
     df = pd.read_csv(input_csv)
     # Ensure the percentage is between 0 and 1
     if not (0 <= percentage <= 1):
         raise ValueError("[ERROR] Percentage must be between 0 and 1")
+    # Error 'type' can't be a features_to_dirty
+    if 'type' in features_to_dirty:
+        raise ValueError("[ERROR] Can't affect the target with missing values")
+
+    # Check that the passed wine types are valid
+    for type in wine_types_to_consider:
+        if type not in ['red', 'white']:
+            raise ValueError("[ERROR] Wine types can only be 'red' or 'white'")
+    
+    # Select the rows based on wine types
+    if len(wine_types_to_consider) == 2:
+        selected_rows = df
+    else:
+        if wine_types_to_consider[0] == 'red':
+            # Red = False
+            selected_rows = df[df['type'] == False]
+        elif wine_types_to_consider[0] == 'white':
+            # White = True
+            selected_rows = df[df['type'] == True]
     # Introduce missing values
     for feature in features_to_dirty:
         if feature in df.columns:
             # Calculate the number of values to replace with NaN
-            num_values = int(percentage * len(df))
+            num_values = int(percentage * len(selected_rows))
             # Randomly select indices to replace with NaN
-            indices = np.random.choice(df.index, num_values, replace=False)
+            indices = np.random.choice(selected_rows.index, num_values, replace=False)
             df.loc[indices, feature] = np.nan
         else:
             raise ValueError(f"[ERROR] Feature '{feature}' not found in the DataFrame")  
-    # Return the new training set
+    # Return the modified DataFrame
     return df
 
 
 
 # Introduces outliers in the given set, using std + mean or IQR
-def introduce_outliers(input_csv, df_ranges, features_to_dirty, percentage, range_type="std"):
+def introduce_outliers(input_csv, df_ranges, wine_types_to_consider, features_to_dirty, percentage, range_type="std"):
     # Convert tuple to list if necessary
     if isinstance(features_to_dirty, tuple):
         features_to_dirty = list(features_to_dirty)
@@ -69,14 +91,34 @@ def introduce_outliers(input_csv, df_ranges, features_to_dirty, percentage, rang
     # Ensure the percentage is between 0 and 1
     if not (0 <= percentage <= 1):
         raise ValueError("[ERROR] Percentage must be between 0 and 1")
+    # Error 'type' can't be a features_to_dirty
+    if 'type' in features_to_dirty:
+        raise ValueError("[ERROR] Can't affect the target with outliers values")
+    # Check that the passed wine types are valid
+    for type in wine_types_to_consider:
+        if type not in ['red', 'white']:
+            raise ValueError("[ERROR] Wine types can only be 'red' or 'white'")
+
+
     # Get the ranges for the features
     ranges = get_ranges(df_ranges, features_to_dirty, range_type)
+
+    # Select the rows based on wine types
+    if len(wine_types_to_consider) == 2:
+        selected_rows = df
+    else:
+        if wine_types_to_consider[0] == 'red':
+            # Red = False
+            selected_rows = df[df['type'] == False]
+        elif wine_types_to_consider[0] == 'white':
+            # White = True
+            selected_rows = df[df['type'] == True]
     
     # Introduce outliers
     for feature in features_to_dirty:
         if feature in df.columns:
             # Drop NaN values for the feature
-            non_nan_indices = df[feature].dropna().index
+            non_nan_indices = selected_rows[feature].dropna().index
             # Calculate the number of outliers to introduce
             num_values = int(percentage * len(non_nan_indices))
             # Randomly select indices to replace with outliers
@@ -104,7 +146,7 @@ def introduce_outliers(input_csv, df_ranges, features_to_dirty, percentage, rang
 
 
 # Introduces out of domain values
-def introduce_oodv(input_csv, features_to_dirty, percentage):
+def introduce_oodv(input_csv, wine_types_to_consider, features_to_dirty, percentage):
     # Convert tuple to list if necessary
     if isinstance(features_to_dirty, tuple):
         features_to_dirty = list(features_to_dirty)
@@ -113,11 +155,28 @@ def introduce_oodv(input_csv, features_to_dirty, percentage):
     # Ensure the percentage is between 0 and 1
     if not (0 <= percentage <= 1):
         raise ValueError("[ERROR] Percentage must be between 0 and 1")
+    # Error 'type' can't be a features_to_dirty
+    if 'type' in features_to_dirty:
+        raise ValueError("[ERROR] Can't affect the target with out of domain values")
+    # Check that the passed wine types are valid
+    for type in wine_types_to_consider:
+        if type not in ['red', 'white']:
+            raise ValueError("[ERROR] Wine types can only be 'red' or 'white'")
+    # Select the rows based on wine types
+    if len(wine_types_to_consider) == 2:
+        selected_rows = df
+    else:
+        if wine_types_to_consider[0] == 'red':
+            # Red = False
+            selected_rows = df[df['type'] == False]
+        elif wine_types_to_consider[0] == 'white':
+            # White = True
+            selected_rows = df[df['type'] == True]
     # Introduce out of domain values
     for feature in features_to_dirty:
         if feature in df.columns:
              # Drop NaN values for the feature
-            non_nan_indices = df[feature].dropna().index
+            non_nan_indices = selected_rows[feature].dropna().index
             # Calculate the number of out of domain values to introduce
             num_values = int(percentage * len(non_nan_indices))
             # Randomly select indices to replace with oodv

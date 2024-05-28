@@ -174,6 +174,7 @@ class MissingValues(luigi.Task):
     # For the current task
     features_to_dirty_mv = luigi.ListParameter(default=()) 
     missing_values_percentage = luigi.FloatParameter(default=0.0)
+    wine_types_to_consider_missing_values = luigi.ListParameter(default=('red', 'white'))
     # CSV
     train_csv = luigi.Parameter(default=default_paths['train_csv'])
     missing_values_csv_name = luigi.Parameter(default=default_paths['missing_values_csv_name'])
@@ -188,9 +189,9 @@ class MissingValues(luigi.Task):
         logger.info(f'Started task {self.__class__.__name__}')
 
         # Retrieve the new DataFrame, with missing values, given the features
-        df = introduce_missing_values(self.input().path, self.features_to_dirty_mv, self.missing_values_percentage)
+        df = introduce_missing_values(self.input().path, self.wine_types_to_consider_missing_values, self.features_to_dirty_mv, self.missing_values_percentage)
 
-        logger.info(f'Added {self.missing_values_percentage * 100}% missing values to the DataFrame, specifically on {self.features_to_dirty_mv} columns')
+        logger.info(f'Added {self.missing_values_percentage * 100}% missing values to the DataFrame, specifically on {self.features_to_dirty_mv} columns with target/s {self.wine_types_to_consider_missing_values}')
 
         # Save the new data in the experiment folder
         df.to_csv(self.output().path, index=False)
@@ -213,10 +214,12 @@ class AddOutliers(luigi.Task):
     # Param for Dependency
     features_to_drop = luigi.ListParameter(default=()) 
     features_to_dirty_mv = luigi.ListParameter(default=())
+    wine_types_to_consider_missing_values = luigi.ListParameter(default=('red', 'white'))
     missing_values_percentage = luigi.FloatParameter(default=0.0) 
     # For the current task
     features_to_dirty_outliers = luigi.ListParameter(default=()) 
     outliers_percentage = luigi.FloatParameter(default=0.0) 
+    wine_types_to_consider_outliers = luigi.ListParameter(default=('red', 'white'))
     range_type = luigi.Parameter(default="std")
     # CSV
     train_csv = luigi.Parameter(default=default_paths['train_csv'])
@@ -229,6 +232,7 @@ class AddOutliers(luigi.Task):
                              features_to_drop=self.features_to_drop,
                              features_to_dirty_mv=self.features_to_dirty_mv,
                              missing_values_percentage=self.missing_values_percentage,
+                             wine_types_to_consider_missing_values=self.wine_types_to_consider_missing_values,
                              train_csv=self.train_csv)
 
     
@@ -239,9 +243,9 @@ class AddOutliers(luigi.Task):
         original_train_df = pd.read_csv(self.train_csv)
 
         # Retrieve the new DataFrame, with outliers, given the features
-        df = introduce_outliers(self.input().path, original_train_df, self.features_to_dirty_outliers, self.outliers_percentage, self.range_type)
+        df = introduce_outliers(self.input().path, original_train_df, self.wine_types_to_consider_outliers, self.features_to_dirty_outliers, self.outliers_percentage, self.range_type)
 
-        logger.info(f'Added {self.outliers_percentage * 100}% outliers to the DataFrame, specifically on {self.features_to_dirty_outliers} columns')
+        logger.info(f'Added {self.outliers_percentage * 100}% outliers to the DataFrame, specifically on {self.features_to_dirty_outliers} columns with target/s {self.wine_types_to_consider_outliers}')
 
         # Save the new data in the experiment folder
         df.to_csv(self.output().path, index=False)
@@ -265,12 +269,15 @@ class AddOODValues(luigi.Task):
     features_to_drop = luigi.ListParameter(default=()) 
     features_to_dirty_mv = luigi.ListParameter(default=()) 
     features_to_dirty_outliers = luigi.ListParameter(default=()) 
+    wine_types_to_consider_missing_values = luigi.ListParameter(default=('red', 'white'))
+    wine_types_to_consider_outliers = luigi.ListParameter(default=('red', 'white'))
     missing_values_percentage = luigi.FloatParameter(default=0.0) 
     outliers_percentage = luigi.FloatParameter(default=0.0)
     range_type = luigi.Parameter(default="std")
     # For the current task
     features_to_dirty_oodv = luigi.ListParameter(default=()) 
     oodv_percentage = luigi.FloatParameter(default=0.0)
+    wine_types_to_consider_oodv = luigi.ListParameter(default=('red', 'white'))
     # CSV
     train_csv = luigi.Parameter(default=default_paths['train_csv'])
     oodv_csv_name = luigi.Parameter(default=default_paths['oodv_csv_name'])
@@ -283,6 +290,8 @@ class AddOODValues(luigi.Task):
                            features_to_dirty_mv=self.features_to_dirty_mv,
                            missing_values_percentage=self.missing_values_percentage,
                            features_to_dirty_outliers=self.features_to_dirty_outliers,
+                           wine_types_to_consider_missing_values=self.wine_types_to_consider_missing_values,
+                           wine_types_to_consider_outliers=self.wine_types_to_consider_missing_values,
                            outliers_percentage=self.outliers_percentage,
                            range_type=self.range_type,
                            train_csv=self.train_csv)
@@ -292,9 +301,9 @@ class AddOODValues(luigi.Task):
         logger.info(f'Started task {self.__class__.__name__}')
 
         # Retrieve the new DataFrame, with out of domain values, given the features
-        df = introduce_oodv(self.input().path, self.features_to_dirty_oodv, self.oodv_percentage)
+        df = introduce_oodv(self.input().path, self.wine_types_to_consider_oodv, self.features_to_dirty_oodv, self.oodv_percentage)
 
-        logger.info(f'Added {self.oodv_percentage * 100}% out of domain values to the DataFrame, specifically on {self.features_to_dirty_oodv} columns')
+        logger.info(f'Added {self.oodv_percentage * 100}% out of domain values to the DataFrame, specifically on {self.features_to_dirty_oodv} columns with target/s {self.wine_types_to_consider_oodv} ')
 
         # Save the new data in the experiment folder
         df.to_csv(self.output().path, index=False)
@@ -324,6 +333,9 @@ class FlipLabels(luigi.Task):
     features_to_dirty_oodv = luigi.ListParameter(default=()) 
     oodv_percentage = luigi.FloatParameter(default=0.0)
     train_csv = luigi.Parameter(default=default_paths['train_csv'])
+    wine_types_to_consider_missing_values = luigi.ListParameter(default=('red', 'white'))
+    wine_types_to_consider_outliers = luigi.ListParameter(default=('red', 'white'))
+    wine_types_to_consider_oodv = luigi.ListParameter(default=('red', 'white'))
     # Current Task
     flip_percentage_red = luigi.FloatParameter(default=0.0)
     flip_percentage_white = luigi.FloatParameter(default=0.0)
@@ -337,6 +349,9 @@ class FlipLabels(luigi.Task):
                             features_to_dirty_mv=self.features_to_dirty_mv,
                             features_to_dirty_outliers=self.features_to_dirty_outliers,
                             missing_values_percentage=self.missing_values_percentage,
+                            wine_types_to_consider_missing_values=self.wine_types_to_consider_missing_values,
+                            wine_types_to_consider_outliers=self.wine_types_to_consider_missing_values,
+                            wine_types_to_consider_oodv=self.wine_types_to_consider_oodv,
                             outliers_percentage=self.outliers_percentage,
                             range_type=self.range_type,
                             features_to_dirty_oodv=self.features_to_dirty_oodv,
@@ -382,6 +397,9 @@ class DuplicateRowsSameLabel(luigi.Task):
     train_csv = luigi.Parameter(default=default_paths['train_csv'])
     flip_percentage_red = luigi.FloatParameter(default=0.0)
     flip_percentage_white = luigi.FloatParameter(default=0.0)
+    wine_types_to_consider_missing_values = luigi.ListParameter(default=('red', 'white'))
+    wine_types_to_consider_outliers = luigi.ListParameter(default=('red', 'white'))
+    wine_types_to_consider_oodv = luigi.ListParameter(default=('red', 'white'))
     # Current Task
     wine_types_to_consider_same_label = luigi.ListParameter(default=('red', 'white'))
     duplicate_rows_same_label_percentage = luigi.FloatParameter(default=0.0)
@@ -395,6 +413,9 @@ class DuplicateRowsSameLabel(luigi.Task):
                           features_to_dirty_mv=self.features_to_dirty_mv,
                           features_to_dirty_outliers=self.features_to_dirty_outliers,
                           missing_values_percentage=self.missing_values_percentage,
+                          wine_types_to_consider_missing_values=self.wine_types_to_consider_missing_values,
+                          wine_types_to_consider_outliers=self.wine_types_to_consider_missing_values,
+                          wine_types_to_consider_oodv=self.wine_types_to_consider_oodv,
                           outliers_percentage=self.outliers_percentage,
                           range_type=self.range_type,
                           features_to_dirty_oodv=self.features_to_dirty_oodv,
@@ -441,6 +462,9 @@ class DuplicateRowsOppositeLabel(luigi.Task):
     flip_percentage_red = luigi.FloatParameter(default=0.0)
     flip_percentage_white = luigi.FloatParameter(default=0.0)
     wine_types_to_consider_same_label = luigi.ListParameter(default=('red', 'white'))
+    wine_types_to_consider_missing_values = luigi.ListParameter(default=('red', 'white'))
+    wine_types_to_consider_outliers = luigi.ListParameter(default=('red', 'white'))
+    wine_types_to_consider_oodv = luigi.ListParameter(default=('red', 'white'))
     duplicate_rows_same_label_percentage = luigi.FloatParameter(default=0.0)
     # Current Task
     wine_types_to_consider_opposite_label = luigi.ListParameter(default=('red', 'white'))
@@ -456,6 +480,9 @@ class DuplicateRowsOppositeLabel(luigi.Task):
                                       features_to_dirty_outliers=self.features_to_dirty_outliers,
                                       missing_values_percentage=self.missing_values_percentage,
                                       outliers_percentage=self.outliers_percentage,
+                                      wine_types_to_consider_missing_values=self.wine_types_to_consider_missing_values,
+                                      wine_types_to_consider_outliers=self.wine_types_to_consider_missing_values,
+                                      wine_types_to_consider_oodv=self.wine_types_to_consider_oodv,
                                       range_type=self.range_type,
                                       features_to_dirty_oodv=self.features_to_dirty_oodv,
                                       oodv_percentage=self.oodv_percentage,
@@ -505,6 +532,9 @@ class AddRowsRandom(luigi.Task):
     duplicate_rows_same_label_percentage = luigi.FloatParameter(default=0.0)
     wine_types_to_consider_opposite_label = luigi.ListParameter(default=('red', 'white'))
     duplicate_rows_opposite_label_percentage = luigi.FloatParameter(default=0.0)
+    wine_types_to_consider_missing_values = luigi.ListParameter(default=('red', 'white'))
+    wine_types_to_consider_outliers = luigi.ListParameter(default=('red', 'white'))
+    wine_types_to_consider_oodv = luigi.ListParameter(default=('red', 'white'))
     # Task specific parameters
     add_rows_random_percentage = luigi.FloatParameter(default=0.0) # by default do nothing
     add_rows_random_csv_name = luigi.Parameter(default=default_paths['add_rows_random_csv_name'])
@@ -518,6 +548,9 @@ class AddRowsRandom(luigi.Task):
                                           features_to_dirty_outliers=self.features_to_dirty_outliers,
                                           missing_values_percentage=self.missing_values_percentage,
                                           outliers_percentage=self.outliers_percentage,
+                                          wine_types_to_consider_missing_values=self.wine_types_to_consider_missing_values,
+                                          wine_types_to_consider_outliers=self.wine_types_to_consider_missing_values,
+                                          wine_types_to_consider_oodv=self.wine_types_to_consider_oodv,
                                           range_type=self.range_type,
                                           features_to_dirty_oodv=self.features_to_dirty_oodv,
                                           oodv_percentage=self.oodv_percentage,
@@ -572,6 +605,9 @@ class AddRowsDomain(luigi.Task):
     wine_types_to_consider_opposite_label = luigi.ListParameter(default=('red', 'white'))
     duplicate_rows_opposite_label_percentage = luigi.FloatParameter(default=0.0)
     add_rows_random_percentage = luigi.FloatParameter(default=0.0)
+    wine_types_to_consider_missing_values = luigi.ListParameter(default=('red', 'white'))
+    wine_types_to_consider_outliers = luigi.ListParameter(default=('red', 'white'))
+    wine_types_to_consider_oodv = luigi.ListParameter(default=('red', 'white'))
     # Task specific parameters
     add_rows_domain_percentage = luigi.FloatParameter(default=0.0)
     add_rows_domain_csv_name = luigi.Parameter(default=default_paths['add_rows_domain_csv_name'])
@@ -585,6 +621,9 @@ class AddRowsDomain(luigi.Task):
                              features_to_dirty_outliers=self.features_to_dirty_outliers,
                              missing_values_percentage=self.missing_values_percentage,
                              outliers_percentage=self.outliers_percentage,
+                             wine_types_to_consider_missing_values=self.wine_types_to_consider_missing_values,
+                             wine_types_to_consider_outliers=self.wine_types_to_consider_missing_values,
+                             wine_types_to_consider_oodv=self.wine_types_to_consider_oodv,
                              range_type=self.range_type,
                              features_to_dirty_oodv=self.features_to_dirty_oodv,
                              oodv_percentage=self.oodv_percentage,
@@ -604,7 +643,7 @@ class AddRowsDomain(luigi.Task):
         # Original training set DataFrame, needed for get_ranges
         original_train_df = pd.read_csv(self.train_csv)
 
-        # Get the domain ranges using Mean +- 10 * Std
+        # Get the domain ranges using Mean +- 3 * Std
         ranges_std = get_ranges(original_train_df, original_train_df.columns[1:], threshold_std = 3)
 
         # Retrieve the new DataFrame, with the added rows
@@ -639,6 +678,7 @@ class FitPerformanceEval(luigi.Task):
     features_to_dirty_oodv = luigi.ListParameter(default=()) 
     oodv_percentage = luigi.FloatParameter(default=0.0)
     train_csv = luigi.Parameter(default=default_paths['train_csv'])
+    test_csv = luigi.Parameter(default=default_paths['test_csv'])
     flip_percentage_red = luigi.FloatParameter(default=0.0)
     flip_percentage_white = luigi.FloatParameter(default=0.0)
     wine_types_to_consider_same_label = luigi.ListParameter(default=('red', 'white'))
@@ -647,8 +687,12 @@ class FitPerformanceEval(luigi.Task):
     duplicate_rows_opposite_label_percentage = luigi.FloatParameter(default=0.0)
     add_rows_random_percentage = luigi.FloatParameter(default=0.0)
     add_rows_domain_percentage = luigi.FloatParameter(default=0.0)
+    wine_types_to_consider_missing_values = luigi.ListParameter(default=('red', 'white'))
+    wine_types_to_consider_outliers = luigi.ListParameter(default=('red', 'white'))
+    wine_types_to_consider_oodv = luigi.ListParameter(default=('red', 'white'))
     # Task specific parameters
     metrics_csv_name = luigi.Parameter(default=default_paths['metrics_csv_name'])
+
 
 
     def requires(self):
@@ -662,6 +706,9 @@ class FitPerformanceEval(luigi.Task):
                                                  range_type=self.range_type,
                                                  features_to_dirty_oodv=self.features_to_dirty_oodv,
                                                  oodv_percentage=self.oodv_percentage,
+                                                 wine_types_to_consider_missing_values=self.wine_types_to_consider_missing_values,
+                                                 wine_types_to_consider_outliers=self.wine_types_to_consider_missing_values,
+                                                 wine_types_to_consider_oodv=self.wine_types_to_consider_oodv,
                                                  train_csv=self.train_csv,
                                                  flip_percentage_red=self.flip_percentage_red,
                                                  flip_percentage_white=self.flip_percentage_white,
@@ -671,7 +718,7 @@ class FitPerformanceEval(luigi.Task):
                                                  duplicate_rows_opposite_label_percentage=self.duplicate_rows_opposite_label_percentage,
                                                  add_rows_random_percentage=self.add_rows_random_percentage, 
                                                  add_rows_domain_percentage=self.add_rows_domain_percentage),
-                'initial_files': FakeTask(train_csv=self.train_csv)}
+                'initial_files': FakeTask(train_csv=self.train_csv, test_csv=self.test_csv)}
     
 
     def run(self):
