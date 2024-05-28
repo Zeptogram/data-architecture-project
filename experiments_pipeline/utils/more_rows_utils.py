@@ -7,8 +7,7 @@ Piacente Cristian - 866020
 """
 
 import pandas as pd
-
-import sys
+import numpy as np
 
 import random
 
@@ -53,4 +52,56 @@ def add_rows(input_csv, percentage, ranges={}):
     df = pd.concat([df, rows_to_add], ignore_index=True)
 
     # Return the new training set
+    return df
+
+
+
+# Duplicate rows w.r.t the given wine types to consider and the percentage
+# By default it flips the label but it also can use the same label in the duplicate rows
+def duplicate_rows(input_csv, wine_types_to_consider, percentage, flip_label=True):
+    # Convert tuple to list if necessary
+    if isinstance(wine_types_to_consider, tuple):
+        wine_types_to_consider = list(wine_types_to_consider)
+
+    # Ensure the percentage is between 0 and 1
+    if not (0 <= percentage <= 1):
+        raise ValueError("[ERROR] Percentage must be between 0 and 1")
+    
+    # Check that the passed wine types are valid
+    for type in wine_types_to_consider:
+        if not type in ['red', 'white']:
+            raise ValueError("[ERROR] Wine types can only be 'red' or 'white'")
+        
+    # Load the DataFrame
+    df = pd.read_csv(input_csv)
+
+    # Prepare a list to collect the duplicated rows
+    rows_to_duplicate = []
+    
+    # Handle duplication for each wine type
+    for wine_type in wine_types_to_consider:
+        if wine_type == 'red':
+            selected_rows = df[df['type'] == False]
+        elif wine_type == 'white':
+            selected_rows = df[df['type'] == True]
+        
+        # Calculate the number of rows to duplicate
+        num_rows_to_duplicate = int(len(selected_rows) * percentage)
+        
+        # Randomly select rows to duplicate
+        duplicated_indices = np.random.choice(selected_rows.index, num_rows_to_duplicate, replace=False)
+        
+        # Append the selected rows to the list
+        rows_to_duplicate.append(df.loc[duplicated_indices])
+    
+    # Concatenate all the duplicated rows into a single DataFrame
+    duplicated_df = pd.concat(rows_to_duplicate)
+    
+    # Optionally flip the labels
+    if flip_label:
+        duplicated_df['type'] = ~duplicated_df['type']
+    
+    # Append the duplicated rows to the original DataFrame
+    df = pd.concat([df, duplicated_df], ignore_index=True)
+
     return df
