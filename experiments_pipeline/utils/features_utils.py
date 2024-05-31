@@ -47,6 +47,9 @@ def introduce_missing_values(input_csv, wine_types_to_consider, features_to_dirt
     # Ensure the percentage is between 0 and 1
     if not (0 <= percentage <= 1):
         raise ValueError("[ERROR] Percentage must be between 0 and 1")
+    # If percentage is 0, do nothing
+    if percentage == 0:
+        return df
     # Error 'type' can't be a features_to_dirty
     if 'type' in features_to_dirty:
         raise ValueError("[ERROR] Can't affect the target with missing values")
@@ -91,6 +94,9 @@ def introduce_outliers(input_csv, df_ranges, wine_types_to_consider, features_to
     # Ensure the percentage is between 0 and 1
     if not (0 <= percentage <= 1):
         raise ValueError("[ERROR] Percentage must be between 0 and 1")
+    # If percentage is 0, do nothing
+    if percentage == 0:
+        return df
     # Error 'type' can't be a features_to_dirty
     if 'type' in features_to_dirty:
         raise ValueError("[ERROR] Can't affect the target with outliers values")
@@ -155,6 +161,9 @@ def introduce_oodv(input_csv, wine_types_to_consider, features_to_dirty, percent
     # Ensure the percentage is between 0 and 1
     if not (0 <= percentage <= 1):
         raise ValueError("[ERROR] Percentage must be between 0 and 1")
+    # If percentage is 0, do nothing
+    if percentage == 0:
+        return df
     # Error 'type' can't be a features_to_dirty
     if 'type' in features_to_dirty:
         raise ValueError("[ERROR] Can't affect the target with out of domain values")

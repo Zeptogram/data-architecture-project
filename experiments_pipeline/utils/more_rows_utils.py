@@ -66,14 +66,18 @@ def duplicate_rows(input_csv, wine_types_to_consider, percentage, flip_label=Tru
     # Ensure the percentage is between 0 and 1
     if not (0 <= percentage <= 1):
         raise ValueError("[ERROR] Percentage must be between 0 and 1")
+
+    # Load the DataFrame
+    df = pd.read_csv(input_csv)
+
+    # If percentage is 0, do nothing
+    if percentage == 0:
+        return df
     
     # Check that the passed wine types are valid
     for type in wine_types_to_consider:
         if not type in ['red', 'white']:
             raise ValueError("[ERROR] Wine types can only be 'red' or 'white'")
-        
-    # Load the DataFrame
-    df = pd.read_csv(input_csv)
 
     # Prepare a list to collect the duplicated rows
     rows_to_duplicate = []
