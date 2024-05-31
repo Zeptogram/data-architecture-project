@@ -729,6 +729,10 @@ class FitPerformanceEval(luigi.Task):
         # Read the final dirty csv
         final_dirty_train_df = pd.read_csv(self.input()['final_dirty_csv'].path)
 
+        # Copy of the final dirty training set with float values instead of bool for the target, to be used with the Imputers
+        float_dirty_train_df = final_dirty_train_df.copy()
+        float_dirty_train_df['type'] = float_dirty_train_df['type'].astype(float)
+
         # Split into X_train and y_train
         X_train = final_dirty_train_df.drop('type', axis=1)
         y_train = final_dirty_train_df['type']
@@ -737,10 +741,12 @@ class FitPerformanceEval(luigi.Task):
 
         # Neural Network by default interprets missing values as 0.0 (which leads to unexpected behavior): exploit and compare two imputation strategies (mean and EM)
         # SVM errors while fitting if there are missing values, so the following imputed DataFrames will be used by both NN and SVM
-        mean_dirty_train_df = Imputers().get("mean").fit_transform(final_dirty_train_df.copy())
+        mean_dirty_train_df = Imputers().get("mean").fit_transform(float_dirty_train_df.copy())
         mean_dirty_train_df.columns = final_dirty_train_df.columns
-        em_dirty_train_df = Imputers().get("EM").fit_transform(final_dirty_train_df.copy())
+        mean_dirty_train_df['type'] = mean_dirty_train_df['type'].astype(bool)
+        em_dirty_train_df = Imputers().get("EM").fit_transform(float_dirty_train_df.copy())
         em_dirty_train_df.columns = final_dirty_train_df.columns
+        em_dirty_train_df['type'] = em_dirty_train_df['type'].astype(bool)
 
         # Split into X_train_mean and X_train_em (y_train is the same as before, since there can't be missing values)
         X_train_mean = mean_dirty_train_df.drop('type', axis=1)

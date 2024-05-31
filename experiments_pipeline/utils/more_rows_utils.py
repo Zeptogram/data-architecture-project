@@ -17,8 +17,16 @@ import random
 # The percentage is a floating point number between 0.0 and 1.0
 # The generation can be between a defined range (see the AddRowsDomain task in the pipeline) for each feature, by default it's "unrestricted" (in [-100, 100])
 def add_rows(input_csv, percentage, ranges={}):
+    # Ensure the percentage is between 0 and 1
+    if not (0 <= percentage <= 1):
+        raise ValueError("[ERROR] Percentage must be between 0 and 1")
+
     # Load the DataFrame
     df = pd.read_csv(input_csv)
+
+    # If percentage is 0, do nothing
+    if percentage == 0:
+        return df
 
     # Dict containing all the rows to add
     rows_to_add_dict = {}
