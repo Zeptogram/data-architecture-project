@@ -696,7 +696,6 @@ class FitPerformanceEval(luigi.Task):
     metrics_csv_name = luigi.Parameter(default=default_paths['metrics_csv_name'])
 
 
-
     def requires(self):
         # Dependency from add rows domain
         return {'final_dirty_csv': AddRowsDomain(experiment_name=self.experiment_name,

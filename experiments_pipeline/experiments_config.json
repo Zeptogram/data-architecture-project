@@ -1,5 +1,6578 @@
 [
     {
-        "experiment-name": "test senza nulla"
+        "experiment-name": "experiment #1",
+        "features-to-drop": [
+            "PC1"
+        ]
+    },
+    {
+        "experiment-name": "experiment #2",
+        "features-to-drop": [
+            "PC2"
+        ]
+    },
+    {
+        "experiment-name": "experiment #3",
+        "features-to-drop": [
+            "PC1",
+            "PC2"
+        ]
+    },
+    {
+        "experiment-name": "experiment #4",
+        "features-to-drop": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ]
+    },
+    {
+        "experiment-name": "experiment #5",
+        "features-to-drop": [
+            "PC1",
+            "PC2",
+            "PC3",
+            "PC4"
+        ]
+    },
+    {
+        "experiment-name": "experiment #6",
+        "features-to-dirty-mv": [
+            "PC1"
+        ],
+        "missing-values-percentage": 0.1,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #7",
+        "features-to-dirty-mv": [
+            "PC2"
+        ],
+        "missing-values-percentage": 0.1,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #8",
+        "features-to-dirty-mv": [
+            "PC1",
+            "PC2"
+        ],
+        "missing-values-percentage": 0.1,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #9",
+        "features-to-dirty-mv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "missing-values-percentage": 0.1,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #10",
+        "features-to-dirty-mv": [
+            "PC1"
+        ],
+        "missing-values-percentage": 0.1,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #11",
+        "features-to-dirty-mv": [
+            "PC2"
+        ],
+        "missing-values-percentage": 0.1,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #12",
+        "features-to-dirty-mv": [
+            "PC1",
+            "PC2"
+        ],
+        "missing-values-percentage": 0.1,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #13",
+        "features-to-dirty-mv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "missing-values-percentage": 0.1,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #14",
+        "features-to-dirty-mv": [
+            "PC1"
+        ],
+        "missing-values-percentage": 0.1,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #15",
+        "features-to-dirty-mv": [
+            "PC2"
+        ],
+        "missing-values-percentage": 0.1,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #16",
+        "features-to-dirty-mv": [
+            "PC1",
+            "PC2"
+        ],
+        "missing-values-percentage": 0.1,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #17",
+        "features-to-dirty-mv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "missing-values-percentage": 0.1,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #18",
+        "features-to-dirty-mv": [
+            "PC1"
+        ],
+        "missing-values-percentage": 0.2,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #19",
+        "features-to-dirty-mv": [
+            "PC2"
+        ],
+        "missing-values-percentage": 0.2,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #20",
+        "features-to-dirty-mv": [
+            "PC1",
+            "PC2"
+        ],
+        "missing-values-percentage": 0.2,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #21",
+        "features-to-dirty-mv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "missing-values-percentage": 0.2,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #22",
+        "features-to-dirty-mv": [
+            "PC1"
+        ],
+        "missing-values-percentage": 0.2,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #23",
+        "features-to-dirty-mv": [
+            "PC2"
+        ],
+        "missing-values-percentage": 0.2,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #24",
+        "features-to-dirty-mv": [
+            "PC1",
+            "PC2"
+        ],
+        "missing-values-percentage": 0.2,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #25",
+        "features-to-dirty-mv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "missing-values-percentage": 0.2,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #26",
+        "features-to-dirty-mv": [
+            "PC1"
+        ],
+        "missing-values-percentage": 0.2,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #27",
+        "features-to-dirty-mv": [
+            "PC2"
+        ],
+        "missing-values-percentage": 0.2,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #28",
+        "features-to-dirty-mv": [
+            "PC1",
+            "PC2"
+        ],
+        "missing-values-percentage": 0.2,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #29",
+        "features-to-dirty-mv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "missing-values-percentage": 0.2,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #30",
+        "features-to-dirty-mv": [
+            "PC1"
+        ],
+        "missing-values-percentage": 0.3,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #31",
+        "features-to-dirty-mv": [
+            "PC2"
+        ],
+        "missing-values-percentage": 0.3,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #32",
+        "features-to-dirty-mv": [
+            "PC1",
+            "PC2"
+        ],
+        "missing-values-percentage": 0.3,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #33",
+        "features-to-dirty-mv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "missing-values-percentage": 0.3,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #34",
+        "features-to-dirty-mv": [
+            "PC1"
+        ],
+        "missing-values-percentage": 0.3,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #35",
+        "features-to-dirty-mv": [
+            "PC2"
+        ],
+        "missing-values-percentage": 0.3,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #36",
+        "features-to-dirty-mv": [
+            "PC1",
+            "PC2"
+        ],
+        "missing-values-percentage": 0.3,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #37",
+        "features-to-dirty-mv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "missing-values-percentage": 0.3,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #38",
+        "features-to-dirty-mv": [
+            "PC1"
+        ],
+        "missing-values-percentage": 0.3,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #39",
+        "features-to-dirty-mv": [
+            "PC2"
+        ],
+        "missing-values-percentage": 0.3,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #40",
+        "features-to-dirty-mv": [
+            "PC1",
+            "PC2"
+        ],
+        "missing-values-percentage": 0.3,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #41",
+        "features-to-dirty-mv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "missing-values-percentage": 0.3,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #42",
+        "features-to-dirty-mv": [
+            "PC1"
+        ],
+        "missing-values-percentage": 0.4,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #43",
+        "features-to-dirty-mv": [
+            "PC2"
+        ],
+        "missing-values-percentage": 0.4,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #44",
+        "features-to-dirty-mv": [
+            "PC1",
+            "PC2"
+        ],
+        "missing-values-percentage": 0.4,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #45",
+        "features-to-dirty-mv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "missing-values-percentage": 0.4,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #46",
+        "features-to-dirty-mv": [
+            "PC1"
+        ],
+        "missing-values-percentage": 0.4,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #47",
+        "features-to-dirty-mv": [
+            "PC2"
+        ],
+        "missing-values-percentage": 0.4,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #48",
+        "features-to-dirty-mv": [
+            "PC1",
+            "PC2"
+        ],
+        "missing-values-percentage": 0.4,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #49",
+        "features-to-dirty-mv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "missing-values-percentage": 0.4,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #50",
+        "features-to-dirty-mv": [
+            "PC1"
+        ],
+        "missing-values-percentage": 0.4,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #51",
+        "features-to-dirty-mv": [
+            "PC2"
+        ],
+        "missing-values-percentage": 0.4,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #52",
+        "features-to-dirty-mv": [
+            "PC1",
+            "PC2"
+        ],
+        "missing-values-percentage": 0.4,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #53",
+        "features-to-dirty-mv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "missing-values-percentage": 0.4,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #54",
+        "features-to-dirty-mv": [
+            "PC1"
+        ],
+        "missing-values-percentage": 0.5,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #55",
+        "features-to-dirty-mv": [
+            "PC2"
+        ],
+        "missing-values-percentage": 0.5,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #56",
+        "features-to-dirty-mv": [
+            "PC1",
+            "PC2"
+        ],
+        "missing-values-percentage": 0.5,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #57",
+        "features-to-dirty-mv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "missing-values-percentage": 0.5,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #58",
+        "features-to-dirty-mv": [
+            "PC1"
+        ],
+        "missing-values-percentage": 0.5,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #59",
+        "features-to-dirty-mv": [
+            "PC2"
+        ],
+        "missing-values-percentage": 0.5,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #60",
+        "features-to-dirty-mv": [
+            "PC1",
+            "PC2"
+        ],
+        "missing-values-percentage": 0.5,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #61",
+        "features-to-dirty-mv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "missing-values-percentage": 0.5,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #62",
+        "features-to-dirty-mv": [
+            "PC1"
+        ],
+        "missing-values-percentage": 0.5,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #63",
+        "features-to-dirty-mv": [
+            "PC2"
+        ],
+        "missing-values-percentage": 0.5,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #64",
+        "features-to-dirty-mv": [
+            "PC1",
+            "PC2"
+        ],
+        "missing-values-percentage": 0.5,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #65",
+        "features-to-dirty-mv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "missing-values-percentage": 0.5,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #66",
+        "features-to-dirty-mv": [
+            "PC1"
+        ],
+        "missing-values-percentage": 0.6,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #67",
+        "features-to-dirty-mv": [
+            "PC2"
+        ],
+        "missing-values-percentage": 0.6,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #68",
+        "features-to-dirty-mv": [
+            "PC1",
+            "PC2"
+        ],
+        "missing-values-percentage": 0.6,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #69",
+        "features-to-dirty-mv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "missing-values-percentage": 0.6,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #70",
+        "features-to-dirty-mv": [
+            "PC1"
+        ],
+        "missing-values-percentage": 0.6,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #71",
+        "features-to-dirty-mv": [
+            "PC2"
+        ],
+        "missing-values-percentage": 0.6,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #72",
+        "features-to-dirty-mv": [
+            "PC1",
+            "PC2"
+        ],
+        "missing-values-percentage": 0.6,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #73",
+        "features-to-dirty-mv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "missing-values-percentage": 0.6,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #74",
+        "features-to-dirty-mv": [
+            "PC1"
+        ],
+        "missing-values-percentage": 0.6,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #75",
+        "features-to-dirty-mv": [
+            "PC2"
+        ],
+        "missing-values-percentage": 0.6,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #76",
+        "features-to-dirty-mv": [
+            "PC1",
+            "PC2"
+        ],
+        "missing-values-percentage": 0.6,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #77",
+        "features-to-dirty-mv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "missing-values-percentage": 0.6,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #78",
+        "features-to-dirty-mv": [
+            "PC1"
+        ],
+        "missing-values-percentage": 0.7,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #79",
+        "features-to-dirty-mv": [
+            "PC2"
+        ],
+        "missing-values-percentage": 0.7,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #80",
+        "features-to-dirty-mv": [
+            "PC1",
+            "PC2"
+        ],
+        "missing-values-percentage": 0.7,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #81",
+        "features-to-dirty-mv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "missing-values-percentage": 0.7,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #82",
+        "features-to-dirty-mv": [
+            "PC1"
+        ],
+        "missing-values-percentage": 0.7,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #83",
+        "features-to-dirty-mv": [
+            "PC2"
+        ],
+        "missing-values-percentage": 0.7,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #84",
+        "features-to-dirty-mv": [
+            "PC1",
+            "PC2"
+        ],
+        "missing-values-percentage": 0.7,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #85",
+        "features-to-dirty-mv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "missing-values-percentage": 0.7,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #86",
+        "features-to-dirty-mv": [
+            "PC1"
+        ],
+        "missing-values-percentage": 0.7,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #87",
+        "features-to-dirty-mv": [
+            "PC2"
+        ],
+        "missing-values-percentage": 0.7,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #88",
+        "features-to-dirty-mv": [
+            "PC1",
+            "PC2"
+        ],
+        "missing-values-percentage": 0.7,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #89",
+        "features-to-dirty-mv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "missing-values-percentage": 0.7,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #90",
+        "features-to-dirty-mv": [
+            "PC1"
+        ],
+        "missing-values-percentage": 0.8,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #91",
+        "features-to-dirty-mv": [
+            "PC2"
+        ],
+        "missing-values-percentage": 0.8,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #92",
+        "features-to-dirty-mv": [
+            "PC1",
+            "PC2"
+        ],
+        "missing-values-percentage": 0.8,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #93",
+        "features-to-dirty-mv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "missing-values-percentage": 0.8,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #94",
+        "features-to-dirty-mv": [
+            "PC1"
+        ],
+        "missing-values-percentage": 0.8,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #95",
+        "features-to-dirty-mv": [
+            "PC2"
+        ],
+        "missing-values-percentage": 0.8,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #96",
+        "features-to-dirty-mv": [
+            "PC1",
+            "PC2"
+        ],
+        "missing-values-percentage": 0.8,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #97",
+        "features-to-dirty-mv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "missing-values-percentage": 0.8,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #98",
+        "features-to-dirty-mv": [
+            "PC1"
+        ],
+        "missing-values-percentage": 0.8,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #99",
+        "features-to-dirty-mv": [
+            "PC2"
+        ],
+        "missing-values-percentage": 0.8,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #100",
+        "features-to-dirty-mv": [
+            "PC1",
+            "PC2"
+        ],
+        "missing-values-percentage": 0.8,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #101",
+        "features-to-dirty-mv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "missing-values-percentage": 0.8,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #102",
+        "features-to-dirty-mv": [
+            "PC1"
+        ],
+        "missing-values-percentage": 0.9,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #103",
+        "features-to-dirty-mv": [
+            "PC2"
+        ],
+        "missing-values-percentage": 0.9,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #104",
+        "features-to-dirty-mv": [
+            "PC1",
+            "PC2"
+        ],
+        "missing-values-percentage": 0.9,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #105",
+        "features-to-dirty-mv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "missing-values-percentage": 0.9,
+        "wine-types-to-consider-missing-values": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #106",
+        "features-to-dirty-mv": [
+            "PC1"
+        ],
+        "missing-values-percentage": 0.9,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #107",
+        "features-to-dirty-mv": [
+            "PC2"
+        ],
+        "missing-values-percentage": 0.9,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #108",
+        "features-to-dirty-mv": [
+            "PC1",
+            "PC2"
+        ],
+        "missing-values-percentage": 0.9,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #109",
+        "features-to-dirty-mv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "missing-values-percentage": 0.9,
+        "wine-types-to-consider-missing-values": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #110",
+        "features-to-dirty-mv": [
+            "PC1"
+        ],
+        "missing-values-percentage": 0.9,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #111",
+        "features-to-dirty-mv": [
+            "PC2"
+        ],
+        "missing-values-percentage": 0.9,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #112",
+        "features-to-dirty-mv": [
+            "PC1",
+            "PC2"
+        ],
+        "missing-values-percentage": 0.9,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #113",
+        "features-to-dirty-mv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "missing-values-percentage": 0.9,
+        "wine-types-to-consider-missing-values": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #114",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.1,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #115",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.1,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #116",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.1,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #117",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.1,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #118",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.1,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #119",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.1,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #120",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.1,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #121",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.1,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #122",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.1,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #123",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.1,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #124",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.1,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #125",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.1,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #126",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.1,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #127",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.1,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #128",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.1,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #129",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.1,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #130",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.1,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #131",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.1,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #132",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.1,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #133",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.1,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #134",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.1,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #135",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.1,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #136",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.1,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #137",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.1,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #138",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.2,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #139",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.2,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #140",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.2,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #141",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.2,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #142",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.2,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #143",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.2,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #144",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.2,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #145",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.2,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #146",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.2,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #147",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.2,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #148",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.2,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #149",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.2,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #150",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.2,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #151",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.2,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #152",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.2,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #153",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.2,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #154",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.2,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #155",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.2,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #156",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.2,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #157",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.2,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #158",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.2,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #159",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.2,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #160",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.2,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #161",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.2,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #162",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.3,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #163",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.3,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #164",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.3,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #165",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.3,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #166",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.3,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #167",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.3,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #168",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.3,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #169",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.3,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #170",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.3,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #171",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.3,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #172",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.3,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #173",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.3,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #174",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.3,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #175",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.3,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #176",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.3,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #177",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.3,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #178",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.3,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #179",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.3,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #180",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.3,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #181",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.3,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #182",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.3,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #183",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.3,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #184",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.3,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #185",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.3,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #186",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.4,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #187",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.4,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #188",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.4,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #189",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.4,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #190",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.4,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #191",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.4,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #192",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.4,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #193",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.4,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #194",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.4,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #195",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.4,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #196",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.4,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #197",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.4,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #198",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.4,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #199",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.4,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #200",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.4,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #201",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.4,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #202",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.4,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #203",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.4,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #204",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.4,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #205",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.4,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #206",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.4,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #207",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.4,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #208",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.4,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #209",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.4,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #210",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.5,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #211",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.5,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #212",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.5,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #213",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.5,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #214",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.5,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #215",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.5,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #216",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.5,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #217",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.5,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #218",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.5,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #219",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.5,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #220",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.5,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #221",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.5,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #222",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.5,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #223",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.5,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #224",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.5,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #225",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.5,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #226",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.5,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #227",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.5,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #228",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.5,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #229",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.5,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #230",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.5,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #231",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.5,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #232",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.5,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #233",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.5,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #234",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.6,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #235",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.6,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #236",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.6,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #237",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.6,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #238",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.6,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #239",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.6,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #240",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.6,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #241",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.6,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #242",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.6,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #243",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.6,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #244",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.6,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #245",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.6,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #246",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.6,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #247",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.6,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #248",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.6,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #249",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.6,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #250",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.6,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #251",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.6,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #252",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.6,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #253",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.6,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #254",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.6,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #255",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.6,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #256",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.6,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #257",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.6,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #258",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.7,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #259",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.7,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #260",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.7,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #261",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.7,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #262",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.7,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #263",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.7,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #264",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.7,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #265",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.7,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #266",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.7,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #267",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.7,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #268",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.7,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #269",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.7,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #270",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.7,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #271",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.7,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #272",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.7,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #273",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.7,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #274",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.7,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #275",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.7,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #276",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.7,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #277",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.7,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #278",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.7,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #279",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.7,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #280",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.7,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #281",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.7,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #282",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.8,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #283",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.8,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #284",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.8,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #285",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.8,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #286",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.8,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #287",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.8,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #288",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.8,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #289",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.8,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #290",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.8,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #291",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.8,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #292",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.8,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #293",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.8,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #294",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.8,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #295",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.8,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #296",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.8,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #297",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.8,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #298",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.8,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #299",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.8,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #300",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.8,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #301",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.8,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #302",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.8,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #303",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.8,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #304",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.8,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #305",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.8,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #306",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.9,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #307",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.9,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #308",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.9,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #309",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.9,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #310",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.9,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #311",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.9,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #312",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.9,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #313",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.9,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #314",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.9,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #315",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.9,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #316",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.9,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #317",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.9,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #318",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.9,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #319",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.9,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #320",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.9,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #321",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.9,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #322",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.9,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #323",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.9,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #324",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.9,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #325",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.9,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #326",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.9,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #327",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 0.9,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #328",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 0.9,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #329",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 0.9,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #330",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 1.0,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #331",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 1.0,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #332",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 1.0,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #333",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 1.0,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #334",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 1.0,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #335",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 1.0,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #336",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 1.0,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #337",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 1.0,
+        "wine-types-to-consider-outliers": [
+            "red"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #338",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 1.0,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #339",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 1.0,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #340",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 1.0,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #341",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 1.0,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #342",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 1.0,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #343",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 1.0,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #344",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 1.0,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #345",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 1.0,
+        "wine-types-to-consider-outliers": [
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #346",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 1.0,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #347",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 1.0,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #348",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 1.0,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #349",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 1.0,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "std"
+    },
+    {
+        "experiment-name": "experiment #350",
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 1.0,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #351",
+        "features-to-dirty-outliers": [
+            "PC2"
+        ],
+        "outliers-percentage": 1.0,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #352",
+        "features-to-dirty-outliers": [
+            "PC1",
+            "PC2"
+        ],
+        "outliers-percentage": 1.0,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #353",
+        "features-to-dirty-outliers": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "outliers-percentage": 1.0,
+        "wine-types-to-consider-outliers": [
+            "red",
+            "white"
+        ],
+        "range-type": "iqr"
+    },
+    {
+        "experiment-name": "experiment #354",
+        "features-to-dirty-oodv": [
+            "PC1"
+        ],
+        "oodv-percentage": 0.1,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #355",
+        "features-to-dirty-oodv": [
+            "PC2"
+        ],
+        "oodv-percentage": 0.1,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #356",
+        "features-to-dirty-oodv": [
+            "PC1",
+            "PC2"
+        ],
+        "oodv-percentage": 0.1,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #357",
+        "features-to-dirty-oodv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "oodv-percentage": 0.1,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #358",
+        "features-to-dirty-oodv": [
+            "PC1"
+        ],
+        "oodv-percentage": 0.1,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #359",
+        "features-to-dirty-oodv": [
+            "PC2"
+        ],
+        "oodv-percentage": 0.1,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #360",
+        "features-to-dirty-oodv": [
+            "PC1",
+            "PC2"
+        ],
+        "oodv-percentage": 0.1,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #361",
+        "features-to-dirty-oodv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "oodv-percentage": 0.1,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #362",
+        "features-to-dirty-oodv": [
+            "PC1"
+        ],
+        "oodv-percentage": 0.1,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #363",
+        "features-to-dirty-oodv": [
+            "PC2"
+        ],
+        "oodv-percentage": 0.1,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #364",
+        "features-to-dirty-oodv": [
+            "PC1",
+            "PC2"
+        ],
+        "oodv-percentage": 0.1,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #365",
+        "features-to-dirty-oodv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "oodv-percentage": 0.1,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #366",
+        "features-to-dirty-oodv": [
+            "PC1"
+        ],
+        "oodv-percentage": 0.2,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #367",
+        "features-to-dirty-oodv": [
+            "PC2"
+        ],
+        "oodv-percentage": 0.2,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #368",
+        "features-to-dirty-oodv": [
+            "PC1",
+            "PC2"
+        ],
+        "oodv-percentage": 0.2,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #369",
+        "features-to-dirty-oodv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "oodv-percentage": 0.2,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #370",
+        "features-to-dirty-oodv": [
+            "PC1"
+        ],
+        "oodv-percentage": 0.2,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #371",
+        "features-to-dirty-oodv": [
+            "PC2"
+        ],
+        "oodv-percentage": 0.2,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #372",
+        "features-to-dirty-oodv": [
+            "PC1",
+            "PC2"
+        ],
+        "oodv-percentage": 0.2,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #373",
+        "features-to-dirty-oodv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "oodv-percentage": 0.2,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #374",
+        "features-to-dirty-oodv": [
+            "PC1"
+        ],
+        "oodv-percentage": 0.2,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #375",
+        "features-to-dirty-oodv": [
+            "PC2"
+        ],
+        "oodv-percentage": 0.2,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #376",
+        "features-to-dirty-oodv": [
+            "PC1",
+            "PC2"
+        ],
+        "oodv-percentage": 0.2,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #377",
+        "features-to-dirty-oodv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "oodv-percentage": 0.2,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #378",
+        "features-to-dirty-oodv": [
+            "PC1"
+        ],
+        "oodv-percentage": 0.3,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #379",
+        "features-to-dirty-oodv": [
+            "PC2"
+        ],
+        "oodv-percentage": 0.3,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #380",
+        "features-to-dirty-oodv": [
+            "PC1",
+            "PC2"
+        ],
+        "oodv-percentage": 0.3,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #381",
+        "features-to-dirty-oodv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "oodv-percentage": 0.3,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #382",
+        "features-to-dirty-oodv": [
+            "PC1"
+        ],
+        "oodv-percentage": 0.3,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #383",
+        "features-to-dirty-oodv": [
+            "PC2"
+        ],
+        "oodv-percentage": 0.3,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #384",
+        "features-to-dirty-oodv": [
+            "PC1",
+            "PC2"
+        ],
+        "oodv-percentage": 0.3,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #385",
+        "features-to-dirty-oodv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "oodv-percentage": 0.3,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #386",
+        "features-to-dirty-oodv": [
+            "PC1"
+        ],
+        "oodv-percentage": 0.3,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #387",
+        "features-to-dirty-oodv": [
+            "PC2"
+        ],
+        "oodv-percentage": 0.3,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #388",
+        "features-to-dirty-oodv": [
+            "PC1",
+            "PC2"
+        ],
+        "oodv-percentage": 0.3,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #389",
+        "features-to-dirty-oodv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "oodv-percentage": 0.3,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #390",
+        "features-to-dirty-oodv": [
+            "PC1"
+        ],
+        "oodv-percentage": 0.4,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #391",
+        "features-to-dirty-oodv": [
+            "PC2"
+        ],
+        "oodv-percentage": 0.4,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #392",
+        "features-to-dirty-oodv": [
+            "PC1",
+            "PC2"
+        ],
+        "oodv-percentage": 0.4,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #393",
+        "features-to-dirty-oodv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "oodv-percentage": 0.4,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #394",
+        "features-to-dirty-oodv": [
+            "PC1"
+        ],
+        "oodv-percentage": 0.4,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #395",
+        "features-to-dirty-oodv": [
+            "PC2"
+        ],
+        "oodv-percentage": 0.4,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #396",
+        "features-to-dirty-oodv": [
+            "PC1",
+            "PC2"
+        ],
+        "oodv-percentage": 0.4,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #397",
+        "features-to-dirty-oodv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "oodv-percentage": 0.4,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #398",
+        "features-to-dirty-oodv": [
+            "PC1"
+        ],
+        "oodv-percentage": 0.4,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #399",
+        "features-to-dirty-oodv": [
+            "PC2"
+        ],
+        "oodv-percentage": 0.4,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #400",
+        "features-to-dirty-oodv": [
+            "PC1",
+            "PC2"
+        ],
+        "oodv-percentage": 0.4,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #401",
+        "features-to-dirty-oodv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "oodv-percentage": 0.4,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #402",
+        "features-to-dirty-oodv": [
+            "PC1"
+        ],
+        "oodv-percentage": 0.5,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #403",
+        "features-to-dirty-oodv": [
+            "PC2"
+        ],
+        "oodv-percentage": 0.5,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #404",
+        "features-to-dirty-oodv": [
+            "PC1",
+            "PC2"
+        ],
+        "oodv-percentage": 0.5,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #405",
+        "features-to-dirty-oodv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "oodv-percentage": 0.5,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #406",
+        "features-to-dirty-oodv": [
+            "PC1"
+        ],
+        "oodv-percentage": 0.5,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #407",
+        "features-to-dirty-oodv": [
+            "PC2"
+        ],
+        "oodv-percentage": 0.5,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #408",
+        "features-to-dirty-oodv": [
+            "PC1",
+            "PC2"
+        ],
+        "oodv-percentage": 0.5,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #409",
+        "features-to-dirty-oodv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "oodv-percentage": 0.5,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #410",
+        "features-to-dirty-oodv": [
+            "PC1"
+        ],
+        "oodv-percentage": 0.5,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #411",
+        "features-to-dirty-oodv": [
+            "PC2"
+        ],
+        "oodv-percentage": 0.5,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #412",
+        "features-to-dirty-oodv": [
+            "PC1",
+            "PC2"
+        ],
+        "oodv-percentage": 0.5,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #413",
+        "features-to-dirty-oodv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "oodv-percentage": 0.5,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #414",
+        "features-to-dirty-oodv": [
+            "PC1"
+        ],
+        "oodv-percentage": 0.6,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #415",
+        "features-to-dirty-oodv": [
+            "PC2"
+        ],
+        "oodv-percentage": 0.6,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #416",
+        "features-to-dirty-oodv": [
+            "PC1",
+            "PC2"
+        ],
+        "oodv-percentage": 0.6,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #417",
+        "features-to-dirty-oodv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "oodv-percentage": 0.6,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #418",
+        "features-to-dirty-oodv": [
+            "PC1"
+        ],
+        "oodv-percentage": 0.6,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #419",
+        "features-to-dirty-oodv": [
+            "PC2"
+        ],
+        "oodv-percentage": 0.6,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #420",
+        "features-to-dirty-oodv": [
+            "PC1",
+            "PC2"
+        ],
+        "oodv-percentage": 0.6,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #421",
+        "features-to-dirty-oodv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "oodv-percentage": 0.6,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #422",
+        "features-to-dirty-oodv": [
+            "PC1"
+        ],
+        "oodv-percentage": 0.6,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #423",
+        "features-to-dirty-oodv": [
+            "PC2"
+        ],
+        "oodv-percentage": 0.6,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #424",
+        "features-to-dirty-oodv": [
+            "PC1",
+            "PC2"
+        ],
+        "oodv-percentage": 0.6,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #425",
+        "features-to-dirty-oodv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "oodv-percentage": 0.6,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #426",
+        "features-to-dirty-oodv": [
+            "PC1"
+        ],
+        "oodv-percentage": 0.7,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #427",
+        "features-to-dirty-oodv": [
+            "PC2"
+        ],
+        "oodv-percentage": 0.7,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #428",
+        "features-to-dirty-oodv": [
+            "PC1",
+            "PC2"
+        ],
+        "oodv-percentage": 0.7,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #429",
+        "features-to-dirty-oodv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "oodv-percentage": 0.7,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #430",
+        "features-to-dirty-oodv": [
+            "PC1"
+        ],
+        "oodv-percentage": 0.7,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #431",
+        "features-to-dirty-oodv": [
+            "PC2"
+        ],
+        "oodv-percentage": 0.7,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #432",
+        "features-to-dirty-oodv": [
+            "PC1",
+            "PC2"
+        ],
+        "oodv-percentage": 0.7,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #433",
+        "features-to-dirty-oodv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "oodv-percentage": 0.7,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #434",
+        "features-to-dirty-oodv": [
+            "PC1"
+        ],
+        "oodv-percentage": 0.7,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #435",
+        "features-to-dirty-oodv": [
+            "PC2"
+        ],
+        "oodv-percentage": 0.7,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #436",
+        "features-to-dirty-oodv": [
+            "PC1",
+            "PC2"
+        ],
+        "oodv-percentage": 0.7,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #437",
+        "features-to-dirty-oodv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "oodv-percentage": 0.7,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #438",
+        "features-to-dirty-oodv": [
+            "PC1"
+        ],
+        "oodv-percentage": 0.8,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #439",
+        "features-to-dirty-oodv": [
+            "PC2"
+        ],
+        "oodv-percentage": 0.8,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #440",
+        "features-to-dirty-oodv": [
+            "PC1",
+            "PC2"
+        ],
+        "oodv-percentage": 0.8,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #441",
+        "features-to-dirty-oodv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "oodv-percentage": 0.8,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #442",
+        "features-to-dirty-oodv": [
+            "PC1"
+        ],
+        "oodv-percentage": 0.8,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #443",
+        "features-to-dirty-oodv": [
+            "PC2"
+        ],
+        "oodv-percentage": 0.8,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #444",
+        "features-to-dirty-oodv": [
+            "PC1",
+            "PC2"
+        ],
+        "oodv-percentage": 0.8,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #445",
+        "features-to-dirty-oodv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "oodv-percentage": 0.8,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #446",
+        "features-to-dirty-oodv": [
+            "PC1"
+        ],
+        "oodv-percentage": 0.8,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #447",
+        "features-to-dirty-oodv": [
+            "PC2"
+        ],
+        "oodv-percentage": 0.8,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #448",
+        "features-to-dirty-oodv": [
+            "PC1",
+            "PC2"
+        ],
+        "oodv-percentage": 0.8,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #449",
+        "features-to-dirty-oodv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "oodv-percentage": 0.8,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #450",
+        "features-to-dirty-oodv": [
+            "PC1"
+        ],
+        "oodv-percentage": 0.9,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #451",
+        "features-to-dirty-oodv": [
+            "PC2"
+        ],
+        "oodv-percentage": 0.9,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #452",
+        "features-to-dirty-oodv": [
+            "PC1",
+            "PC2"
+        ],
+        "oodv-percentage": 0.9,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #453",
+        "features-to-dirty-oodv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "oodv-percentage": 0.9,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #454",
+        "features-to-dirty-oodv": [
+            "PC1"
+        ],
+        "oodv-percentage": 0.9,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #455",
+        "features-to-dirty-oodv": [
+            "PC2"
+        ],
+        "oodv-percentage": 0.9,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #456",
+        "features-to-dirty-oodv": [
+            "PC1",
+            "PC2"
+        ],
+        "oodv-percentage": 0.9,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #457",
+        "features-to-dirty-oodv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "oodv-percentage": 0.9,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #458",
+        "features-to-dirty-oodv": [
+            "PC1"
+        ],
+        "oodv-percentage": 0.9,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #459",
+        "features-to-dirty-oodv": [
+            "PC2"
+        ],
+        "oodv-percentage": 0.9,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #460",
+        "features-to-dirty-oodv": [
+            "PC1",
+            "PC2"
+        ],
+        "oodv-percentage": 0.9,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #461",
+        "features-to-dirty-oodv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "oodv-percentage": 0.9,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #462",
+        "features-to-dirty-oodv": [
+            "PC1"
+        ],
+        "oodv-percentage": 1.0,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #463",
+        "features-to-dirty-oodv": [
+            "PC2"
+        ],
+        "oodv-percentage": 1.0,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #464",
+        "features-to-dirty-oodv": [
+            "PC1",
+            "PC2"
+        ],
+        "oodv-percentage": 1.0,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #465",
+        "features-to-dirty-oodv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "oodv-percentage": 1.0,
+        "wine-types-to-consider-oodv": [
+            "red"
+        ]
+    },
+    {
+        "experiment-name": "experiment #466",
+        "features-to-dirty-oodv": [
+            "PC1"
+        ],
+        "oodv-percentage": 1.0,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #467",
+        "features-to-dirty-oodv": [
+            "PC2"
+        ],
+        "oodv-percentage": 1.0,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #468",
+        "features-to-dirty-oodv": [
+            "PC1",
+            "PC2"
+        ],
+        "oodv-percentage": 1.0,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #469",
+        "features-to-dirty-oodv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "oodv-percentage": 1.0,
+        "wine-types-to-consider-oodv": [
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #470",
+        "features-to-dirty-oodv": [
+            "PC1"
+        ],
+        "oodv-percentage": 1.0,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #471",
+        "features-to-dirty-oodv": [
+            "PC2"
+        ],
+        "oodv-percentage": 1.0,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #472",
+        "features-to-dirty-oodv": [
+            "PC1",
+            "PC2"
+        ],
+        "oodv-percentage": 1.0,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #473",
+        "features-to-dirty-oodv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "oodv-percentage": 1.0,
+        "wine-types-to-consider-oodv": [
+            "red",
+            "white"
+        ]
+    },
+    {
+        "experiment-name": "experiment #474",
+        "flip-percentage-red": 0.1,
+        "flip-percentage-white": 0.1
+    },
+    {
+        "experiment-name": "experiment #475",
+        "flip-percentage-red": 0.1,
+        "flip-percentage-white": 0.2
+    },
+    {
+        "experiment-name": "experiment #476",
+        "flip-percentage-red": 0.1,
+        "flip-percentage-white": 0.3
+    },
+    {
+        "experiment-name": "experiment #477",
+        "flip-percentage-red": 0.1,
+        "flip-percentage-white": 0.4
+    },
+    {
+        "experiment-name": "experiment #478",
+        "flip-percentage-red": 0.1,
+        "flip-percentage-white": 0.5
+    },
+    {
+        "experiment-name": "experiment #479",
+        "flip-percentage-red": 0.1,
+        "flip-percentage-white": 0.6
+    },
+    {
+        "experiment-name": "experiment #480",
+        "flip-percentage-red": 0.1,
+        "flip-percentage-white": 0.7
+    },
+    {
+        "experiment-name": "experiment #481",
+        "flip-percentage-red": 0.1,
+        "flip-percentage-white": 0.8
+    },
+    {
+        "experiment-name": "experiment #482",
+        "flip-percentage-red": 0.1,
+        "flip-percentage-white": 0.9
+    },
+    {
+        "experiment-name": "experiment #483",
+        "flip-percentage-red": 0.1,
+        "flip-percentage-white": 1.0
+    },
+    {
+        "experiment-name": "experiment #484",
+        "flip-percentage-red": 0.2,
+        "flip-percentage-white": 0.1
+    },
+    {
+        "experiment-name": "experiment #485",
+        "flip-percentage-red": 0.2,
+        "flip-percentage-white": 0.2
+    },
+    {
+        "experiment-name": "experiment #486",
+        "flip-percentage-red": 0.2,
+        "flip-percentage-white": 0.3
+    },
+    {
+        "experiment-name": "experiment #487",
+        "flip-percentage-red": 0.2,
+        "flip-percentage-white": 0.4
+    },
+    {
+        "experiment-name": "experiment #488",
+        "flip-percentage-red": 0.2,
+        "flip-percentage-white": 0.5
+    },
+    {
+        "experiment-name": "experiment #489",
+        "flip-percentage-red": 0.2,
+        "flip-percentage-white": 0.6
+    },
+    {
+        "experiment-name": "experiment #490",
+        "flip-percentage-red": 0.2,
+        "flip-percentage-white": 0.7
+    },
+    {
+        "experiment-name": "experiment #491",
+        "flip-percentage-red": 0.2,
+        "flip-percentage-white": 0.8
+    },
+    {
+        "experiment-name": "experiment #492",
+        "flip-percentage-red": 0.2,
+        "flip-percentage-white": 0.9
+    },
+    {
+        "experiment-name": "experiment #493",
+        "flip-percentage-red": 0.2,
+        "flip-percentage-white": 1.0
+    },
+    {
+        "experiment-name": "experiment #494",
+        "flip-percentage-red": 0.3,
+        "flip-percentage-white": 0.1
+    },
+    {
+        "experiment-name": "experiment #495",
+        "flip-percentage-red": 0.3,
+        "flip-percentage-white": 0.2
+    },
+    {
+        "experiment-name": "experiment #496",
+        "flip-percentage-red": 0.3,
+        "flip-percentage-white": 0.3
+    },
+    {
+        "experiment-name": "experiment #497",
+        "flip-percentage-red": 0.3,
+        "flip-percentage-white": 0.4
+    },
+    {
+        "experiment-name": "experiment #498",
+        "flip-percentage-red": 0.3,
+        "flip-percentage-white": 0.5
+    },
+    {
+        "experiment-name": "experiment #499",
+        "flip-percentage-red": 0.3,
+        "flip-percentage-white": 0.6
+    },
+    {
+        "experiment-name": "experiment #500",
+        "flip-percentage-red": 0.3,
+        "flip-percentage-white": 0.7
+    },
+    {
+        "experiment-name": "experiment #501",
+        "flip-percentage-red": 0.3,
+        "flip-percentage-white": 0.8
+    },
+    {
+        "experiment-name": "experiment #502",
+        "flip-percentage-red": 0.3,
+        "flip-percentage-white": 0.9
+    },
+    {
+        "experiment-name": "experiment #503",
+        "flip-percentage-red": 0.3,
+        "flip-percentage-white": 1.0
+    },
+    {
+        "experiment-name": "experiment #504",
+        "flip-percentage-red": 0.4,
+        "flip-percentage-white": 0.1
+    },
+    {
+        "experiment-name": "experiment #505",
+        "flip-percentage-red": 0.4,
+        "flip-percentage-white": 0.2
+    },
+    {
+        "experiment-name": "experiment #506",
+        "flip-percentage-red": 0.4,
+        "flip-percentage-white": 0.3
+    },
+    {
+        "experiment-name": "experiment #507",
+        "flip-percentage-red": 0.4,
+        "flip-percentage-white": 0.4
+    },
+    {
+        "experiment-name": "experiment #508",
+        "flip-percentage-red": 0.4,
+        "flip-percentage-white": 0.5
+    },
+    {
+        "experiment-name": "experiment #509",
+        "flip-percentage-red": 0.4,
+        "flip-percentage-white": 0.6
+    },
+    {
+        "experiment-name": "experiment #510",
+        "flip-percentage-red": 0.4,
+        "flip-percentage-white": 0.7
+    },
+    {
+        "experiment-name": "experiment #511",
+        "flip-percentage-red": 0.4,
+        "flip-percentage-white": 0.8
+    },
+    {
+        "experiment-name": "experiment #512",
+        "flip-percentage-red": 0.4,
+        "flip-percentage-white": 0.9
+    },
+    {
+        "experiment-name": "experiment #513",
+        "flip-percentage-red": 0.4,
+        "flip-percentage-white": 1.0
+    },
+    {
+        "experiment-name": "experiment #514",
+        "flip-percentage-red": 0.5,
+        "flip-percentage-white": 0.1
+    },
+    {
+        "experiment-name": "experiment #515",
+        "flip-percentage-red": 0.5,
+        "flip-percentage-white": 0.2
+    },
+    {
+        "experiment-name": "experiment #516",
+        "flip-percentage-red": 0.5,
+        "flip-percentage-white": 0.3
+    },
+    {
+        "experiment-name": "experiment #517",
+        "flip-percentage-red": 0.5,
+        "flip-percentage-white": 0.4
+    },
+    {
+        "experiment-name": "experiment #518",
+        "flip-percentage-red": 0.5,
+        "flip-percentage-white": 0.5
+    },
+    {
+        "experiment-name": "experiment #519",
+        "flip-percentage-red": 0.5,
+        "flip-percentage-white": 0.6
+    },
+    {
+        "experiment-name": "experiment #520",
+        "flip-percentage-red": 0.5,
+        "flip-percentage-white": 0.7
+    },
+    {
+        "experiment-name": "experiment #521",
+        "flip-percentage-red": 0.5,
+        "flip-percentage-white": 0.8
+    },
+    {
+        "experiment-name": "experiment #522",
+        "flip-percentage-red": 0.5,
+        "flip-percentage-white": 0.9
+    },
+    {
+        "experiment-name": "experiment #523",
+        "flip-percentage-red": 0.5,
+        "flip-percentage-white": 1.0
+    },
+    {
+        "experiment-name": "experiment #524",
+        "flip-percentage-red": 0.6,
+        "flip-percentage-white": 0.1
+    },
+    {
+        "experiment-name": "experiment #525",
+        "flip-percentage-red": 0.6,
+        "flip-percentage-white": 0.2
+    },
+    {
+        "experiment-name": "experiment #526",
+        "flip-percentage-red": 0.6,
+        "flip-percentage-white": 0.3
+    },
+    {
+        "experiment-name": "experiment #527",
+        "flip-percentage-red": 0.6,
+        "flip-percentage-white": 0.4
+    },
+    {
+        "experiment-name": "experiment #528",
+        "flip-percentage-red": 0.6,
+        "flip-percentage-white": 0.5
+    },
+    {
+        "experiment-name": "experiment #529",
+        "flip-percentage-red": 0.6,
+        "flip-percentage-white": 0.6
+    },
+    {
+        "experiment-name": "experiment #530",
+        "flip-percentage-red": 0.6,
+        "flip-percentage-white": 0.7
+    },
+    {
+        "experiment-name": "experiment #531",
+        "flip-percentage-red": 0.6,
+        "flip-percentage-white": 0.8
+    },
+    {
+        "experiment-name": "experiment #532",
+        "flip-percentage-red": 0.6,
+        "flip-percentage-white": 0.9
+    },
+    {
+        "experiment-name": "experiment #533",
+        "flip-percentage-red": 0.6,
+        "flip-percentage-white": 1.0
+    },
+    {
+        "experiment-name": "experiment #534",
+        "flip-percentage-red": 0.7,
+        "flip-percentage-white": 0.1
+    },
+    {
+        "experiment-name": "experiment #535",
+        "flip-percentage-red": 0.7,
+        "flip-percentage-white": 0.2
+    },
+    {
+        "experiment-name": "experiment #536",
+        "flip-percentage-red": 0.7,
+        "flip-percentage-white": 0.3
+    },
+    {
+        "experiment-name": "experiment #537",
+        "flip-percentage-red": 0.7,
+        "flip-percentage-white": 0.4
+    },
+    {
+        "experiment-name": "experiment #538",
+        "flip-percentage-red": 0.7,
+        "flip-percentage-white": 0.5
+    },
+    {
+        "experiment-name": "experiment #539",
+        "flip-percentage-red": 0.7,
+        "flip-percentage-white": 0.6
+    },
+    {
+        "experiment-name": "experiment #540",
+        "flip-percentage-red": 0.7,
+        "flip-percentage-white": 0.7
+    },
+    {
+        "experiment-name": "experiment #541",
+        "flip-percentage-red": 0.7,
+        "flip-percentage-white": 0.8
+    },
+    {
+        "experiment-name": "experiment #542",
+        "flip-percentage-red": 0.7,
+        "flip-percentage-white": 0.9
+    },
+    {
+        "experiment-name": "experiment #543",
+        "flip-percentage-red": 0.7,
+        "flip-percentage-white": 1.0
+    },
+    {
+        "experiment-name": "experiment #544",
+        "flip-percentage-red": 0.8,
+        "flip-percentage-white": 0.1
+    },
+    {
+        "experiment-name": "experiment #545",
+        "flip-percentage-red": 0.8,
+        "flip-percentage-white": 0.2
+    },
+    {
+        "experiment-name": "experiment #546",
+        "flip-percentage-red": 0.8,
+        "flip-percentage-white": 0.3
+    },
+    {
+        "experiment-name": "experiment #547",
+        "flip-percentage-red": 0.8,
+        "flip-percentage-white": 0.4
+    },
+    {
+        "experiment-name": "experiment #548",
+        "flip-percentage-red": 0.8,
+        "flip-percentage-white": 0.5
+    },
+    {
+        "experiment-name": "experiment #549",
+        "flip-percentage-red": 0.8,
+        "flip-percentage-white": 0.6
+    },
+    {
+        "experiment-name": "experiment #550",
+        "flip-percentage-red": 0.8,
+        "flip-percentage-white": 0.7
+    },
+    {
+        "experiment-name": "experiment #551",
+        "flip-percentage-red": 0.8,
+        "flip-percentage-white": 0.8
+    },
+    {
+        "experiment-name": "experiment #552",
+        "flip-percentage-red": 0.8,
+        "flip-percentage-white": 0.9
+    },
+    {
+        "experiment-name": "experiment #553",
+        "flip-percentage-red": 0.8,
+        "flip-percentage-white": 1.0
+    },
+    {
+        "experiment-name": "experiment #554",
+        "flip-percentage-red": 0.9,
+        "flip-percentage-white": 0.1
+    },
+    {
+        "experiment-name": "experiment #555",
+        "flip-percentage-red": 0.9,
+        "flip-percentage-white": 0.2
+    },
+    {
+        "experiment-name": "experiment #556",
+        "flip-percentage-red": 0.9,
+        "flip-percentage-white": 0.3
+    },
+    {
+        "experiment-name": "experiment #557",
+        "flip-percentage-red": 0.9,
+        "flip-percentage-white": 0.4
+    },
+    {
+        "experiment-name": "experiment #558",
+        "flip-percentage-red": 0.9,
+        "flip-percentage-white": 0.5
+    },
+    {
+        "experiment-name": "experiment #559",
+        "flip-percentage-red": 0.9,
+        "flip-percentage-white": 0.6
+    },
+    {
+        "experiment-name": "experiment #560",
+        "flip-percentage-red": 0.9,
+        "flip-percentage-white": 0.7
+    },
+    {
+        "experiment-name": "experiment #561",
+        "flip-percentage-red": 0.9,
+        "flip-percentage-white": 0.8
+    },
+    {
+        "experiment-name": "experiment #562",
+        "flip-percentage-red": 0.9,
+        "flip-percentage-white": 0.9
+    },
+    {
+        "experiment-name": "experiment #563",
+        "flip-percentage-red": 0.9,
+        "flip-percentage-white": 1.0
+    },
+    {
+        "experiment-name": "experiment #564",
+        "flip-percentage-red": 1.0,
+        "flip-percentage-white": 0.1
+    },
+    {
+        "experiment-name": "experiment #565",
+        "flip-percentage-red": 1.0,
+        "flip-percentage-white": 0.2
+    },
+    {
+        "experiment-name": "experiment #566",
+        "flip-percentage-red": 1.0,
+        "flip-percentage-white": 0.3
+    },
+    {
+        "experiment-name": "experiment #567",
+        "flip-percentage-red": 1.0,
+        "flip-percentage-white": 0.4
+    },
+    {
+        "experiment-name": "experiment #568",
+        "flip-percentage-red": 1.0,
+        "flip-percentage-white": 0.5
+    },
+    {
+        "experiment-name": "experiment #569",
+        "flip-percentage-red": 1.0,
+        "flip-percentage-white": 0.6
+    },
+    {
+        "experiment-name": "experiment #570",
+        "flip-percentage-red": 1.0,
+        "flip-percentage-white": 0.7
+    },
+    {
+        "experiment-name": "experiment #571",
+        "flip-percentage-red": 1.0,
+        "flip-percentage-white": 0.8
+    },
+    {
+        "experiment-name": "experiment #572",
+        "flip-percentage-red": 1.0,
+        "flip-percentage-white": 0.9
+    },
+    {
+        "experiment-name": "experiment #573",
+        "flip-percentage-red": 1.0,
+        "flip-percentage-white": 1.0
+    },
+    {
+        "experiment-name": "experiment #574",
+        "wine-types-to-consider-same-label": [
+            "red"
+        ],
+        "duplicate-rows-same-label-percentage": 0.1
+    },
+    {
+        "experiment-name": "experiment #575",
+        "wine-types-to-consider-same-label": [
+            "white"
+        ],
+        "duplicate-rows-same-label-percentage": 0.1
+    },
+    {
+        "experiment-name": "experiment #576",
+        "wine-types-to-consider-same-label": [
+            "red",
+            "white"
+        ],
+        "duplicate-rows-same-label-percentage": 0.1
+    },
+    {
+        "experiment-name": "experiment #577",
+        "wine-types-to-consider-same-label": [
+            "red"
+        ],
+        "duplicate-rows-same-label-percentage": 0.2
+    },
+    {
+        "experiment-name": "experiment #578",
+        "wine-types-to-consider-same-label": [
+            "white"
+        ],
+        "duplicate-rows-same-label-percentage": 0.2
+    },
+    {
+        "experiment-name": "experiment #579",
+        "wine-types-to-consider-same-label": [
+            "red",
+            "white"
+        ],
+        "duplicate-rows-same-label-percentage": 0.2
+    },
+    {
+        "experiment-name": "experiment #580",
+        "wine-types-to-consider-same-label": [
+            "red"
+        ],
+        "duplicate-rows-same-label-percentage": 0.3
+    },
+    {
+        "experiment-name": "experiment #581",
+        "wine-types-to-consider-same-label": [
+            "white"
+        ],
+        "duplicate-rows-same-label-percentage": 0.3
+    },
+    {
+        "experiment-name": "experiment #582",
+        "wine-types-to-consider-same-label": [
+            "red",
+            "white"
+        ],
+        "duplicate-rows-same-label-percentage": 0.3
+    },
+    {
+        "experiment-name": "experiment #583",
+        "wine-types-to-consider-same-label": [
+            "red"
+        ],
+        "duplicate-rows-same-label-percentage": 0.4
+    },
+    {
+        "experiment-name": "experiment #584",
+        "wine-types-to-consider-same-label": [
+            "white"
+        ],
+        "duplicate-rows-same-label-percentage": 0.4
+    },
+    {
+        "experiment-name": "experiment #585",
+        "wine-types-to-consider-same-label": [
+            "red",
+            "white"
+        ],
+        "duplicate-rows-same-label-percentage": 0.4
+    },
+    {
+        "experiment-name": "experiment #586",
+        "wine-types-to-consider-same-label": [
+            "red"
+        ],
+        "duplicate-rows-same-label-percentage": 0.5
+    },
+    {
+        "experiment-name": "experiment #587",
+        "wine-types-to-consider-same-label": [
+            "white"
+        ],
+        "duplicate-rows-same-label-percentage": 0.5
+    },
+    {
+        "experiment-name": "experiment #588",
+        "wine-types-to-consider-same-label": [
+            "red",
+            "white"
+        ],
+        "duplicate-rows-same-label-percentage": 0.5
+    },
+    {
+        "experiment-name": "experiment #589",
+        "wine-types-to-consider-same-label": [
+            "red"
+        ],
+        "duplicate-rows-same-label-percentage": 0.6
+    },
+    {
+        "experiment-name": "experiment #590",
+        "wine-types-to-consider-same-label": [
+            "white"
+        ],
+        "duplicate-rows-same-label-percentage": 0.6
+    },
+    {
+        "experiment-name": "experiment #591",
+        "wine-types-to-consider-same-label": [
+            "red",
+            "white"
+        ],
+        "duplicate-rows-same-label-percentage": 0.6
+    },
+    {
+        "experiment-name": "experiment #592",
+        "wine-types-to-consider-same-label": [
+            "red"
+        ],
+        "duplicate-rows-same-label-percentage": 0.7
+    },
+    {
+        "experiment-name": "experiment #593",
+        "wine-types-to-consider-same-label": [
+            "white"
+        ],
+        "duplicate-rows-same-label-percentage": 0.7
+    },
+    {
+        "experiment-name": "experiment #594",
+        "wine-types-to-consider-same-label": [
+            "red",
+            "white"
+        ],
+        "duplicate-rows-same-label-percentage": 0.7
+    },
+    {
+        "experiment-name": "experiment #595",
+        "wine-types-to-consider-same-label": [
+            "red"
+        ],
+        "duplicate-rows-same-label-percentage": 0.8
+    },
+    {
+        "experiment-name": "experiment #596",
+        "wine-types-to-consider-same-label": [
+            "white"
+        ],
+        "duplicate-rows-same-label-percentage": 0.8
+    },
+    {
+        "experiment-name": "experiment #597",
+        "wine-types-to-consider-same-label": [
+            "red",
+            "white"
+        ],
+        "duplicate-rows-same-label-percentage": 0.8
+    },
+    {
+        "experiment-name": "experiment #598",
+        "wine-types-to-consider-same-label": [
+            "red"
+        ],
+        "duplicate-rows-same-label-percentage": 0.9
+    },
+    {
+        "experiment-name": "experiment #599",
+        "wine-types-to-consider-same-label": [
+            "white"
+        ],
+        "duplicate-rows-same-label-percentage": 0.9
+    },
+    {
+        "experiment-name": "experiment #600",
+        "wine-types-to-consider-same-label": [
+            "red",
+            "white"
+        ],
+        "duplicate-rows-same-label-percentage": 0.9
+    },
+    {
+        "experiment-name": "experiment #601",
+        "wine-types-to-consider-same-label": [
+            "red"
+        ],
+        "duplicate-rows-same-label-percentage": 1.0
+    },
+    {
+        "experiment-name": "experiment #602",
+        "wine-types-to-consider-same-label": [
+            "white"
+        ],
+        "duplicate-rows-same-label-percentage": 1.0
+    },
+    {
+        "experiment-name": "experiment #603",
+        "wine-types-to-consider-same-label": [
+            "red",
+            "white"
+        ],
+        "duplicate-rows-same-label-percentage": 1.0
+    },
+    {
+        "experiment-name": "experiment #604",
+        "wine-types-to-consider-opposite-label": [
+            "red"
+        ],
+        "duplicate-rows-opposite-label-percentage": 0.1
+    },
+    {
+        "experiment-name": "experiment #605",
+        "wine-types-to-consider-opposite-label": [
+            "white"
+        ],
+        "duplicate-rows-opposite-label-percentage": 0.1
+    },
+    {
+        "experiment-name": "experiment #606",
+        "wine-types-to-consider-opposite-label": [
+            "red",
+            "white"
+        ],
+        "duplicate-rows-opposite-label-percentage": 0.1
+    },
+    {
+        "experiment-name": "experiment #607",
+        "wine-types-to-consider-opposite-label": [
+            "red"
+        ],
+        "duplicate-rows-opposite-label-percentage": 0.2
+    },
+    {
+        "experiment-name": "experiment #608",
+        "wine-types-to-consider-opposite-label": [
+            "white"
+        ],
+        "duplicate-rows-opposite-label-percentage": 0.2
+    },
+    {
+        "experiment-name": "experiment #609",
+        "wine-types-to-consider-opposite-label": [
+            "red",
+            "white"
+        ],
+        "duplicate-rows-opposite-label-percentage": 0.2
+    },
+    {
+        "experiment-name": "experiment #610",
+        "wine-types-to-consider-opposite-label": [
+            "red"
+        ],
+        "duplicate-rows-opposite-label-percentage": 0.3
+    },
+    {
+        "experiment-name": "experiment #611",
+        "wine-types-to-consider-opposite-label": [
+            "white"
+        ],
+        "duplicate-rows-opposite-label-percentage": 0.3
+    },
+    {
+        "experiment-name": "experiment #612",
+        "wine-types-to-consider-opposite-label": [
+            "red",
+            "white"
+        ],
+        "duplicate-rows-opposite-label-percentage": 0.3
+    },
+    {
+        "experiment-name": "experiment #613",
+        "wine-types-to-consider-opposite-label": [
+            "red"
+        ],
+        "duplicate-rows-opposite-label-percentage": 0.4
+    },
+    {
+        "experiment-name": "experiment #614",
+        "wine-types-to-consider-opposite-label": [
+            "white"
+        ],
+        "duplicate-rows-opposite-label-percentage": 0.4
+    },
+    {
+        "experiment-name": "experiment #615",
+        "wine-types-to-consider-opposite-label": [
+            "red",
+            "white"
+        ],
+        "duplicate-rows-opposite-label-percentage": 0.4
+    },
+    {
+        "experiment-name": "experiment #616",
+        "wine-types-to-consider-opposite-label": [
+            "red"
+        ],
+        "duplicate-rows-opposite-label-percentage": 0.5
+    },
+    {
+        "experiment-name": "experiment #617",
+        "wine-types-to-consider-opposite-label": [
+            "white"
+        ],
+        "duplicate-rows-opposite-label-percentage": 0.5
+    },
+    {
+        "experiment-name": "experiment #618",
+        "wine-types-to-consider-opposite-label": [
+            "red",
+            "white"
+        ],
+        "duplicate-rows-opposite-label-percentage": 0.5
+    },
+    {
+        "experiment-name": "experiment #619",
+        "wine-types-to-consider-opposite-label": [
+            "red"
+        ],
+        "duplicate-rows-opposite-label-percentage": 0.6
+    },
+    {
+        "experiment-name": "experiment #620",
+        "wine-types-to-consider-opposite-label": [
+            "white"
+        ],
+        "duplicate-rows-opposite-label-percentage": 0.6
+    },
+    {
+        "experiment-name": "experiment #621",
+        "wine-types-to-consider-opposite-label": [
+            "red",
+            "white"
+        ],
+        "duplicate-rows-opposite-label-percentage": 0.6
+    },
+    {
+        "experiment-name": "experiment #622",
+        "wine-types-to-consider-opposite-label": [
+            "red"
+        ],
+        "duplicate-rows-opposite-label-percentage": 0.7
+    },
+    {
+        "experiment-name": "experiment #623",
+        "wine-types-to-consider-opposite-label": [
+            "white"
+        ],
+        "duplicate-rows-opposite-label-percentage": 0.7
+    },
+    {
+        "experiment-name": "experiment #624",
+        "wine-types-to-consider-opposite-label": [
+            "red",
+            "white"
+        ],
+        "duplicate-rows-opposite-label-percentage": 0.7
+    },
+    {
+        "experiment-name": "experiment #625",
+        "wine-types-to-consider-opposite-label": [
+            "red"
+        ],
+        "duplicate-rows-opposite-label-percentage": 0.8
+    },
+    {
+        "experiment-name": "experiment #626",
+        "wine-types-to-consider-opposite-label": [
+            "white"
+        ],
+        "duplicate-rows-opposite-label-percentage": 0.8
+    },
+    {
+        "experiment-name": "experiment #627",
+        "wine-types-to-consider-opposite-label": [
+            "red",
+            "white"
+        ],
+        "duplicate-rows-opposite-label-percentage": 0.8
+    },
+    {
+        "experiment-name": "experiment #628",
+        "wine-types-to-consider-opposite-label": [
+            "red"
+        ],
+        "duplicate-rows-opposite-label-percentage": 0.9
+    },
+    {
+        "experiment-name": "experiment #629",
+        "wine-types-to-consider-opposite-label": [
+            "white"
+        ],
+        "duplicate-rows-opposite-label-percentage": 0.9
+    },
+    {
+        "experiment-name": "experiment #630",
+        "wine-types-to-consider-opposite-label": [
+            "red",
+            "white"
+        ],
+        "duplicate-rows-opposite-label-percentage": 0.9
+    },
+    {
+        "experiment-name": "experiment #631",
+        "wine-types-to-consider-opposite-label": [
+            "red"
+        ],
+        "duplicate-rows-opposite-label-percentage": 1.0
+    },
+    {
+        "experiment-name": "experiment #632",
+        "wine-types-to-consider-opposite-label": [
+            "white"
+        ],
+        "duplicate-rows-opposite-label-percentage": 1.0
+    },
+    {
+        "experiment-name": "experiment #633",
+        "wine-types-to-consider-opposite-label": [
+            "red",
+            "white"
+        ],
+        "duplicate-rows-opposite-label-percentage": 1.0
+    },
+    {
+        "experiment-name": "experiment #634",
+        "add-rows-random-percentage": 0.1
+    },
+    {
+        "experiment-name": "experiment #635",
+        "add-rows-random-percentage": 0.2
+    },
+    {
+        "experiment-name": "experiment #636",
+        "add-rows-random-percentage": 0.3
+    },
+    {
+        "experiment-name": "experiment #637",
+        "add-rows-random-percentage": 0.4
+    },
+    {
+        "experiment-name": "experiment #638",
+        "add-rows-random-percentage": 0.5
+    },
+    {
+        "experiment-name": "experiment #639",
+        "add-rows-random-percentage": 0.6
+    },
+    {
+        "experiment-name": "experiment #640",
+        "add-rows-random-percentage": 0.7
+    },
+    {
+        "experiment-name": "experiment #641",
+        "add-rows-random-percentage": 0.8
+    },
+    {
+        "experiment-name": "experiment #642",
+        "add-rows-random-percentage": 0.9
+    },
+    {
+        "experiment-name": "experiment #643",
+        "add-rows-random-percentage": 1.0
+    },
+    {
+        "experiment-name": "experiment #644",
+        "add-rows-domain-percentage": 0.1
+    },
+    {
+        "experiment-name": "experiment #645",
+        "add-rows-domain-percentage": 0.2
+    },
+    {
+        "experiment-name": "experiment #646",
+        "add-rows-domain-percentage": 0.3
+    },
+    {
+        "experiment-name": "experiment #647",
+        "add-rows-domain-percentage": 0.4
+    },
+    {
+        "experiment-name": "experiment #648",
+        "add-rows-domain-percentage": 0.5
+    },
+    {
+        "experiment-name": "experiment #649",
+        "add-rows-domain-percentage": 0.6
+    },
+    {
+        "experiment-name": "experiment #650",
+        "add-rows-domain-percentage": 0.7
+    },
+    {
+        "experiment-name": "experiment #651",
+        "add-rows-domain-percentage": 0.8
+    },
+    {
+        "experiment-name": "experiment #652",
+        "add-rows-domain-percentage": 0.9
+    },
+    {
+        "experiment-name": "experiment #653",
+        "add-rows-domain-percentage": 1.0
+    },
+    {
+        "experiment-name": "experiment #654",
+        "features-to-drop": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "features-to-dirty-mv": [
+            "PC1",
+            "PC2"
+        ],
+        "missing-values-percentage": 0.15,
+        "features-to-dirty-outliers": [
+            "PC1"
+        ],
+        "outliers-percentage": 0.05,
+        "features-to-dirty-oodv": [
+            "PC2"
+        ],
+        "oodv-percentage": 0.05,
+        "flip-percentage-red": 0.03,
+        "flip-percentage-white": 0.03,
+        "duplicate-rows-same-label-percentage": 0.1,
+        "duplicate-rows-opposite-label-percentage": 0.05,
+        "add-rows-random-percentage": 0.015,
+        "add-rows-domain-percentage": 0.03
+    },
+    {
+        "experiment-name": "experiment #655",
+        "features-to-drop": [
+            "PC1",
+            "PC2"
+        ],
+        "features-to-dirty-mv": [
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "missing-values-percentage": 0.5,
+        "flip-percentage-red": 0.1,
+        "flip-percentage-white": 0.45,
+        "add-rows-random-percentage": 0.35
+    },
+    {
+        "experiment-name": "experiment #656",
+        "features-to-drop": [
+            "PC1",
+            "PC2",
+            "PC3",
+            "PC4"
+        ],
+        "features-to-dirty-outliers": [
+            "PC5"
+        ],
+        "outliers-percentage": 0.02
+    },
+    {
+        "experiment-name": "experiment #657",
+        "features-to-dirty-mv": [
+            "PC1",
+            "PC2",
+            "PC3",
+            "PC4",
+            "PC5"
+        ],
+        "missing-values-percentage": 0.3,
+        "flip-percentage-red": 0.1,
+        "flip-percentage-white": 0.15
+    },
+    {
+        "experiment-name": "experiment #658",
+        "features-to-drop": [
+            "PC1"
+        ],
+        "flip-percentage-red": 1.0,
+        "flip-percentage-white": 1.0,
+        "add-rows-random-percentage": 0.2
+    },
+    {
+        "experiment-name": "experiment #659",
+        "features-to-dirty-mv": [
+            "PC2",
+            "PC3"
+        ],
+        "missing-values-percentage": 0.35,
+        "features-to-dirty-oodv": [
+            "PC1",
+            "PC4",
+            "PC5"
+        ],
+        "oodv-percentage": 0.5,
+        "add-rows-domain-percentage": 0.7
     }
 ]
