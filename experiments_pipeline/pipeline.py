@@ -25,6 +25,8 @@ from utils.features_utils import drop_features, introduce_missing_values, introd
 from utils.more_rows_utils import add_rows, duplicate_rows
 from utils.label_utils import flip_labels
 
+from hyperimpute.plugins.imputers import Imputers
+
 get_global_metrics = ultraimport(f"{os.getcwd()}/../ml_pipeline/utils/evaluation.py", "get_global_metrics")
 get_confidence_intervals = ultraimport(f"{os.getcwd()}/../ml_pipeline/utils/evaluation.py", "get_confidence_intervals")
 
@@ -733,6 +735,18 @@ class FitPerformanceEval(luigi.Task):
 
         logger.info('Retrieved the final dirty training set')
 
+        # SVM doesn't natively support missing values: exploit and compare two imputation strategies (mean and EM)
+        mean_dirty_train_df = Imputers().get("mean").fit_transform(final_dirty_train_df.copy())
+        mean_dirty_train_df.columns = final_dirty_train_df.columns
+        em_dirty_train_df = Imputers().get("EM").fit_transform(final_dirty_train_df.copy())
+        em_dirty_train_df.columns = final_dirty_train_df.columns
+
+        # Split into X_train_mean and X_train_em (y_train is the same as before, since there can't be missing values)
+        X_train_mean = mean_dirty_train_df.drop('type', axis=1)
+        X_train_em = em_dirty_train_df.drop('type', axis=1)
+
+        logger.info('Retrieved two imputed training sets using mean and EM algorithm')
+
         # Read winetype_pca_test.csv
         test_df = pd.read_csv(self.input()['initial_files']['test_csv'].path)
 
@@ -747,14 +761,18 @@ class FitPerformanceEval(luigi.Task):
 
         logger.info('Retrieved the test set without eventual dropped features')
 
-        # Create the whole set DataFrame (needed for CV) by appending the test set to the training set and shuffling
+        # Create the whole sets' DataFrame (needed for CV) by appending the test set to the training set and shuffling
         df = pd.concat([final_dirty_train_df, test_df], ignore_index=True).sample(frac=1, random_state=42).reset_index(drop=True)
-
-        # Split into X and y
+        df_mean = pd.concat([mean_dirty_train_df, test_df], ignore_index=True).sample(frac=1, random_state=42).reset_index(drop=True)
+        df_em = pd.concat([em_dirty_train_df, test_df], ignore_index=True).sample(frac=1, random_state=42).reset_index(drop=True)
+        
+        # Split into X, X_mean, X_em and y
         X = df.drop('type', axis=1).to_numpy()
+        X_mean = df_mean.drop('type', axis=1).to_numpy()
+        X_em = df_em.drop('type', axis=1).to_numpy()
         y = df['type']
 
-        logger.info('Generated the whole shuffled set')
+        logger.info('Generated the whole shuffled sets')
 
         # Define the neural network
         nn_model_naive = Sequential()
@@ -775,15 +793,17 @@ class FitPerformanceEval(luigi.Task):
 
         logger.info('Trained the Neural Network on the dirty training set!')
 
-        # Define the SVM
-        svm_model_naive = svm.SVC(kernel='linear', C=0.001, random_state=42)
+        # We need two SVM instances
+        svm_model_naive_mean = svm.SVC(kernel='linear', C=0.001, random_state=42)
+        svm_model_naive_em = svm.SVC(kernel='linear', C=0.001, random_state=42)
 
-        logger.info('Created the SVM')
+        logger.info('Created two SVM instances')
 
-        # Fit the SVM on the dirty training set
-        svm_model_naive.fit(X_train, y_train)
+        # Fit the SVMs
+        svm_model_naive_mean.fit(X_train_mean, y_train)
+        svm_model_naive_em.fit(X_train_em, y_train)
 
-        logger.info('Trained the SVM on the dirty training set!')
+        logger.info('Trained the SVMs on imputed training sets!')
 
         # Define the Decision Tree
         dtc_model_naive = DecisionTreeClassifier(random_state=42)
@@ -798,7 +818,8 @@ class FitPerformanceEval(luigi.Task):
         # Map the model names to their instances
         models_dict = {
             'Neural Network': nn_model_naive,
-            'SVM': svm_model_naive,
+            'SVM (mean)': svm_model_naive_mean,
+            'SVM (EM)': svm_model_naive_em,
             'Decision Tree': dtc_model_naive
         }
 
@@ -806,7 +827,7 @@ class FitPerformanceEval(luigi.Task):
         # Keys = column names
         # Values = column data, one for each row
         metrics_dict = {
-            'experiment_name': [self.experiment_name] * 3,
+            'experiment_name': [self.experiment_name] * len(models_dict),
             'model_name': list(models_dict.keys()),
 
             'accuracy': [],
@@ -844,7 +865,12 @@ class FitPerformanceEval(luigi.Task):
             logger.info(f'Got the global metrics for {model_name}')
 
             # 95% confidence intervals
-            confidence_intervals = get_confidence_intervals(model, X, y)
+            if '(mean)' in model_name:
+                confidence_intervals = get_confidence_intervals(model, X_mean, y)
+            elif '(EM)' in model_name:
+                confidence_intervals = get_confidence_intervals(model, X_em, y)
+            else:
+                confidence_intervals = get_confidence_intervals(model, X, y)
 
             # Add the 95% confidence intervals to the structure
             metrics_dict['accuracy_interval_lower'].append(confidence_intervals['accuracy_interval'][0])
@@ -861,12 +887,10 @@ class FitPerformanceEval(luigi.Task):
         # Convert the dictionary structure to DataFrame
         metrics_df = pd.DataFrame(metrics_dict)
 
-        # Append the data to metrics.csv
-        with open(self.output().path, 'a') as f:
-            # The header gets written only if the csv is empty
-            metrics_df.to_csv(f, mode='a', header=f.tell()==0, index=False, lineterminator='\n')
+        # Save the data to metrics.csv
+        metrics_df.to_csv(self.output().path, index=False)
 
-        logger.info('Appended to csv the performance evaluation for each model fitted on the dirty training set!')
+        logger.info('Saved the performance evaluation for each model fitted on the dirty training set on csv!')
         logger.info(f'Finished task {self.__class__.__name__}')
 
 

@@ -11,3 +11,4 @@ seaborn==0.13.1
 shap==0.45.1
 tensorflow==2.16.1
 ultraimport==0.0.7
+hyperimpute==0.1.17
