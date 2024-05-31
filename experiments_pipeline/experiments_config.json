@@ -1,0 +1,13 @@
+[
+    {
+        "experiment-name": "drop PC1,PC4 e mv 70% PC2",
+        "features-to-drop": ["PC1", "PC4"],
+        "features-to-dirty-mv": ["PC2"],
+        "missing-values-percentage": 0.7
+    },
+    {
+        "experiment-name": "mv 90% PC4",
+        "features-to-dirty-mv": ["PC4"],
+        "missing-values-percentage": 0.9
+    }
+]
