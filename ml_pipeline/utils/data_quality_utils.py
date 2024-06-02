@@ -21,22 +21,31 @@ import numpy as np
 
 
 
-# Sums missing values for each feature
 def completeness_verify(df):
+    """
+    Sums missing values for each feature
+    """
+
     missing_values = df.isnull().sum()
     return missing_values
 
 
 
-# Calculates the ratio % of missing values for each feature
 def completeness_ratio(df):
+    """
+    Calculates the ratio % of missing values for each feature
+    """
+
     missing_values = df.isnull().mean() * 100
     return missing_values
 
 
 
-# Checks, with given ranges, if the features are within those ranges. If not, count the inconsistent values.
 def consistency_verify(df, ranges):
+    """
+    Checks, with given ranges, if the features are within those ranges. If not, count the inconsistent values.
+    """
+
     out_of_range = {}
     for feature, (min_val, max_val) in ranges.items():
         if min_val is not None and max_val is not None:
@@ -51,8 +60,11 @@ def consistency_verify(df, ranges):
 
 
 
-# Calculates the outliers looking at the data out of bounds (STD or IQR)
 def consistency_outliers(df, ranges):
+    """
+    Calculates the outliers looking at the data out of bounds (STD or IQR)
+    """
+
     outliers = {}
     for feature in df.columns:
         if np.issubdtype(df[feature].dtype, np.number):
@@ -67,9 +79,12 @@ def consistency_outliers(df, ranges):
 
 
 
-# Calculates the bounds for each feature, to have a more accurate, yet not perfect idea 
-# of our data consistency. Mean and Threshold * Standard deviation has been used. 
 def consistency_calculate_bounds_std(data, feature_ranges, threshold = 5):
+    """
+    Calculates the bounds for each feature, to have a more accurate, yet not perfect idea 
+    of our data consistency. Mean and Threshold * Standard deviation has been used. 
+    """
+
     updated_feature_ranges = {}
     for feature, (lower_bound, upper_bound) in feature_ranges.items():
         # Uses mean and standard deviation for each feature
@@ -85,8 +100,11 @@ def consistency_calculate_bounds_std(data, feature_ranges, threshold = 5):
 
 
 
-# Calculates the bounds using Interquartile Range (IQR)
 def consistency_calculate_bounds_iqr(data, feature_ranges, threshold = 4):
+    """
+    Calculates the bounds using Interquartile Range (IQR)
+    """
+
     updated_feature_ranges = {}
     for feature in feature_ranges:
         q1 = data[feature].quantile(0.25)
@@ -101,30 +119,42 @@ def consistency_calculate_bounds_iqr(data, feature_ranges, threshold = 4):
 
 
 
-# Verifies how unique each feature is
 def uniqueness_verify_unique(df):
+    """
+    Verifies how unique each feature is
+    """
+
     unique_counts = df.nunique()
     return unique_counts
 
 
 
-# Verifies if there are any duplicates, if so counts the duplicated data + sum
 def uniqueness_verify_duplicates(df):
+    """
+    Verifies if there are any duplicates, if so counts the duplicated data + sum
+    """
+
     duplicate_indexes = df[df.duplicated()].index.tolist()
     duplicate_sum = df.duplicated().sum()
     return duplicate_indexes, duplicate_sum
 
 
 
-# Calculates the ratio % of unique values for each feature
 def uniqueness_ratio(df):
+    """
+    Calculates the ratio % of unique values for each feature
+    """
+
     unique_values = df.nunique() / len(df) * 100
     return unique_values
 
 
 
-# Verifies, given the expected types, that each feature is considered as the expected type.
 def accuracy_verify(df, expected_types):
+    """
+    Verifies, given the expected types, that each feature is considered as the expected type.
+    """
+    
     accuracy_results = {}
     for feature, expected_type in expected_types.items():
         actual_type = df[feature].dtype

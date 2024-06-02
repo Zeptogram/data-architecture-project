@@ -1,5 +1,7 @@
 """
-TODO docstring
+Pipeline for various data manipulation tasks and model evaluations. 
+It includes tasks for dropping features, introducing missing values, outliers, and out-of-domain values, flipping labels, duplicating rows, and adding rows. 
+The final task evaluates model performance.
 
 Cavaleri Matteo - 875050
 Gargiulo Elio - 869184
@@ -73,7 +75,7 @@ def get_full_rel_path(experiment_name, suffix):
 
 class DirectoryTarget(luigi.Target):
     """
-    TODO docstring
+    Luigi Target for checking the existence of a directory.
     """
     
     def __init__(self, path):
@@ -90,6 +92,14 @@ class DirectoryTarget(luigi.Target):
 
 
 class FakeTask(luigi.Task):
+    """
+    A placeholder task that simulates the existence of required files.
+    
+    Parameters:
+    - train-csv: Path to the training csv file. Default: 'datasets/winetype_pca_train.csv'
+    - test-csv: Path to the test csv file. Default: 'datasets/winetype_pca_test.csv'
+    """
+
     train_csv = luigi.Parameter(default=default_paths['train_csv'])
     test_csv = luigi.Parameter(default=default_paths['test_csv'])
 
@@ -101,7 +111,12 @@ class FakeTask(luigi.Task):
 
 class ExperimentFolder(luigi.Task):
     """
-    TODO docstring
+    Task to create the experiment folder.
+    
+    Parameters:
+    - experiment-name: The name of the experiment.
+    - train-csv: see previous tasks.
+    - test-csv: see previous tasks.
     """
 
     experiment_name = luigi.Parameter() # Mandatory
@@ -131,7 +146,13 @@ class ExperimentFolder(luigi.Task):
 
 class DropFeatures(luigi.Task):
     """
-    TODO docstring
+    Task to drop specified features from the dataset.
+    
+    Parameters:
+    - experiment-name: The name of the experiment.
+    - features-to-drop: List of features to drop. Default: empty.
+    - train-csv: see previous tasks.
+    - drop-features-csv-name: Name of the output csv file with dropped features. Default: 'train_after_drop_features.csv'
     """
 
     experiment_name = luigi.Parameter() # Mandatory
@@ -167,7 +188,16 @@ class DropFeatures(luigi.Task):
 
 class MissingValues(luigi.Task):
     """
-    TODO docstring
+    Task to introduce missing values into specified features of the dataset.
+    
+    Parameters:
+    - experiment-name: The name of the experiment.
+    - features-to-drop: see previous tasks.
+    - features-to-dirty-mv: List of features to introduce missing values into. Default: empty.
+    - missing-values-percentage: Percentage of values to replace with NaN. Default: 0.0.
+    - wine-types-to-consider-missing-values: List of wine types to consider ('red' or 'white' or both). Default: both.
+    - train-csv: see previous tasks.
+    - missing-values-csv-name: Name of the output csv file with missing values. Default: 'train_after_missing_values.csv'
     """
 
     experiment_name = luigi.Parameter() # Mandatory
@@ -209,9 +239,22 @@ class MissingValues(luigi.Task):
 
 class AddOutliers(luigi.Task):
     """
-    TODO docstring
+    Task to introduce outliers into specified features of the dataset.
+    
+    Parameters:
+    - experiment-name: The name of the experiment.
+    - features-to-drop: see previous tasks.
+    - features-to-dirty-mv: see previous tasks.
+    - wine-types-to-consider-missing-values: see previous tasks.
+    - missing-values-percentage: see previous tasks.
+    - features-to-dirty-outliers: List of features to introduce outliers into. Default: empty.
+    - outliers-percentage: Percentage of values to replace with outliers. Default: 0.0.
+    - wine-types-to-consider-outliers: List of wine types to consider ('red' or 'white' or both). Default: both.
+    - range-type: Type of range to use for generating outliers ('std' or 'iqr'). Default: 'std'.
+    - train-csv: see previous tasks.
+    - outliers-csv-name: Name of the output csv file with outliers. Default: 'train_after_outliers.csv'
     """
-
+    
     experiment_name = luigi.Parameter() # Mandatory
     # Param for Dependency
     features_to_drop = luigi.ListParameter(default=()) 
@@ -263,7 +306,23 @@ class AddOutliers(luigi.Task):
 
 class AddOODValues(luigi.Task):
     """
-    TODO docstring
+    Task to introduce out-of-domain values into specified features of the dataset.
+    
+    Parameters:
+    - experiment-name: The name of the experiment.
+    - features-to-drop: see previous tasks.
+    - features-to-dirty-mv: see previous tasks.
+    - features-to-dirty-outliers: see previous tasks.
+    - wine-types-to-consider-missing-values: see previous tasks.
+    - wine-types-to-consider-outliers: see previous tasks.
+    - missing-values-percentage: see previous tasks.
+    - outliers-percentage: see previous tasks.
+    - range-type: see previous tasks.
+    - features-to-dirty-oodv: List of features to introduce out-of-domain values into. Default: empty.
+    - oodv-percentage: Percentage of values to replace with out-of-domain values. Default: 0.0.
+    - wine-types-to-consider-oodv: List of wine types to consider ('red' or 'white' or both). Default: both.
+    - train-csv: see previous tasks.
+    - oodv-csv-name: Name of the output csv file with out-of-domain values. Default: 'train_after_oodv.csv'
     """
 
     experiment_name = luigi.Parameter() # Mandatory
@@ -321,7 +380,25 @@ class AddOODValues(luigi.Task):
 
 class FlipLabels(luigi.Task):
     """
-    TODO docstring
+    Task to flip the labels of red and white wines in the dataset by specified percentages.
+   
+    Parameters:
+    - experiment-name: The name of the experiment.
+    - features-to-drop: see previous tasks.
+    - features-to-dirty-mv: see previous tasks.
+    - features-to-dirty-outliers: see previous tasks.
+    - missing-values-percentage: see previous tasks.
+    - outliers-percentage: see previous tasks.
+    - range-type: see previous tasks.
+    - features-to-dirty-oodv: see previous tasks.
+    - oodv-percentage: see previous tasks.
+    - train-csv: see previous tasks.
+    - wine-types-to-consider-missing-values: see previous tasks.
+    - wine-types-to-consider-outliers: see previous tasks.
+    - wine-types-to-consider-oodv: see previous tasks.
+    - flip-percentage-red: Percentage of red wine labels to flip. Default: 0.0.
+    - flip-percentage-white: Percentage of white wine labels to flip. Default: 0.0.
+    - flip-labels-csv-name: Name of the output csv file with flipped labels. Default: 'train_after_flip_features.csv'
     """
 
     experiment_name = luigi.Parameter() # Mandatory
@@ -383,7 +460,27 @@ class FlipLabels(luigi.Task):
 
 class DuplicateRowsSameLabel(luigi.Task):
     """
-    TODO docstring
+    Task to duplicate rows in the dataset with the same label.
+   
+    Parameters:
+    - experiment-name: The name of the experiment.
+    - features-to-drop: see previous tasks.
+    - features-to-dirty-mv: see previous tasks.
+    - features-to-dirty-outliers: see previous tasks.
+    - missing-values-percentage: see previous tasks.
+    - outliers-percentage: see previous tasks.
+    - range-type: see previous tasks.
+    - features-to-dirty-oodv: see previous tasks.
+    - oodv-percentage: see previous tasks.
+    - train-csv: see previous tasks.
+    - flip-percentage-red: see previous tasks.
+    - flip-percentage-white: see previous tasks.
+    - wine-types-to-consider-missing-values: see previous tasks.
+    - wine-types-to-consider-outliers: see previous tasks.
+    - wine-types-to-consider-oodv: see previous tasks.
+    - wine-types-to-consider-same-label: List of wine types to consider for duplication with the same label ('red' or 'white' or both). Default: both.
+    - duplicate-rows-same-label-percentage: Percentage of rows to duplicate with the same label. Default: 0.0.
+    - duplicate-rows-same-label-csv-name: Name of the output csv file with duplicated rows having the same label. Default: 'train_after_duplicate_rows_same_label.csv'
     """
 
     experiment_name = luigi.Parameter() # Mandatory
@@ -447,7 +544,29 @@ class DuplicateRowsSameLabel(luigi.Task):
 
 class DuplicateRowsOppositeLabel(luigi.Task):
     """
-    TODO docstring
+    Task to duplicate rows in the dataset with the opposite label.
+   
+    Parameters:
+    - experiment-name: The name of the experiment.
+    - features-to-drop: see previous tasks.
+    - features-to-dirty-mv: see previous tasks.
+    - features-to-dirty-outliers: see previous tasks.
+    - missing-values-percentage: see previous tasks.
+    - outliers-percentage: see previous tasks.
+    - range-type: see previous tasks.
+    - features-to-dirty-oodv: see previous tasks.
+    - oodv-percentage: see previous tasks.
+    - train-csv: see previous tasks.
+    - flip-percentage-red: see previous tasks.
+    - flip-percentage-white: see previous tasks.
+    - wine-types-to-consider-same-label: see previous tasks.
+    - wine-types-to-consider-missing-values: see previous tasks.
+    - wine-types-to-consider-outliers: see previous tasks.
+    - wine-types-to-consider-oodv: see previous tasks.
+    - duplicate-rows-same-label-percentage: see previous tasks.
+    - wine-types-to-consider-opposite-label: List of wine types to consider for duplication with the opposite label ('red' or 'white' or both). Default: both.
+    - duplicate-rows-opposite-label-percentage: Percentage of rows to duplicate with the opposite label. Default: 0.0.
+    - duplicate-rows-opposite-label-csv-name: Name of the output csv file with duplicated rows having the opposite label. Default: 'train_after_duplicate_rows_opposite_label.csv'
     """
 
     experiment_name = luigi.Parameter() # Mandatory
@@ -515,7 +634,30 @@ class DuplicateRowsOppositeLabel(luigi.Task):
 
 class AddRowsRandom(luigi.Task):
     """
-    TODO docstring
+    Task to add random rows to the dataset.
+   
+    Parameters:
+    - experiment-name: The name of the experiment.
+    - features-to-drop: see previous tasks.
+    - features-to-dirty-mv: see previous tasks.
+    - features-to-dirty-outliers: see previous tasks.
+    - missing-values-percentage: see previous tasks.
+    - outliers-percentage: see previous tasks.
+    - range-type: see previous tasks.
+    - features-to-dirty-oodv: see previous tasks.
+    - oodv-percentage: see previous tasks.
+    - train-csv: see previous tasks.
+    - flip-percentage-red: see previous tasks.
+    - flip-percentage-white: see previous tasks.
+    - wine-types-to-consider-same-label: see previous tasks.
+    - duplicate-rows-same-label-percentage: see previous tasks.
+    - wine-types-to-consider-opposite-label: see previous tasks.
+    - duplicate-rows-opposite-label-percentage: see previous tasks.
+    - wine-types-to-consider-missing-values: see previous tasks.
+    - wine-types-to-consider-outliers: see previous tasks.
+    - wine-types-to-consider-oodv: see previous tasks.
+    - add-rows-random-percentage: Percentage of rows to add with random values. Default: 0.0.
+    - add-rows-random-csv-name: Name of the output csv file with added random rows. Default: 'train_after_add_rows_random.csv'
     """
 
     experiment_name = luigi.Parameter() # Mandatory
@@ -587,7 +729,31 @@ class AddRowsRandom(luigi.Task):
 
 class AddRowsDomain(luigi.Task):
     """
-    TODO docstring
+    Task to add rows to the dataset with values within a specified domain.
+   
+    Parameters:
+    - experiment-name: The name of the experiment.
+    - features-to-drop: see previous tasks.
+    - features-to-dirty-mv: see previous tasks.
+    - features-to-dirty-outliers: see previous tasks.
+    - missing-values-percentage: see previous tasks.
+    - outliers-percentage: see previous tasks.
+    - range-type: see previous tasks.
+    - features-to-dirty-oodv: see previous tasks.
+    - oodv-percentage: see previous tasks.
+    - train-csv: see previous tasks.
+    - flip-percentage-red: see previous tasks.
+    - flip-percentage-white: see previous tasks.
+    - wine-types-to-consider-same-label: see previous tasks.
+    - duplicate-rows-same-label-percentage: see previous tasks.
+    - wine-types-to-consider-opposite-label: see previous tasks.
+    - duplicate-rows-opposite-label-percentage: see previous tasks.
+    - add-rows-random-percentage: see previous tasks.
+    - wine-types-to-consider-missing-values: see previous tasks.
+    - wine-types-to-consider-outliers: see previous tasks.
+    - wine-types-to-consider-oodv: see previous tasks.
+    - add-rows-domain-percentage: Percentage of rows to add with values within the domain. Default: 0.0.
+    - add-rows-domain-csv-name: Name of the output csv file with added rows having values within the domain. Default: 'train_after_add_rows_domain.csv'
     """
 
     experiment_name = luigi.Parameter() # Mandatory
@@ -667,7 +833,32 @@ class AddRowsDomain(luigi.Task):
 
 class FitPerformanceEval(luigi.Task):
     """
-    TODO docstring
+    Task to evaluate the performance of different models on the modified dataset.
+   
+    Parameters:
+    - experiment-name: The name of the experiment.
+    - features-to-drop: see previous tasks.
+    - features-to-dirty-mv: see previous tasks.
+    - features-to-dirty-outliers: see previous tasks.
+    - missing-values-percentage: see previous tasks.
+    - outliers-percentage: see previous tasks.
+    - range-type: see previous tasks.
+    - features-to-dirty-oodv: see previous tasks.
+    - oodv-percentage: see previous tasks.
+    - train-csv: see previous tasks.
+    - test-csv: see previous tasks.
+    - flip-percentage-red: see previous tasks.
+    - flip-percentage-white: see previous tasks.
+    - wine-types-to-consider-same-label: see previous tasks.
+    - duplicate-rows-same-label-percentage: see previous tasks.
+    - wine-types-to-consider-opposite-label: see previous tasks.
+    - duplicate-rows-opposite-label-percentage: see previous tasks.
+    - add-rows-random-percentage: see previous tasks.
+    - add-rows-domain-percentage: see previous tasks.
+    - wine-types-to-consider-missing-values: see previous tasks.
+    - wine-types-to-consider-outliers: see previous tasks.
+    - wine-types-to-consider-oodv: see previous tasks.
+    - metrics-csv-name: Name of the output csv file with performance metrics. Default: 'metrics.csv'
     """
 
     experiment_name = luigi.Parameter() # Mandatory

@@ -1,5 +1,5 @@
 """
-TODO docstring
+This module provides functions to manipulate labels in the dataset, i.e. flipping labels for a given percentage of red and white wines.
 
 Cavaleri Matteo - 875050
 Gargiulo Elio - 869184
@@ -11,8 +11,22 @@ import numpy as np
 
 
 
-# Flip the labels w.r.t the given percentages of red and white wines
 def flip_labels(input_csv, flip_percentage_red, flip_percentage_white):
+    """
+    Flip the labels with respect to the given percentages of red and white wines.
+    
+    Parameters:
+    - input_csv (str): Path to the input csv file.
+    - flip_percentage_red (float): Percentage of red wine labels to flip, as a floating point number between 0.0 and 1.0.
+    - flip_percentage_white (float): Percentage of white wine labels to flip, as a floating point number between 0.0 and 1.0.
+    
+    Returns:
+    - pd.DataFrame: A new DataFrame with the flipped labels.
+    
+    Raises:
+    - ValueError: If the flip percentages are not between 0 and 1.
+    """
+
     # Load the DataFrame
     df = pd.read_csv(input_csv)
     

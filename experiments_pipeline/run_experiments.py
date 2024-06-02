@@ -1,5 +1,5 @@
 """
-TODO docstring
+This module runs experiments by loading configurations from a JSON file and executing a Luigi pipeline with the specified parameters.
 
 Cavaleri Matteo - 875050
 Gargiulo Elio - 869184
@@ -13,6 +13,15 @@ import subprocess, os, sys
 
 
 def main():
+    """
+    Load JSON experiments configuration and execute the Luigi pipeline with the specified parameters.
+
+    - Loads the experiments configuration from 'experiments_config.json'.
+    - Iterates through each configuration entry.
+    - Constructs the command parameters for the Luigi pipeline.
+    - Executes the pipeline with the constructed parameters.
+    """
+    
     # Load JSON experiments configuration
     with open("experiments_config.json", "r") as file:
         json_data = json.load(file)

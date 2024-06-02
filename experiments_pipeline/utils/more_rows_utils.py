@@ -1,5 +1,5 @@
 """
-TODO docstring
+This module provides functions to augment a dataset by adding or duplicating rows with generated features and labels.
 
 Cavaleri Matteo - 875050
 Gargiulo Elio - 869184
@@ -13,10 +13,23 @@ import random
 
 
 
-# Add rows with generated features (and random label) to the training set and return the new set
-# The percentage is a floating point number between 0.0 and 1.0
-# The generation can be between a defined range (see the AddRowsDomain task in the pipeline) for each feature, by default it's "unrestricted" (in [-100, 100])
 def add_rows(input_csv, percentage, ranges={}):
+    """
+    Add rows with generated features (and random label) to the training set and return the new set.
+    
+    Parameters:
+    - input_csv (str): Path to the input csv file.
+    - percentage (float): Percentage of rows to add, as a floating point number between 0.0 and 1.0.
+    - ranges (dict): Optional. A dictionary specifying the range for each feature to generate the values. 
+    If not specified, the default range is [-100, 100] for each feature.
+    
+    Returns:
+    - pd.DataFrame: A new DataFrame with the additional generated rows.
+    
+    Raises:
+    - ValueError: If the percentage is not between 0 and 1.
+    """
+
     # Ensure the percentage is between 0 and 1
     if not (0 <= percentage <= 1):
         raise ValueError("[ERROR] Percentage must be between 0 and 1")
@@ -64,9 +77,24 @@ def add_rows(input_csv, percentage, ranges={}):
 
 
 
-# Duplicate rows w.r.t the given wine types to consider and the percentage
-# By default it flips the label but it also can use the same label in the duplicate rows
 def duplicate_rows(input_csv, wine_types_to_consider, percentage, flip_label=True):
+    """
+    Duplicate rows based on the given wine types to consider and the percentage.
+    By default, it flips the label but it can also use the same label in the duplicate rows.
+    
+    Parameters:
+    - input_csv (str): Path to the input csv file.
+    - wine_types_to_consider (list or tuple): List or tuple of wine types to consider for duplication. Can contain 'red' or 'white' or both.
+    - percentage (float): Percentage of rows to duplicate, as a floating point number between 0.0 and 1.0.
+    - flip_label (bool): Optional. Whether to flip the label of the duplicated rows. Default is True.
+    
+    Returns:
+    - pd.DataFrame: A new DataFrame with the duplicated rows.
+    
+    Raises:
+    - ValueError: If the percentage is not between 0 and 1 or if the wine types are not 'red' or 'white'.
+    """
+
     # Convert tuple to list if necessary
     if isinstance(wine_types_to_consider, tuple):
         wine_types_to_consider = list(wine_types_to_consider)

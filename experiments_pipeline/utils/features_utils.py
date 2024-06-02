@@ -1,5 +1,5 @@
 """
-TODO docstring
+This module provides functions to manipulate features in the dataset, such as dropping features, introducing missing values, outliers, and out of domain values.
 
 Cavaleri Matteo - 875050
 Gargiulo Elio - 869184
@@ -14,8 +14,21 @@ dirty_level = 10 # For OOD, it's the constant that multiplies std
 
 
 
-# Drop the features from the training set and return the new set
 def drop_features(input_csv, features_to_drop):
+    """
+    Drop the features from the training set and return the new set.
+    
+    Parameters:
+    - input_csv (str): Path to the input csv file.
+    - features_to_drop (list or tuple): List or tuple of features to drop from the dataset.
+    
+    Returns:
+    - pd.DataFrame: A new DataFrame with the specified features dropped.
+    
+    Raises:
+    - ValueError: If an attempt is made to drop the target or a feature not found in the DataFrame.
+    """
+
     # ListParameter creates a tuple instead of a list, convert it before using
     if isinstance(features_to_drop, tuple):
         features_to_drop = list(features_to_drop)
@@ -34,8 +47,24 @@ def drop_features(input_csv, features_to_drop):
 
 
 
-# Introduces missing values in the given set
 def introduce_missing_values(input_csv, wine_types_to_consider, features_to_dirty, percentage):
+    """
+    Introduce missing values in the given set.
+    
+    Parameters:
+    - input_csv (str): Path to the input csv file.
+    - wine_types_to_consider (list or tuple): List or tuple of wine types to consider ('red' or 'white' or both).
+    - features_to_dirty (list or tuple): List or tuple of features to introduce missing values into.
+    - percentage (float): Percentage of values to replace with NaN, as a floating point number between 0.0 and 1.0.
+    
+    Returns:
+    - pd.DataFrame: A new DataFrame with the specified percentage of missing values introduced.
+    
+    Raises:
+    - ValueError: If the percentage is not between 0 and 1, or if an attempt is made to introduce missing values to the target,
+    or if the wine types are not 'red' or 'white'.
+    """
+
     # Convert tuple to list if necessary
     if isinstance(features_to_dirty, tuple):
         features_to_dirty = list(features_to_dirty)
@@ -84,8 +113,26 @@ def introduce_missing_values(input_csv, wine_types_to_consider, features_to_dirt
 
 
 
-# Introduces outliers in the given set, using std + mean or IQR
 def introduce_outliers(input_csv, df_ranges, wine_types_to_consider, features_to_dirty, percentage, range_type="std"):
+    """
+    Introduce outliers in the given set, using std + mean or IQR.
+    
+    Parameters:
+    - input_csv (str): Path to the input csv file.
+    - df_ranges (pd.DataFrame): DataFrame containing the original training set, used to get ranges for the features.
+    - wine_types_to_consider (list or tuple): List or tuple of wine types to consider ('red' or 'white' or both).
+    - features_to_dirty (list or tuple): List or tuple of features to introduce outliers into.
+    - percentage (float): Percentage of values to replace with outliers, as a floating point number between 0.0 and 1.0.
+    - range_type (str): Type of range to use for generating outliers. Can be 'std' or 'iqr'. Default is 'std'.
+    
+    Returns:
+    - pd.DataFrame: A new DataFrame with the specified percentage of outliers introduced.
+    
+    Raises:
+    - ValueError: If the percentage is not between 0 and 1, or if an attempt is made to introduce outliers to the target,
+    or if the wine types are not 'red' or 'white'.
+    """
+
     # Convert tuple to list if necessary
     if isinstance(features_to_dirty, tuple):
         features_to_dirty = list(features_to_dirty)
@@ -151,8 +198,24 @@ def introduce_outliers(input_csv, df_ranges, wine_types_to_consider, features_to
 
 
 
-# Introduces out of domain values
 def introduce_oodv(input_csv, wine_types_to_consider, features_to_dirty, percentage):
+    """
+    Introduce out of domain values.
+    
+    Parameters:
+    - input_csv (str): Path to the input csv file.
+    - wine_types_to_consider (list or tuple): List or tuple of wine types to consider ('red' or 'white' or both).
+    - features_to_dirty (list or tuple): List or tuple of features to introduce out of domain values into.
+    - percentage (float): Percentage of values to replace with out of domain values, as a floating point number between 0.0 and 1.0.
+    
+    Returns:
+    - pd.DataFrame: A new DataFrame with the specified percentage of out of domain values introduced.
+    
+    Raises:
+    - ValueError: If the percentage is not between 0 and 1, or if an attempt is made to introduce out of domain values to the target,
+    or if the wine types are not 'red' or 'white'.
+    """
+
     # Convert tuple to list if necessary
     if isinstance(features_to_dirty, tuple):
         features_to_dirty = list(features_to_dirty)
@@ -204,8 +267,21 @@ def introduce_oodv(input_csv, wine_types_to_consider, features_to_dirty, percent
 
 
 
-# Using std mean or iqr, get the ranges
 def get_ranges(df, features, range_type = "std", threshold_std = 3, threshold_iqr = 2):
+    """
+    Using std mean or IQR, get the ranges for the features.
+    
+    Parameters:
+    - df (pd.DataFrame): DataFrame containing the original training set.
+    - features (list or tuple): List or tuple of features to calculate the ranges for.
+    - range_type (str): Type of range to use for calculation. Can be 'std' or 'iqr'. Default is 'std'.
+    - threshold_std (int): Threshold for std deviation. Default is 3.
+    - threshold_iqr (int): Threshold for IQR. Default is 2.
+    
+    Returns:
+    - dict: A dictionary with features as keys and their calculated ranges as values.
+    """
+
     ranges = {}
     for feature in features:
         if range_type == "iqr":

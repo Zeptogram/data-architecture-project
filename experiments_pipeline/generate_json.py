@@ -1,5 +1,5 @@
 """
-TODO docstring
+This module generates a JSON configuration file for various experiments by defining different sets of parameters.
 
 Cavaleri Matteo - 875050
 Gargiulo Elio - 869184
@@ -12,6 +12,24 @@ import json
 data = []
 
 def main():
+    """
+    Generate a JSON configuration file for various experiments.
+    
+    The function defines different sets of parameters for experiments, including:
+    - Drop features experiments
+    - Missing values experiments
+    - Outliers experiments
+    - Out of domain values experiments
+    - Flip labels experiments
+    - Duplicate rows with the same label experiments
+    - Duplicate rows with the opposite label experiments
+    - Add rows with random values experiments
+    - Add rows within a domain experiments
+    - Combination of multiple modifications
+    
+    The generated configuration is saved to 'experiments_config.json'.
+    """
+    
     # Generate drop features single experiments
     exp_number = 1
     to_consider = [["PC1"], ["PC2"], ["PC1", "PC2"], ["PC3", "PC4", "PC5"], ["PC1", "PC2", "PC3", "PC4"]]
