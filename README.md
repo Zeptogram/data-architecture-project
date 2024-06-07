@@ -1,9 +1,9 @@
 
 # Progetto Architetture Dati
 
-Progetto di Architetture Dati - Data Quality
-Università degli Studi di Milano - Bicocca
-Corso di Laurea Magistrale in Informatica 
+Progetto di Architetture Dati - Data Quality \
+Università degli Studi di Milano - Bicocca \
+Corso di Laurea Magistrale in Informatica \
 Anno Accademico 2023-2024
 
 ## Autori
