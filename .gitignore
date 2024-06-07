@@ -1,4 +1,8 @@
+# Virtual environment
 /venv
+
+# Ignore Jupyter checkpoints
+**/.ipynb_checkpoints
 
 # Ignore all __pycache__ directories
 **/__pycache__
@@ -8,3 +12,4 @@
 
 # Ignore experiments output
 /experiments_pipeline/experiments
+
