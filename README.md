@@ -6,16 +6,13 @@ Università degli Studi di Milano - Bicocca \
 Corso di Laurea Magistrale in Informatica \
 Anno Accademico 2023-2024
 
+Per ulteriori dettagli si consulti la relazione e/o il codice.
+
 ## Autori
 
 - Cavaleri Matteo - 875050
 - Gargiulo Elio - 869184
 - Piacente Cristian - 866020
-
-## Links Utili
-
-- [Relazione](https://docs.google.com/document/d/1IV3Gf9V8NhbtCMpwyom5nab6pTW0wrw2B98vvv_Iris/edit?usp=sharing)
-- [Presentazione](https://unimibit-my.sharepoint.com/personal/e_gargiulo4_campus_unimib_it/_layouts/15/guestaccess.aspx?share=EbSK9e_OlwtKjOP11F5rqQgBEpbfzfVZu8obZHoFk96ZXg&e=91mqyd)
 
 ## Introduzione al Dataset
 
@@ -94,8 +91,6 @@ Con il virtual environment attivato nella root della repository, per lanciare l'
  1.     cd ml_pipeline
  2.     python -m luigi --module pipeline FullPipeline --local-scheduler
 
-Per ulteriori dettagli si consulti la relazione e/o il codice.
-
 ### Notebook Explainability
 
  Il notebook Jupyter relativo alla parte di explainability (dopo aver eseguito la prima pipeline) contiene:
@@ -114,8 +109,6 @@ L'idea è di sfruttare sia grafici riguardo alla creazione dello spazio della PC
 	 - *Summary Plot*
 	 - *Dependence Plot*
 	 - *Decision Plot*
-
-Ognuno di questi viene approfondito in relazione.
 
 #### Esecuzione
 
@@ -155,8 +148,6 @@ Con il virtual environment attivato nella root della repository, per lanciare tu
  1.     cd experiments_pipeline
  2.     python run_experiments.py 
 
-Per ulteriori dettagli si consulti la relazione e/o il codice.
-
 Nota bene: l'esecuzione completa di tutti gli esperimenti potrebbe impiegare diverse ore, per questo motivo è stato lasciato il csv finale delle metriche all'interno della cartella.
 
 ### Notebook Esperimenti
@@ -170,8 +161,6 @@ Nota bene: l'esecuzione completa di tutti gli esperimenti potrebbe impiegare div
 	 - **per ogni metrica**, **istogramma e scatterplot**
 	 - **per ogni singolo esperimento** (e per ogni possibile parametro relativo all'esperimento), <ins>la variazione delle performance dei modelli di ML rispetto alla qualità del dataset</ins>
 	 - **Matrice di Correlazione tra i diversi tipi di SVM e Neural Network** (sia con un metodo di imputazione sia senza) per misurare la **correlazione tra le metriche dei due modelli messi a confronto**
-
-Ognuno di questi viene approfondito in relazione.
 
 #### Esecuzione
 
